@@ -6,9 +6,10 @@ Backend,
 npm init -y : package.json
 npm i :
 1. express - framework
-2. mysql2 - database
-3. sequelize - relational database - ORM ( Object Relational Mapping )
-4. cors - API ke frontend / bisa diakses ke luar domain - Cross Origin Resouce Sharing
+2. express-fileupload - utk upload file
+3. mysql2 - database
+4. sequelize - relational database - ORM ( Object Relational Mapping )
+5. cors - API ke frontend / bisa diakses ke luar domain - Cross Origin Resouce Sharing
 
 VSCode extension : 
 1. rest client
