@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FormEvent } from 'react';
+import React, { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -12,6 +12,8 @@ const EditUser: React.FC = () => {
     const [name, setName] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [gender, setGender] = useState<string>("Male");
+    const [image, setImage] = useState<File | null>(null);
+    const [previewURL, setPreviewURL] = useState<string | null>(null);
     const navigate = useNavigate();
     const { id } = useParams<{ id: string }>();
 
@@ -21,7 +23,7 @@ const EditUser: React.FC = () => {
 
     const getUserById = async () => {
         try {
-            const response = await axios.get<User>(`http://localhost:5000/users/${id}`);
+            const response = await axios.get<User>(`http://localhost:5000/user/${id}`);
             const userData: User = response.data;
             setName(userData.name);
             setEmail(userData.email);
@@ -31,13 +33,29 @@ const EditUser: React.FC = () => {
         }
     }
 
+    const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+            const selectedImage = e.target.files[0];
+            setImage(selectedImage);
+            const imageURL = URL.createObjectURL(selectedImage);
+            setPreviewURL(imageURL);
+        }
+    };
+
     const updateUser = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            await axios.patch(`http://localhost:5000/users/${id}`, {
-                name,
-                email,
-                gender
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('gender', gender);
+            if (image) {
+                formData.append('file', image);
+            }
+            await axios.patch(`http://localhost:5000/user/${id}`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
             });
             navigate("/users");
         } catch (error) {
@@ -83,6 +101,17 @@ const EditUser: React.FC = () => {
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </select>
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="image" className="form-label">Image</label>
+                            <input
+                                type="file"
+                                className="form-control"
+                                id="image"
+                                accept=".png,.jpg,.jpeg"
+                                onChange={handleImageChange}
+                            />
+                            {previewURL && <img src={previewURL} alt="Preview" className="mt-2" style={{ maxWidth: "100%" }} />}
                         </div>
                         <button type="submit" className="btn btn-success">Update</button>
                     </form>

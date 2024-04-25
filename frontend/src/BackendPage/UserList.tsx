@@ -7,6 +7,7 @@ interface User {
     name: string;
     email: string;
     gender: string;
+    image: string;
 }
 
 const UserList: React.FC = () => {
@@ -18,7 +19,7 @@ const UserList: React.FC = () => {
 
     const getUsers = async () => {
         try {
-            const response = await axios.get<User[]>('http://localhost:5000/users');
+            const response = await axios.get<User[]>('http://localhost:5000/user');
             setUsers(response.data);
         } catch (error) {
             console.log(error);
@@ -27,7 +28,7 @@ const UserList: React.FC = () => {
 
     const deleteUser = async (id: number) => {
         try {
-            await axios.delete(`http://localhost:5000/users/${id}`);
+            await axios.delete(`http://localhost:5000/user/${id}`);
             getUsers();
         } catch (error) {
             console.log(error);
@@ -47,6 +48,7 @@ const UserList: React.FC = () => {
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Gender</th>
+                                <th>Image</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -57,6 +59,7 @@ const UserList: React.FC = () => {
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>
                                     <td>{user.gender}</td>
+                                    <td><img src={`http://localhost:5000/images/${user.image}`} alt={user.name} width="50" /></td>
                                     <td>
                                         <Link to={`/edit/${user.id}`} className='btn btn-sm btn-info'>Edit</Link>
                                         <button onClick={() => deleteUser(user.id)} className='btn btn-sm btn-danger ml-2'>Delete</button>
@@ -66,6 +69,22 @@ const UserList: React.FC = () => {
                         </tbody>
                     </table>
                 </div>
+            </div>
+            <div className="row justify-content-center mt-3">
+                {users.map(user => (
+                    <div className="col-md-4" key={user.id}>
+                        <div className="card mb-3">
+                            <img src={`http://localhost:5000/images/${user.image}`} className="card-img-top" alt={user.name} />
+                            <div className="card-body">
+                                <h5 className="card-title">{user.name}</h5>
+                                <p className="card-text">Email: {user.email}</p>
+                                <p className="card-text">Gender: {user.gender}</p>
+                                <Link to={`/edit/${user.id}`} className='btn btn-sm btn-info mr-2'>Edit</Link>
+                                <button onClick={() => deleteUser(user.id)} className='btn btn-sm btn-danger'>Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     );
