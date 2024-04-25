@@ -1,18 +1,18 @@
 import {Sequelize} from "sequelize";
 import db from '../config/Database.js';
 
-const {DataTypes} = Sequelize;
+const {DataTypes} = Sequelize; //Function sequelize
 
-const User = db.define('users',{
-    name : DataTypes.STRING,
+const User = db.define('users',{ //nama tabel
+    name : DataTypes.STRING, //field, datanya
     email : DataTypes.STRING,
     gender : DataTypes.STRING
 },{
-    freezeTableName : true
+    freezeTableName : true //opsi
 });
 
 export default User;
 
 (async()=>{
-    await db.sync(); //panggil file user model
+    await db.sync(); // Function run ketika dipanggil file UserModel
 })();

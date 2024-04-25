@@ -2,7 +2,7 @@ import User from '../models/UserModel.js';
 
 export const getUsers = async(req,res)=>{ //request, response
     try{
-        const response = await User.findAll();
+        const response = await User.findAll(); //dari model User, findAll() dari sequelize
         res.status(200).json(response);
     } catch(error){
         console.log(error.message)
@@ -11,7 +11,7 @@ export const getUsers = async(req,res)=>{ //request, response
 
 export const getUserById = async(req,res)=>{ //request, response
     try{
-        const response = await User.findOne({
+        const response = await User.findOne({ // dari model User
             where:{
                 id: req.params.id
             }

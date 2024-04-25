@@ -8,14 +8,14 @@ npm i :
 1. express - framework
 2. mysql2 - database
 3. sequelize - relational database - ORM ( Object Relational Mapping )
-4. cors - API ke frontend
+4. cors - API ke frontend / bisa diakses ke luar domain - Cross Origin Resouce Sharing
 
 VSCode extension : 
 1. rest client
 2. es7 - react
 npm i nodemon
 
-Fronted
+Frontend
 npx create-react-app "nama" : create react+typescript+vite project
 npm i : 
 1. react-router-dom - route.navigation
@@ -23,7 +23,21 @@ npm i :
 3. bulma - style
 
 Note :
-1. Tabel :
-tabel>(thead>tr>th*5)+(tbody>tr>th*5)
+1. odemon : Install Nodemon Secara global untuk eksekusi backend 
+- npm install -g nodemon
+2. Shortcut :
+- rafce : untuk template react
+- Tabel : tabel>(thead>tr>th*5)+(tbody>tr>th*5)
+
+Tambahan Code :
+1. Tambahin "type":"module" pada package.json 
+- untuk erx syntax agar bisa export / import module
+
+
+Tentang Backend
+- config : folder deklarasi database
+- models : folder struktur tabel database
+- controller : folder untuk request data, input data, update data \
+- route : routing
 
 

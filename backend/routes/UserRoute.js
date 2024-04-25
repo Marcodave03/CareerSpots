@@ -7,11 +7,11 @@ import {getUsers,
     } from "../controllers/UserController.js";
 import loginController from '../controllers/LoginController.js';
 
-const router = express.Router();
+const router = express.Router(); //Function express
 
 // controller
-router.get('/users',getUsers); 
-router.get('/users/:id',getUserById); 
+router.get('/users',getUsers); // ambil semua user
+router.get('/users/:id',getUserById); // ambil id
 router.post('/users',createUser); 
 router.patch('/users/:id',updateUser); 
 router.delete('/users/:id',deleteUser); 
