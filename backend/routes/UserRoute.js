@@ -5,6 +5,7 @@ import {getUsers,
         updateUser,
         deleteUser
     } from "../controllers/UserController.js";
+import loginController from '../controllers/LoginController.js';
 
 const router = express.Router();
 
@@ -15,4 +16,12 @@ router.post('/users',createUser);
 router.patch('/users/:id',updateUser); 
 router.delete('/users/:id',deleteUser); 
 
+router.post('/login', loginController.loginUser);
+
 export default router;
+
+
+
+
+
+

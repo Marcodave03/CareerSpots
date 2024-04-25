@@ -1,0 +1,29 @@
+Run Code :
+1. nodemon index - backend nodejs
+2. npm run dev - frontend vite
+
+Backend,
+npm init -y : package.json
+npm i :
+1. express - framework
+2. mysql2 - database
+3. sequelize - relational database - ORM ( Object Relational Mapping )
+4. cors - API ke frontend
+
+VSCode extension : 
+1. rest client
+2. es7 - react
+npm i nodemon
+
+Fronted
+npx create-react-app "nama" : create react+typescript+vite project
+npm i : 
+1. react-router-dom - route.navigation
+2. axios - interaksi dengan API
+3. bulma - style
+
+Note :
+1. Tabel :
+tabel>(thead>tr>th*5)+(tbody>tr>th*5)
+
+
