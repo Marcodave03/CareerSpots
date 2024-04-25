@@ -1,8 +1,18 @@
-import React from 'react';
 import Navbar from "../components/navbar.tsx";
 import Jobs from "../components/jobs.tsx";
-import '../Style/main.css';
-import img from '../assets/Vector.png'
+import Search from "../components/search.tsx";
+import Footer from "../components/footer.tsx";
+import './Style/main.css';
+import img from '../assets/Vector.png';
+import img1 from '../assets/Discord.svg';
+import img2 from '../assets/MailChimp.svg';
+import img3 from '../assets/Medium.svg';
+import img4 from '../assets/Microsoft.svg';
+import img5 from '../assets/Square.svg';
+import img6 from '../assets/SquareSpace.svg';
+import img7 from '../assets/WealthSimple.svg';
+
+
 
 const Home = () => {
   return (
@@ -11,19 +21,14 @@ const Home = () => {
       <div className='container d-flex justify-content-center' style={{marginTop:"50px"}}>
         <div className='row'>
           <div className="col text-center">
-            <div style={{marginBottom:"25px"}}>
+            <div style={{marginBottom:"25px", marginTop:"50px"}}>
             <h2 className="typing-text"><span>We'll get you </span><span className='text-primary'>hired</span></h2>
             <h2 className="typing-text"><span>hired in </span><span className='text-primary'>no time</span></h2>
 
             </div>
             <div className="div">
               <p className='mb-3'>Find job easy now !</p>
-              <form className="d-flex" role="search">
-                <div className="form-control me-2 d-flex justify-content-between" style={{borderRadius:"40px", alignItems:"center"}}>
-                  <p style={{marginLeft:"20px"}}>Search Job Title </p>          
-                  <button className="btn btn-outline-success bg-primary text-white flex-end" style={{borderRadius:"40px"}} type="submit">Search</button>
-                </div>
-              </form>
+              <Search/>
             </div>
           </div>
         </div>
@@ -33,46 +38,46 @@ const Home = () => {
         <div className="row">
           <div className="col">
             <div style={{marginTop:"20px", marginBottom:"50px"}}>
-              <div className="row logos">
+              <div className="row logos" style={{overflow:"hidden"}}>
                 <div className="logos-slide">
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
+                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img1}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img2}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img3}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img4}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img5}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img6}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img7}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img2}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img1}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img5}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img3}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img7}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img4}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img5}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img6}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img1}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img2}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
                 </div>
                 <div className="logos-slide">
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
-                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto"}} id="" alt=""/>
+                  <img className="image-fluid" src={img7}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img6}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img5}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img4}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img3}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img2}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img1}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img7}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img5}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img3}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img1}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img2}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img6}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img2}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img4}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
+                  <img className="image-fluid" src={img7}  style={{objectFit:"contain", width:200,height:"auto",margin:"10px"}} id="" alt=""/>
                 </div>
               </div>
             </div>
@@ -95,6 +100,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   )
 }

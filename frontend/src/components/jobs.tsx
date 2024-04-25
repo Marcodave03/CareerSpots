@@ -20,10 +20,10 @@ const jobs = () => {
                     </p>
                 </div>
                 <div className='m-2'>
-                    <button className="bg-light text-white flex-end m-1" style={{borderRadius:"40px", fontWeight: "bold", borderColor:"#f8f9fa"}}>
+                    <button className="bg-light text-white flex-end m-1" style={{borderRadius:"40px", fontWeight: "bold", borderColor:"#f8f9fa",padding:"10px"}}>
                     <span className='text-primary'>Full Time</span>
                     </button>
-                    <button className="bg-light text-white flex-end m-1" style={{borderRadius:"40px", fontWeight: "bold", borderColor:"#f8f9fa"}}>
+                    <button className="bg-light text-white flex-end m-1" style={{borderRadius:"40px", fontWeight: "bold", borderColor:"#f8f9fa",padding:"10px"}}>
                     <span className='text-primary'>Min. 1 Year</span>
                     </button>
                 </div>
