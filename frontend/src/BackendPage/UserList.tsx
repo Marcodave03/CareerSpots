@@ -72,16 +72,16 @@ const UserList: React.FC = () => {
             </div>
             <div className="row justify-content-center mt-3">
                 {users.map(user => (
-                    <div className="col-md-4" key={user.id}>
-                        <div className="card mb-3">
-                            <img src={`http://localhost:5000/images/${user.image}`} className="card-img-top" alt={user.name} />
+                    <div className="col-md-4 mb-5" key={user.id}>
+                        <div className="card h-100 mb-3">
+                            <img src={`http://localhost:5000/images/${user.image}`} className="card-img-top" alt={user.name} style={{ height: '200px', objectFit: 'cover' }} />
                             <div className="card-body">
                                 <h5 className="card-title">{user.name}</h5>
                                 <p className="card-text">Email: {user.email}</p>
                                 <p className="card-text">Gender: {user.gender}</p>
                                 <Link to={`/edit/${user.id}`} className='btn btn-sm btn-info mr-2'>Edit</Link>
                                 <button onClick={() => deleteUser(user.id)} className='btn btn-sm btn-danger'>Delete</button>
-                            </div>
+                            </div> 
                         </div>
                     </div>
                 ))}
