@@ -11,7 +11,7 @@ const db = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "", // Your MySQL password
-    database: "crud__db"
+    database: "careerspot"
 });
 
 db.connect((err) => {

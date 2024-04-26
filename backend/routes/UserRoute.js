@@ -4,7 +4,8 @@ import {getUsers,
         createUser,
         updateUser,
         deleteUser,
-        createPhoto
+        createPhoto,
+        getUserss
     } from "../controllers/UserController.js";
 import loginController from '../controllers/LoginController.js';
 
@@ -17,9 +18,10 @@ router.get('/user/:id',getUserById); // ambil id
 router.post('/user',createPhoto);
 router.patch('/user/:id',updateUser); 
 router.delete('/user/:id',deleteUser); 
-
 router.post('/login', loginController.loginUser);
 
+
+router.get('/Users',getUsers);
 export default router;
 
 

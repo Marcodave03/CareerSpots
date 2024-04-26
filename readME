@@ -24,7 +24,7 @@ npm i :
 3. bulma - style
 
 Note :
-1. odemon : Install Nodemon Secara global untuk eksekusi backend 
+1. Nodemon : Install Nodemon Secara global untuk eksekusi backend 
 - npm install -g nodemon
 2. Shortcut :
 - rafce : untuk template react
