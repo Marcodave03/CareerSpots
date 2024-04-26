@@ -1,0 +1,60 @@
+h2{
+    font-size: 100px;
+}
+
+p{
+    font-size: 15px;
+}
+
+col{
+    overflow:hidden;
+}
+
+.logos {
+    padding: 60px 0;
+}
+  
+.logos-slide {
+    white-space: nowrap;
+    animation: slide 35s infinite linear;
+}
+  
+.logos-slide img {
+    height: 50px;
+    margin: 0 20px;
+}
+  
+  
+@keyframes slide {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-150px * 6)); 
+    }
+}
+/* 
+.typing-text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap; ]
+}
+
+.typing-text span {
+    display: inline-block;
+    overflow: hidden;
+    width: 0;
+    animation: typing 3s steps(40, end) forwards, blink-caret 0.5s step-end infinite alternate;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: black; }
+}
+ */
+
