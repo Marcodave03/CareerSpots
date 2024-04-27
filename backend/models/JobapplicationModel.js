@@ -9,18 +9,21 @@ const JobApplication = db.define('JobApplication', {
     jobhistoryid: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
+        allowNull: true
     },
-    application_date: DataTypes.DATE,
-    status: DataTypes.STRING,
-    deleted_at: DataTypes.DATE
+    application_date: { type : DataTypes.DATE, allowNull: true },
+    status: { type : DataTypes.STRING, allowNull: true },
+    deleted_at: { type : DataTypes.DATE, allowNull: true }
 });
 
-// Define associations
-JobApplication.belongsTo(Users, { onDelete: 'CASCADE', onUpdate: 'CASCADE' }); // Delete job application if user is deleted
+
+//JobApplication.belongsTo(Users, { onDelete: 'CASCADE', onUpdate: 'CASCADE' }); // Delete job application if user is deleted
 //JobApplication.belongsTo(Job, { onDelete: 'CASCADE', onUpdate: 'CASCADE' }); // Delete job application if job is deleted
 
 export default JobApplication;
+
+
 
 (async()=>{
     await db.sync(); // Function run ketika dipanggil file UserModel

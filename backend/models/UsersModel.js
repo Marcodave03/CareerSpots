@@ -8,19 +8,20 @@ const Users = db.define('Users', {
     user_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
+        allowNull: true
     },
-    name: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    role: DataTypes.STRING,
-    image_url: DataTypes.STRING // New attribute for user image URL
+    name: { type : DataTypes.STRING, allowNull: true },
+    email: { type : DataTypes.STRING, allowNull: true },
+    password: { type : DataTypes.STRING, allowNull: true },
+    role: { type : DataTypes.STRING, allowNull: true },
+    image_url: { type : DataTypes.STRING, allowNull: true } // New attribute for user image URL
 });
 
-// Define association
 Users.hasOne(Staff);
 
 export default Users;
+
 
 (async()=>{
     await db.sync(); // Function run ketika dipanggil file UserModel

@@ -1,6 +1,7 @@
 import { Sequelize } from "sequelize";
 import db from '../config/Database.js';
 import Staff from './StaffModel.js';
+import Company from './CompanyModel.js'
 import JobApplication from './JobapplicationModel.js'; // Import JobApplication model
 
 const {DataTypes} = Sequelize;
@@ -11,17 +12,17 @@ const Job = db.define('Job', {
         primaryKey: true,
         autoIncrement: true
     },
-    job_name: DataTypes.STRING,
-    job_type: DataTypes.STRING,
-    job_level: DataTypes.STRING,
-    job_location: DataTypes.STRING,
-    job_salary: DataTypes.FLOAT,
-    is_hiring: DataTypes.BOOLEAN,
-    image_url: DataTypes.STRING // New attribute for job image URL
+    job_name: { type : DataTypes.STRING, allowNull: true },
+    job_type: { type : DataTypes.STRING, allowNull: true },
+    job_level: { type : DataTypes.STRING, allowNull: true },
+    job_location: { type : DataTypes.STRING, allowNull: true },
+    job_salary: { type : DataTypes.FLOAT, allowNull: true },
+    is_hiring: { type : DataTypes.BOOLEAN, allowNull: true },
+    image_url: { type : DataTypes.STRING, allowNull: true } // New attribute for job image URL
 });
 
-// Define association
-//Job.belongsTo(Staff, { foreignKey: 'posted_by', onDelete: 'CASCADE', onUpdate: 'CASCADE' }); // Delete job if staff member who posted it is deleted
+
+//Job.belongsTo(Staff, { onDelete: 'CASCADE', onUpdate: 'CASCADE' }); // Assuming each job belongs to a staff member
 Job.hasMany(JobApplication, { onDelete: 'CASCADE', onUpdate: 'CASCADE' }); // Delete job applications if job is deleted
 
 export default Job;
