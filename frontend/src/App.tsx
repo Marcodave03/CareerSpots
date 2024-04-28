@@ -9,6 +9,7 @@ import UserList from "./BackendPage/UserList";
 import AddUser from "./BackendPage/AddUser";
 import EditUser from "./BackendPage/EditUser";
 import LoginUser from "./BackendPage/LoginUser";
+import Dashboard from "./Page/Dashboard/dashboardmain";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Home />} /> 
         <Route path="/signup" element={<Login />} /> 
         <Route path="/Portal" element={<Portal />} /> 
+        <Route path="/dashboard" element={<Dashboard />} /> 
 
         <Route path="/users" element={<UserList/>}></Route> 
         <Route path="/add" element={<AddUser/>}></Route>
