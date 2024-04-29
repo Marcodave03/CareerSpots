@@ -1,11 +1,11 @@
 import { createContext, useState, useMemo } from "react";
-import { createTheme} from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
 
 interface Colors {
   [key: number]: string;
 }
 
-type Mode = "dark" | "light";
+type Mode = "light" | "dark";
 
 // Color design tokens export
 export const tokens = (mode: Mode): Record<string, Colors> => ({
@@ -207,7 +207,7 @@ export const ColorModeContext = createContext<{
 });
 
 export const useMode = (): [any, { toggleColorMode: () => void }] => {
-  const [mode, setMode] = useState<Mode>("dark");
+  const [mode, setMode] = useState<Mode>("light");
 
   const colorMode = useMemo(
     () => ({
