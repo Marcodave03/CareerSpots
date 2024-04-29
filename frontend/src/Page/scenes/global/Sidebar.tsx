@@ -1,8 +1,8 @@
 import { useState } from "react";
-import {Menu, MenuItem } from "react-pro-sidebar";
+import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
-import "react-pro-sidebar/dist/css/styles.css";
+// import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
@@ -49,7 +49,12 @@ const Item: React.FC<ItemProps> = ({
   );
 };
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  isSidebar: boolean;
+  // Other props if any
+}
+
+const Sidebars: React.FC<SidebarProps> = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -75,7 +80,7 @@ const Sidebar: React.FC = () => {
         },
       }}
     >
-      {/* <ProSidebar collapsed={isCollapsed}>
+      <Sidebar collapsed={isCollapsed}>
         <Menu>
           <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)}
@@ -233,9 +238,9 @@ const Sidebar: React.FC = () => {
             />
           </Box>
         </Menu>
-      </ProSidebar> */}
+      </Sidebar> 
     </Box>
   );
 };
 
-export default Sidebar;
+export default Sidebars;
