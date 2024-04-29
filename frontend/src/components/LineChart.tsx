@@ -23,18 +23,21 @@ const LineChartComponent = ({
   ];
 
   return (
-    <LineChart
-      width={800}
-      height={400}
-      data={data}
-      margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
-    >
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="transportation" />
-      <YAxis />
-      <Tooltip />
-      <Legend />
-    </LineChart>
+    <div>
+      
+    </div>
+    // <LineChart
+    //   width={800}
+    //   height={400}
+    //   data={data}
+    //   margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+    // >
+    //   <CartesianGrid strokeDasharray="3 3" />
+    //   <XAxis dataKey="transportation" />
+    //   <YAxis />
+    //   <Tooltip />
+    //   <Legend />
+    // </LineChart>
   );
 };
 
