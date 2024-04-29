@@ -1,10 +1,7 @@
-import { Sequelize } from "sequelize";
-import db from '../config/Database.js';
-import Staff from './StaffModel.js';
+import {DataTypes} from "sequelize"; 
 
-const {DataTypes} = Sequelize;
 
-const Users = db.define('Users', {
+const Users = {
     user_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -16,13 +13,17 @@ const Users = db.define('Users', {
     password: { type : DataTypes.STRING, allowNull: true },
     role: { type : DataTypes.STRING, allowNull: true },
     image_url: { type : DataTypes.STRING, allowNull: true } // New attribute for user image URL
-});
+};
 
-Users.hasOne(Staff);
+// Users.hasOne(Staff, {
+//     foreignKey: "user-id", 
+//     onDelete: "CASCADE", 
+//     onUpdate: "RESTRICT",
+// });
+// Users.hasMany(JobApplication, {
+//     foreignKey: "user-id", 
+//     onDelete: "RESTRICT", 
+//     onUpdate: "RESTRICT"
+// }); 
 
 export default Users;
-
-
-(async()=>{
-    await db.sync(); // Function run ketika dipanggil file UserModel
-})();

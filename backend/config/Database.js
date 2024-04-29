@@ -9,7 +9,7 @@
 
 import { Sequelize } from "sequelize";
 
-const db = new Sequelize('careerspot', 'root', '', {
+const db = new Sequelize('crud__db', 'root', '', {
     host: 'localhost',
     dialect: 'mysql',
     logging: console.log, // Log all SQL queries to the console
