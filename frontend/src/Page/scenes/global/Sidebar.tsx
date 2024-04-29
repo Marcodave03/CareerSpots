@@ -35,17 +35,18 @@ const Item: React.FC<ItemProps> = ({
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (
-    <MenuItem
-      active={selected === title}
-      style={{
-        color: colors.grey[100],
-      }}
-      onClick={() => setSelected(title)}
-      icon={icon}
-    >
+  <MenuItem
+    active={selected === title}
+    style={{
+      color: colors.grey[100],
+    }}
+    onClick={() => setSelected(title)}
+    icon={icon}
+  >
+    <Link to={to} style={{ textDecoration: 'none', color: 'inherit' }}>{/* Add Link component here */}
       <Typography>{title}</Typography>
-      <Link to={to} />
-    </MenuItem>
+    </Link>
+  </MenuItem>
   );
 };
 
@@ -113,7 +114,7 @@ const Sidebars: React.FC<SidebarProps> = () => {
                   alt="profile-user"
                   width="100px"
                   height="100px"
-                  src={`../../assets/user.png`}
+                  src={`../../../src/assets/Atkinson_Rowan.jpg`}
                   style={{ cursor: "pointer", borderRadius: "50%" }}
                 />
               </Box>
@@ -124,10 +125,10 @@ const Sidebars: React.FC<SidebarProps> = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  Ed Roh
+                  Mr Bean
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                  VP Fancy Admin
+                  Hollywood Company Admin
                 </Typography>
               </Box>
             </Box>
@@ -136,7 +137,7 @@ const Sidebars: React.FC<SidebarProps> = () => {
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
             <Item
               title="Dashboard"
-              to="/"
+              to="/Admin"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -151,21 +152,21 @@ const Sidebars: React.FC<SidebarProps> = () => {
             </Typography>
             <Item
               title="Manage Team"
-              to="/team"
+              to="/Admin/team"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Contacts Information"
-              to="/contacts"
+              to="/Admin/contacts"
               icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Invoices Balances"
-              to="/invoices"
+              to="/Admin/invoices"
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -180,21 +181,21 @@ const Sidebars: React.FC<SidebarProps> = () => {
             </Typography>
             <Item
               title="Profile Form"
-              to="/form"
+              to="/Admin/form"
               icon={<PersonOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Calendar"
-              to="/calendar"
+              to="/Admin/calendar"
               icon={<CalendarTodayOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="FAQ Page"
-              to="/faq"
+              to="/Admin/faq"
               icon={<HelpOutlineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -209,28 +210,28 @@ const Sidebars: React.FC<SidebarProps> = () => {
             </Typography>
             <Item
               title="Bar Chart"
-              to="/bar"
+              to="/Admin/bar"
               icon={<BarChartOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Pie Chart"
-              to="/pie"
+              to="/Admin/pie"
               icon={<PieChartOutlineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Line Chart"
-              to="/line"
+              to="/Admin/line"
               icon={<TimelineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Geography Chart"
-              to="/geography"
+              to="/Admin/geography"
               icon={<MapOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
