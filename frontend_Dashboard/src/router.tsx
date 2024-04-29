@@ -73,49 +73,6 @@ const StatusMaintenance = Loader(
 );
 
 const routes: RouteObject[] = [
-  // {
-  //   path: '',
-  //   element: <BaseLayout />,
-  //   children: [
-  //     {
-  //       path: '/',
-  //       element: <Overview />
-  //     },
-  //     {
-  //       path: 'overview',
-  //       element: <Navigate to="/" replace />
-  //     },
-  //     {
-  //       path: 'status',
-  //       children: [
-  //         {
-  //           path: '',
-  //           element: <Navigate to="404" replace />
-  //         },
-  //         {
-  //           path: '404',
-  //           element: <Status404 />
-  //         },
-  //         {
-  //           path: '500',
-  //           element: <Status500 />
-  //         },
-  //         {
-  //           path: 'maintenance',
-  //           element: <StatusMaintenance />
-  //         },
-  //         {
-  //           path: 'coming-soon',
-  //           element: <StatusComingSoon />
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       path: '*',
-  //       element: <Status404 />
-  //     }
-  //   ]
-  // },
   {
     path: '/',
     element: <SidebarLayout />,
