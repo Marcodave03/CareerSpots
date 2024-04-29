@@ -51,7 +51,6 @@ const Item: React.FC<ItemProps> = ({
 
 interface SidebarProps {
   isSidebar: boolean;
-  // Other props if any
 }
 
 const Sidebars: React.FC<SidebarProps> = () => {
