@@ -1,0 +1,45 @@
+Run Code :
+1. nodemon index - backend nodejs
+2. npm run dev - frontend vite
+3. npm start - frontend dashboard no vite
+
+Backend,
+npm init -y : package.json
+npm i :
+1. express - framework
+2. express-fileupload - utk upload file
+3. mysql2 - database
+4. sequelize - relational database - ORM ( Object Relational Mapping )
+5. cors - API ke frontend / bisa diakses ke luar domain - Cross Origin Resouce Sharing
+
+VSCode extension : 
+1. rest client
+2. es7 - react
+npm i nodemon
+
+Frontend
+npx create-react-app "nama" : create react+typescript+vite project
+npm i : 
+1. react-router-dom - route.navigation
+2. axios - interaksi dengan API
+3. bulma - style
+
+Note :
+1. Nodemon : Install Nodemon Secara global untuk eksekusi backend 
+- npm install -g nodemon
+2. Shortcut :
+- rafce : untuk template react
+- Tabel : tabel>(thead>tr>th*5)+(tbody>tr>th*5)
+
+Tambahan Code :
+1. Tambahin "type":"module" pada package.json 
+- untuk erx syntax agar bisa export / import module
+
+
+Tentang Backend
+- config : folder deklarasi database
+- models : folder struktur tabel database
+- controller : folder untuk request data, input data, update data \
+- route : routing
+
+
