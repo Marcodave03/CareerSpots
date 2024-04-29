@@ -217,6 +217,7 @@ const Dashboard: React.FC = () => {
                 backgroundColor={colors.greenAccent[500]}
                 padding="5px 10px"
                 borderRadius="4px"
+                
               >
                 ${transaction.cost}
               </Box>
