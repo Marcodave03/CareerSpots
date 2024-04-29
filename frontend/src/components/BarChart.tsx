@@ -1,6 +1,7 @@
 import React from "react";
 import { useTheme } from "@mui/material";
 import { tokens } from "../Page/theme";
+import { ResponsiveBar } from "@nivo/bar";
 import { Bar } from "react-chartjs-2";
 
 const BarChart = ({ isDashboard = false }) => {
