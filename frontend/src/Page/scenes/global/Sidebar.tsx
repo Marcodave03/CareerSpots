@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
-//import "react-pro-sidebar/dist/css/styles.css";
+import Style from "react-pro-sidebar/dist/css/style.css";
 import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
@@ -65,6 +65,7 @@ const Sidebars: React.FC<SidebarProps> = () => {
       sx={{
         "& .pro-sidebar-inner": {
           background: `${colors.primary[400]} !important`,
+          height:"100vh",
         },
         "& .pro-icon-wrapper": {
           backgroundColor: "transparent !important",
@@ -77,11 +78,11 @@ const Sidebars: React.FC<SidebarProps> = () => {
         },
         "& .pro-menu-item.active": {
           color: "#6870fa !important",
-        },
+        },        
       }}
     >
       <Sidebar collapsed={isCollapsed}>
-        <Menu>
+        <Menu >
           <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)}
             icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
