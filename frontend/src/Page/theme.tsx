@@ -21,6 +21,7 @@ export const tokens = (mode: Mode): Record<string, Colors> => ({
           700: "#3d3d3d",
           800: "#292929",
           900: "#141414",
+          999: "#4481eb",
         },
         primary: {
           100: "#d0d1d5",
@@ -39,10 +40,12 @@ export const tokens = (mode: Mode): Record<string, Colors> => ({
           300: "#94e2cd",
           400: "#70d8bd",
           500: "#4cceac",
+          // #4cceac
           600: "#3da58a",
           700: "#2e7c67",
           800: "#1e5245",
           900: "#0f2922",
+          999: "#4481eb",
         },
         redAccent: {
           100: "#f8dcdb",
@@ -65,6 +68,7 @@ export const tokens = (mode: Mode): Record<string, Colors> => ({
           700: "#3e4396",
           800: "#2a2d64",
           900: "#151632",
+          999: "#4481eb",
         },
       }
     : {
@@ -78,6 +82,7 @@ export const tokens = (mode: Mode): Record<string, Colors> => ({
           700: "#a3a3a3",
           800: "#c2c2c2",
           900: "#e0e0e0",
+          999: "#4481eb",
         },
         primary: {
           100: "#040509",
@@ -100,6 +105,7 @@ export const tokens = (mode: Mode): Record<string, Colors> => ({
           700: "#94e2cd",
           800: "#b7ebde",
           900: "#dbf5ee",
+          999: "#4481eb",
         },
         redAccent: {
           100: "#2c100f",
@@ -122,6 +128,7 @@ export const tokens = (mode: Mode): Record<string, Colors> => ({
           700: "#a4a9fc",
           800: "#c3c6fd",
           900: "#e1e2fe",
+          999: "#4481eb",
         },
       }),
 });

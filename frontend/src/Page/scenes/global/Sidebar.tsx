@@ -87,8 +87,9 @@ const Sidebars: React.FC<SidebarProps> = () => {
                 marginLeft: "15px",
               }}
             >
-              <Typography variant="h3" color={colors.grey[100]}>
-                ADMINIS
+              {/* colors.grey[100] */}
+              <Typography variant="h3" color={colors.grey[999]}>
+                CareerSpot
               </Typography>
               <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                 <MenuOutlinedIcon />
@@ -123,7 +124,7 @@ const Sidebars: React.FC<SidebarProps> = () => {
               >
                 Mr Bean
               </Typography>
-              <Typography variant="h5" color={colors.greenAccent[500]}>
+              <Typography variant="h5" color={colors.grey[100]}>
                 Company Admin
               </Typography>
             </div>

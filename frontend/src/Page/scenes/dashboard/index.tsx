@@ -33,12 +33,12 @@ const Dashboard: React.FC = () => {
     <Box m="20px">
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
+        <Header title="DASHBOARD" subtitle="Welcome to your dashboard"  />
 
         <Box>
           <Button
             sx={{
-              backgroundColor: colors.blueAccent[700],
+              backgroundColor: colors.blueAccent[999],
               color: colors.grey[100],
               fontSize: "14px",
               fontWeight: "bold",
@@ -73,7 +73,7 @@ const Dashboard: React.FC = () => {
             increase="+14%"
             icon={
               <AwaitingIcon
-                sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
+                sx={{ color: colors.greenAccent[999], fontSize: "26px" }}
               />
             }
           />
@@ -92,7 +92,7 @@ const Dashboard: React.FC = () => {
             increase="+21%"
             icon={
               <ReviewIcon
-                sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
+                sx={{ color: colors.greenAccent[999], fontSize: "26px" }}
               />
             }
           />
@@ -111,7 +111,7 @@ const Dashboard: React.FC = () => {
             increase="+5%"
             icon={
               <PersonAddIcon
-                sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
+                sx={{ color: colors.greenAccent[999], fontSize: "26px" }}
               />
             }
           />
@@ -130,7 +130,7 @@ const Dashboard: React.FC = () => {
             increase="+43%"
             icon={
               <RejectIcon
-                sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
+                sx={{ color: colors.greenAccent[999], fontSize: "26px" }}
               />
             }
           />
@@ -168,7 +168,7 @@ const Dashboard: React.FC = () => {
             <Box>
               <IconButton>
                 <DownloadOutlinedIcon
-                  sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
+                  sx={{ fontSize: "26px", color: colors.greenAccent[999] }}
                 />
               </IconButton>
             </Box>
@@ -247,12 +247,12 @@ const Dashboard: React.FC = () => {
             <ProgressCircle size="125" />
             <Typography
               variant="h5"
-              color={colors.greenAccent[500]}
+              color={colors.greenAccent[999]}
               marginTop="15px"
             >
               25% of Candidates Accepted
             </Typography>
-            <Typography>75% of Candidates Rejected</Typography>
+            <Typography color={colors.greenAccent[500]}>75% of Candidates Rejected</Typography>
           </Box>
         </Box>
         <Box
