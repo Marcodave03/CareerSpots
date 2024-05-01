@@ -152,14 +152,14 @@ const Dashboard: React.FC = () => {
                 fontWeight="600"
                 color={colors.grey[100]}
               >
-                Revenue Generated
+                Acceptance Status Statistics
               </Typography>
               <Typography
                 variant="h3"
                 fontWeight="bold"
                 color={colors.greenAccent[500]}
               >
-                $59,342.32
+                32,441 Accepted
               </Typography>
             </Box>
             <Box>
@@ -188,7 +188,7 @@ const Dashboard: React.FC = () => {
             padding="15px"
           >
             <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
-              Recent Transactions
+              Recent Job Positions Filled
             </Typography>
           </Box>
           {mockTransactions.map((transaction, i) => (
@@ -227,13 +227,13 @@ const Dashboard: React.FC = () => {
 
         {/* ROW 3 */}
         <Box
-          gridColumn="span 4"
+          gridColumn="span 6"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
           padding="30px"
         >
           <Typography variant="h5" fontWeight="600">
-            Campaign
+            Acceptance Rate
           </Typography>
           <Box
             display="flex"
@@ -247,13 +247,13 @@ const Dashboard: React.FC = () => {
               color={colors.greenAccent[500]}
               marginTop="15px"
             >
-              $48,352 revenue generated
+              25% of Candidates Accepted
             </Typography>
-            <Typography>Includes extra misc expenditures and costs</Typography>
+            <Typography>75% of Candidates Rejected</Typography>
           </Box>
         </Box>
         <Box
-          gridColumn="span 4"
+          gridColumn="span 6"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
           padding="30px"
@@ -263,13 +263,13 @@ const Dashboard: React.FC = () => {
             fontWeight="600"
             padding="30px 30px 0 30px"
           >
-            Sales Quantity
+            Job Positions Statistics
           </Typography>
           <Box height="250px" marginTop="-20px">
             <BarChart isDashboard={true} /> 
           </Box>
         </Box>
-          <Box
+          {/* <Box
           gridColumn="span 4"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
@@ -284,10 +284,10 @@ const Dashboard: React.FC = () => {
           </Typography>
           <Box height="200px">
             <GeographyChart isDashboard={true} />
-          </Box>
+          </Box> */}
         </Box>
       </Box>
-    </Box>
+    // </Box>
   );
 };
 
