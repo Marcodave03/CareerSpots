@@ -1,8 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
-import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import { IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
-// import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
@@ -43,8 +42,9 @@ const Item: React.FC<ItemProps> = ({
       onClick={() => setSelected(title)}
       icon={icon}
     >
-      <Typography>{title}</Typography>
-      <Link to={to} />
+      <Link to={to} style={{ textDecoration: 'none', color: 'inherit' }}>
+        <Typography>{title}</Typography>
+      </Link>
     </MenuItem>
   );
 };
@@ -60,185 +60,179 @@ const Sidebars: React.FC<SidebarProps> = () => {
   const [selected, setSelected] = useState("Dashboard");
 
   return (
-    <Box
-      sx={{
-        "& .pro-sidebar-inner": {
-          background: `${colors.primary[400]} !important`,
-        },
-        "& .pro-icon-wrapper": {
-          backgroundColor: "transparent !important",
-        },
-        "& .pro-inner-item": {
-          padding: "5px 35px 5px 20px !important",
-        },
-        "& .pro-inner-item:hover": {
-          color: "#868dfb !important",
-        },
-        "& .pro-menu-item.active": {
-          color: "#6870fa !important",
-        },
+    <Sidebar
+      collapsed={isCollapsed}
+      style={{
+        background: `${colors.primary[400]} !important`,
+        height: "100vh",
       }}
     >
-      <Sidebar collapsed={isCollapsed}>
-        <Menu>
-          <MenuItem
-            onClick={() => setIsCollapsed(!isCollapsed)}
-            icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
-            style={{
-              margin: "10px 0 20px 0",
-              color: colors.grey[100],
-            }}
-          >
-            {!isCollapsed && (
-              <Box
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-                ml="15px"
-              >
-                <Typography variant="h3" color={colors.grey[100]}>
-                  ADMINIS
-                </Typography>
-                <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
-                  <MenuOutlinedIcon />
-                </IconButton>
-              </Box>
-            )}
-          </MenuItem>
-
+      <Menu>
+        <MenuItem
+          onClick={() => setIsCollapsed(!isCollapsed)}
+          icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
+          style={{
+            margin: "10px 0 20px 0",
+            color: colors.grey[100],
+          }}
+        >
           {!isCollapsed && (
-            <Box mb="25px">
-              <Box display="flex" justifyContent="center" alignItems="center">
-                <img
-                  alt="profile-user"
-                  width="100px"
-                  height="100px"
-                  src={`../../assets/user.png`}
-                  style={{ cursor: "pointer", borderRadius: "50%" }}
-                />
-              </Box>
-              <Box textAlign="center">
-                <Typography
-                  variant="h2"
-                  color={colors.grey[100]}
-                  fontWeight="bold"
-                  sx={{ m: "10px 0 0 0" }}
-                >
-                  Ed Roh
-                </Typography>
-                <Typography variant="h5" color={colors.greenAccent[500]}>
-                  VP Fancy Admin
-                </Typography>
-              </Box>
-            </Box>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginLeft: "15px",
+              }}
+            >
+              <Typography variant="h3" color={colors.grey[100]}>
+                ADMINIS
+              </Typography>
+              <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
+                <MenuOutlinedIcon />
+              </IconButton>
+            </div>
           )}
+        </MenuItem>
 
-          <Box paddingLeft={isCollapsed ? undefined : "10%"}>
-            <Item
-              title="Dashboard"
-              to="/"
-              icon={<HomeOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
+        {!isCollapsed && (
+          <div style={{ marginBottom: "25px" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
             >
-              Data
-            </Typography>
-            <Item
-              title="Manage Team"
-              to="/team"
-              icon={<PeopleOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Contacts Information"
-              to="/contacts"
-              icon={<ContactsOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Invoices Balances"
-              to="/invoices"
-              icon={<ReceiptOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+              <img
+                alt="profile-user"
+                width="100px"
+                height="100px"
+                src={`../../../src/assets/Atkinson_Rowan.jpg`}
+                style={{ cursor: "pointer", borderRadius: "50%" }}
+              />
+            </div>
+            <div style={{ textAlign: "center" }}>
+              <Typography
+                variant="h2"
+                color={colors.grey[100]}
+                fontWeight="bold"
+                style={{ margin: "10px 0 0 0" }}
+              >
+                Mr Bean
+              </Typography>
+              <Typography variant="h5" color={colors.greenAccent[500]}>
+                Hollywood Company Admin
+              </Typography>
+            </div>
+          </div>
+        )}
 
-            <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              Pages
-            </Typography>
-            <Item
-              title="Profile Form"
-              to="/form"
-              icon={<PersonOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Calendar"
-              to="/calendar"
-              icon={<CalendarTodayOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="FAQ Page"
-              to="/faq"
-              icon={<HelpOutlineOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+        <div style={{ paddingLeft: isCollapsed ? undefined : "10%" }}>
+          <Item
+            title="Dashboard"
+            to="/Admin"
+            icon={<HomeOutlinedIcon />}
+            selected={selected}
+            setSelected={setSelected}
+          />
 
-            <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              Charts
-            </Typography>
-            <Item
-              title="Bar Chart"
-              to="/bar"
-              icon={<BarChartOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Pie Chart"
-              to="/pie"
-              icon={<PieChartOutlineOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Line Chart"
-              to="/line"
-              icon={<TimelineOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Geography Chart"
-              to="/geography"
-              icon={<MapOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-          </Box>
-        </Menu>
-      </Sidebar> 
-    </Box>
+          <Typography
+            variant="h6"
+            color={colors.grey[300]}
+            style={{ margin: "15px 0 5px 20px" }}
+          >
+            Data
+          </Typography>
+          <Item
+            title="Manage Team"
+            to="/Admin/team"
+            icon={<PeopleOutlinedIcon />}
+            selected={selected}
+            setSelected={setSelected}
+          />
+          <Item
+            title="Contacts Information"
+            to="/Admin/contacts"
+            icon={<ContactsOutlinedIcon />}
+            selected={selected}
+            setSelected={setSelected}
+          />
+          <Item
+            title="Invoices Balances"
+            to="/Admin/invoices"
+            icon={<ReceiptOutlinedIcon />}
+            selected={selected}
+            setSelected={setSelected}
+          />
+
+          <Typography
+            variant="h6"
+            color={colors.grey[300]}
+            style={{ margin: "15px 0 5px 20px" }}
+          >
+            Pages
+          </Typography>
+          <Item
+            title="Profile Form"
+            to="/Admin/form"
+            icon={<PersonOutlinedIcon />}
+            selected={selected}
+            setSelected={setSelected}
+          />
+          <Item
+            title="Calendar"
+            to="/Admin/calendar"
+            icon={<CalendarTodayOutlinedIcon />}
+            selected={selected}
+            setSelected={setSelected}
+          />
+          <Item
+            title="FAQ Page"
+            to="/Admin/faq"
+            icon={<HelpOutlineOutlinedIcon />}
+            selected={selected}
+            setSelected={setSelected}
+          />
+
+          <Typography
+            variant="h6"
+            color={colors.grey[300]}
+            style={{ margin: "15px 0 5px 20px" }}
+          >
+            Charts
+          </Typography>
+          <Item
+            title="Bar Chart"
+            to="/Admin/bar"
+            icon={<BarChartOutlinedIcon />}
+            selected={selected}
+            setSelected={setSelected}
+          />
+          <Item
+            title="Pie Chart"
+            to="/Admin/pie"
+            icon={<PieChartOutlineOutlinedIcon />}
+            selected={selected}
+            setSelected={setSelected}
+          />
+          <Item
+            title="Line Chart"
+            to="/Admin/line"
+            icon={<TimelineOutlinedIcon />}
+            selected={selected}
+            setSelected={setSelected}
+          />
+          <Item
+            title="Geography Chart"
+            to="/Admin/geography"
+            icon={<MapOutlinedIcon />}
+            selected={selected}
+            setSelected={setSelected}
+          />
+        </div>
+      </Menu>
+    </Sidebar>
   );
 };
 

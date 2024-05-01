@@ -1,4 +1,25 @@
-export const geoFeatures = {
+interface Geometry {
+  type: string;
+  coordinates: number[][][] | number[][][][];
+}
+
+interface Properties {
+  name: string;
+}
+
+interface Feature {
+  type: string;
+  properties: Properties;
+  geometry: Geometry;
+  id?: string;
+}
+
+interface FeatureCollection {
+  type: string;
+  features: Feature[];
+}
+
+export const geoFeatures: FeatureCollection = {
   type: "FeatureCollection",
   features: [
     {

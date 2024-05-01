@@ -1,15 +1,21 @@
+import React from "react";
 import { useTheme } from "@mui/material";
 import { ResponsiveChoropleth } from "@nivo/geo";
-import { geoFeatures } from "../data/mockGeoFeatures";
-import { tokens } from "../theme";
-import { mockGeographyData as data } from "../data/mockData";
+import { geoFeatures } from "./data/mockGeoFeatures";
+import { tokens } from "../Page/theme";
+import { mockGeographyData } from "./data/mockData";
 
-const GeographyChart = ({ isDashboard = false }) => {
+interface GeographyChartProps {
+  isDashboard?: boolean;
+}
+
+const GeographyChart: React.FC<GeographyChartProps> = ({ isDashboard = false }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+
   return (
     <ResponsiveChoropleth
-      data={data}
+      data={mockGeographyData}
       theme={{
         axis: {
           domain: {

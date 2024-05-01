@@ -23,6 +23,10 @@ npm i :
 1. react-router-dom - route.navigation
 2. axios - interaksi dengan API
 3. bulma - style
+4. @nivo/bar @nivo/line @nivo/geo 
+5. react-pro-sidebar
+6. @mui/material @mui/material/style
+7. @fullcalendar
 
 Note :
 1. Nodemon : Install Nodemon Secara global untuk eksekusi backend 
@@ -41,5 +45,6 @@ Tentang Backend
 - models : folder struktur tabel database
 - controller : folder untuk request data, input data, update data \
 - route : routing
+
 
 
