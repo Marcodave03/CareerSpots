@@ -6,7 +6,7 @@ import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
 import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import Header from "../../../components/Header";
 
-const Team = () => {
+const Jobs = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const columns = [
@@ -38,7 +38,7 @@ const Team = () => {
 
   return (
     <Box m="20px">
-      <Header title="TEAM" subtitle="Managing the Team Members" />
+      <Header title="Jobs" subtitle="List of Existing Jobs" />
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -73,4 +73,4 @@ const Team = () => {
   );
 };
 
-export default Team;
+export default Jobs;

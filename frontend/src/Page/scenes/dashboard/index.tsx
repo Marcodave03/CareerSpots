@@ -3,9 +3,12 @@ import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import EmailIcon from "@mui/icons-material/Email";
-import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
-import TrafficIcon from "@mui/icons-material/Traffic";
+import AwaitingIcon from '@mui/icons-material/HourglassBottom';
+// import EmailIcon from "@mui/icons-material/Email";
+// import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
+import ReviewIcon from '@mui/icons-material/Grading';
+// import TrafficIcon from "@mui/icons-material/Traffic";
+import RejectIcon from '@mui/icons-material/CancelPresentation';
 import Header from "../../../components/Header";
 import LineChart from "../../../components/LineChart";
 import BarChart from "../../../components/BarChart";
@@ -65,11 +68,11 @@ const Dashboard: React.FC = () => {
         >
           <StatBox
             title="12,361"
-            subtitle="Emails Sent"
+            subtitle="Awaiting"
             progress={0.75}
             increase="+14%"
             icon={
-              <EmailIcon
+              <AwaitingIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -84,11 +87,11 @@ const Dashboard: React.FC = () => {
         >
           <StatBox
             title="431,225"
-            subtitle="Sales Obtained"
+            subtitle="Reviewed"
             progress={0.50}
             increase="+21%"
             icon={
-              <PointOfSaleIcon
+              <ReviewIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
@@ -103,7 +106,7 @@ const Dashboard: React.FC = () => {
         >
           <StatBox
             title="32,441"
-            subtitle="New Clients"
+            subtitle="Hired"
             progress={0.30}
             increase="+5%"
             icon={
@@ -122,11 +125,11 @@ const Dashboard: React.FC = () => {
         >
           <StatBox
             title="1,325,134"
-            subtitle="Traffic Received"
+            subtitle="Rejected"
             progress={0.80}
             increase="+43%"
             icon={
-              <TrafficIcon
+              <RejectIcon
                 sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
               />
             }
