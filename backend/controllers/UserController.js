@@ -1,11 +1,13 @@
 import User from '../models/UserModel.js';
 import Users from  '../models/UsersModel.js';
+import db from '../models/Association.js'; 
 import path from "path"; //dari node js
 import fs from 'fs';
 
 export const getUsers = async(req,res)=>{ //request, response
     try{
-        const response = await User.findAll(); //dari model User, findAll() dari sequelize
+        const response =  await db.sync({ force: true });; 
+        // const response = await Assoc.findAll(); //dari model User, findAll() dari sequelize
         res.status(200).json(response);
     } catch(error){
         console.log(error.message)
