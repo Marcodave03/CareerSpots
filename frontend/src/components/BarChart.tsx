@@ -2,7 +2,7 @@ import React from "react";
 import { useTheme } from "@mui/material";
 import { ResponsiveBar } from "@nivo/bar"; // Correct import path
 import { tokens } from "../Page/theme";
-import { ResponsiveBar } from "@nivo/bar";
+// import { ResponsiveBar } from "@nivo/bar";
 import { Bar } from "react-chartjs-2";
 
 interface BarChartProps {

@@ -4,7 +4,7 @@ import { tokens } from "../../theme";
 import Header from "../../../components/Header";
 import { useTheme } from "@mui/material";
 
-const Contacts = () => {
+const Applicants = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -54,8 +54,8 @@ const Contacts = () => {
   return (
     <Box m="20px">
       <Header
-        title="CONTACTS"
-        subtitle="List of Contacts for Future Reference"
+        title="Applicants"
+        subtitle="List of Applicants History"
       />
       <Box
         m="40px 0 0 0"
@@ -94,4 +94,4 @@ const Contacts = () => {
   );
 };
 
-export default Contacts;
+export default Applicants;
