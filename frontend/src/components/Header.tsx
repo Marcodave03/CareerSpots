@@ -21,7 +21,7 @@ const Header: React.FC<HeaderProps> = ({ title, subtitle }) => {
       >
         {title}
       </Typography>
-      <Typography variant="h5" color={colors.greenAccent[999]}>
+      <Typography variant="h5" color={colors.custom[400]}>
         {subtitle}
       </Typography>
     </Box>

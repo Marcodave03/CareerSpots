@@ -1,8 +1,9 @@
-import { Box, Button, TextField, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import { Box, Button, TextField, FormControl, InputLabel, Select, MenuItem, useTheme } from "@mui/material";
 import { Formik, FormikHelpers } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../../components/Header";
+import { tokens } from "../../theme";
 
 interface FormValues {
   jobname: string;
@@ -15,6 +16,8 @@ interface FormValues {
 
 const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
 
   const handleFormSubmit = (
     values: FormValues,
@@ -132,7 +135,7 @@ const Form = () => {
               />
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
-              <Button type="submit" color="secondary" variant="contained">
+              <Button type="submit" sx={{ backgroundColor: colors.custom[400] }} variant="contained">
                 Create Job Listing
               </Button>
             </Box>

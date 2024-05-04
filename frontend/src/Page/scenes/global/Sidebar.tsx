@@ -88,7 +88,7 @@ const Sidebars: React.FC<SidebarProps> = () => {
               }}
             >
               {/* colors.grey[100] */}
-              <Typography variant="h3" color={colors.grey[999]}>
+              <Typography variant="h3" color={colors.custom[400]}>
                 CareerSpot
               </Typography>
               <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>

@@ -38,7 +38,7 @@ const Dashboard: React.FC = () => {
         <Box>
           <Button
             sx={{
-              backgroundColor: colors.blueAccent[999],
+              backgroundColor: colors.custom[400],
               color: colors.grey[100],
               fontSize: "14px",
               fontWeight: "bold",
@@ -73,7 +73,7 @@ const Dashboard: React.FC = () => {
             increase="+14%"
             icon={
               <AwaitingIcon
-                sx={{ color: colors.greenAccent[999], fontSize: "26px" }}
+                sx={{ color: colors.custom[400], fontSize: "26px" }}
               />
             }
           />
@@ -92,7 +92,7 @@ const Dashboard: React.FC = () => {
             increase="+21%"
             icon={
               <ReviewIcon
-                sx={{ color: colors.greenAccent[999], fontSize: "26px" }}
+                sx={{ color: colors.custom[400], fontSize: "26px" }}
               />
             }
           />
@@ -111,7 +111,7 @@ const Dashboard: React.FC = () => {
             increase="+5%"
             icon={
               <PersonAddIcon
-                sx={{ color: colors.greenAccent[999], fontSize: "26px" }}
+                sx={{ color: colors.custom[400], fontSize: "26px" }}
               />
             }
           />
@@ -130,7 +130,7 @@ const Dashboard: React.FC = () => {
             increase="+43%"
             icon={
               <RejectIcon
-                sx={{ color: colors.greenAccent[999], fontSize: "26px" }}
+                sx={{ color: colors.custom[400], fontSize: "26px" }}
               />
             }
           />
@@ -168,7 +168,7 @@ const Dashboard: React.FC = () => {
             <Box>
               <IconButton>
                 <DownloadOutlinedIcon
-                  sx={{ fontSize: "26px", color: colors.greenAccent[999] }}
+                  sx={{ fontSize: "26px", color: colors.custom[400] }}
                 />
               </IconButton>
             </Box>
@@ -247,7 +247,7 @@ const Dashboard: React.FC = () => {
             <ProgressCircle size="125" />
             <Typography
               variant="h5"
-              color={colors.greenAccent[999]}
+              color={colors.custom[400]}
               marginTop="15px"
             >
               25% of Candidates Accepted
