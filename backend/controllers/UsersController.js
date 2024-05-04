@@ -3,23 +3,15 @@ import db from '../models/Association.js';
 import path from "path"; //dari node js
 import fs from 'fs';
 
-// export const createUser = async (req, res) => {
-//     try {
-//         const { name, email, password, role, image_url } = req.body;
-        
-//         const newUser = await db.create({
-//             name,
-//             email,
-//             password,
-//             role,
-//             image_url
-//         });
-
-//         res.status(201).json({ success: true, data: newUser });
-//     } catch (error) {
-//         res.status(500).json({ success: false, error: error.message });
-//     }
-// };
+export const getUser = async(req,res)=>{ //request, response
+    try{
+        //const response =  await db.sync({ force: true });; 
+        const response = await db.models.Users.findAll(); //dari model User, findAll() dari sequelize
+        res.status(200).json(response);
+    } catch(error){
+        console.log(error.message)
+    }
+}
 
 export const createUser = async (userData) => {
     try {

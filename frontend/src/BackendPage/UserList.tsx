@@ -6,18 +6,15 @@ interface User {
     id: number;
     name: string;
     email: string;
-    gender: string;
+    password: string;
+    role: string;
     image: string;
 }
 
 const UserList: React.FC = () => {
     const [users, setUsers] = useState<User[]>([]);
 
-    useEffect(() => {
-        getUsers();
-    }, []);
-
-    const getUsers = async () => {
+    const getUser = async () => {
         try {
             const response = await axios.get<User[]>('http://localhost:5000/users');
             setUsers(response.data);
@@ -26,10 +23,15 @@ const UserList: React.FC = () => {
         }
     }
 
+    useEffect(() => {
+        getUser();
+    }, []);
+
+    
     const deleteUser = async (id: number) => {
         try {
             await axios.delete(`http://localhost:5000/users/${id}`);
-            getUsers();
+            getUser();
         } catch (error) {
             console.log(error);
         }
@@ -47,7 +49,7 @@ const UserList: React.FC = () => {
                                 <th>No</th>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Gender</th>
+                                <th>Role</th>
                                 <th>Image</th>
                                 <th>Actions</th>
                             </tr>
@@ -58,7 +60,7 @@ const UserList: React.FC = () => {
                                     <td>{index + 1}</td>
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>
-                                    <td>{user.gender}</td>
+                                    <td>{user.role}</td>
                                     <td><img src={`http://localhost:5000/images/${user.image}`} alt={user.name} width="50" /></td>
                                     <td>
                                         <Link to={`/edit/${user.id}`} className='btn btn-sm btn-info'>Edit</Link>
@@ -78,7 +80,7 @@ const UserList: React.FC = () => {
                             <div className="card-body">
                                 <h5 className="card-title">{user.name}</h5>
                                 <p className="card-text">Email: {user.email}</p>
-                                <p className="card-text">Gender: {user.gender}</p>
+                                <p className="card-text">Role: {user.role}</p>
                                 <Link to={`/edit/${user.id}`} className='btn btn-sm btn-info mr-2'>Edit</Link>
                                 <button onClick={() => deleteUser(user.id)} className='btn btn-sm btn-danger'>Delete</button>
                             </div> 
