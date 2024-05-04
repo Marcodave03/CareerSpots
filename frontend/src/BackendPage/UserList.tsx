@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 interface User {
-    id: number;
+    user_id: number;
     name: string;
     email: string;
     password: string;
@@ -28,9 +28,9 @@ const UserList: React.FC = () => {
     }, []);
 
     
-    const deleteUser = async (id: number) => {
+    const deleteUser = async (user_id: number) => {
         try {
-            await axios.delete(`http://localhost:5000/users/${id}`);
+            await axios.delete(`http://localhost:5000/users/${user_id}`);
             getUser();
         } catch (error) {
             console.log(error);
@@ -56,15 +56,15 @@ const UserList: React.FC = () => {
                         </thead>
                         <tbody>
                             {users.map((user, index) => (
-                                <tr key={user.id}>
+                                <tr key={user.user_id}>
                                     <td>{index + 1}</td>
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>
                                     <td>{user.role}</td>
                                     <td><img src={`http://localhost:5000/images/${user.image}`} alt={user.name} width="50" /></td>
                                     <td>
-                                        <Link to={`/edit/${user.id}`} className='btn btn-sm btn-info'>Edit</Link>
-                                        <button onClick={() => deleteUser(user.id)} className='btn btn-sm btn-danger ml-2'>Delete</button>
+                                        <Link to={`/edit/${user.user_id}`} className='btn btn-sm btn-info'>Edit</Link>
+                                        <button onClick={() => deleteUser(user.user_id)} className='btn btn-sm btn-danger ml-2'>Delete</button>
                                     </td>
                                 </tr>
                             ))}
@@ -74,15 +74,15 @@ const UserList: React.FC = () => {
             </div>
             <div className="row justify-content-center mt-3">
                 {users.map(user => (
-                    <div className="col-md-4 mb-5" key={user.id}>
+                    <div className="col-md-4 mb-5" key={user.user_id}>
                         <div className="card h-100 mb-3">
                             <img src={`http://localhost:5000/images/${user.image}`} className="card-img-top" alt={user.name} style={{ height: '200px', objectFit: 'cover' }} />
                             <div className="card-body">
                                 <h5 className="card-title">{user.name}</h5>
                                 <p className="card-text">Email: {user.email}</p>
                                 <p className="card-text">Role: {user.role}</p>
-                                <Link to={`/edit/${user.id}`} className='btn btn-sm btn-info mr-2'>Edit</Link>
-                                <button onClick={() => deleteUser(user.id)} className='btn btn-sm btn-danger'>Delete</button>
+                                <Link to={`/edit/${user.user_id}`} className='btn btn-sm btn-info mr-2'>Edit</Link>
+                                <button onClick={() => deleteUser(user.user_id)} className='btn btn-sm btn-danger'>Delete</button>
                             </div> 
                         </div>
                     </div>

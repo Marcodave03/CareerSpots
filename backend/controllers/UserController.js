@@ -15,16 +15,6 @@
 // }
 
 
-// export const getUserss = async(req,res)=>{ //request, response
-//     try{
-//         const response = await Users.findAll(); //dari model User, findAll() dari sequelize
-//         res.status(200).json(response);
-//     } catch(error){
-//         console.log(error.message)
-//     }
-// }
-
-
 // export const getUserById = async(req,res)=>{ //request, response
 //     try{
 //         const response = await User.findOne({ // dari model User

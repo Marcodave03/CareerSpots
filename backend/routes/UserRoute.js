@@ -7,7 +7,12 @@ import express from "express";
 //         createPhoto,
 //         getUserss
 //     } from "../controllers/UserController.js";
-import {getUser} from "../controllers/UsersController.js";
+import {
+    getUser,
+    createUser,
+    createProfile,
+    deleteUser
+} from "../controllers/UsersController.js";
 //import loginController from '../controllers/LoginController.js';
 
 const router = express.Router(); //Function express
@@ -21,8 +26,11 @@ const router = express.Router(); //Function express
 // router.delete('/user/:id',deleteUser); 
 // router.post('/login', loginController.loginUser);
 
-
 router.get('/users',getUser);
+router.post('/users',createProfile);
+router.delete('/users/:user_id', deleteUser);
+
+
 export default router;
 
 
