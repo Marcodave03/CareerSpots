@@ -9,8 +9,9 @@ import express from "express";
 //     } from "../controllers/UserController.js";
 import {
     getUser,
-    createUser,
+    getUserById,
     createProfile,
+    updateUser,
     deleteUser
 } from "../controllers/UsersController.js";
 //import loginController from '../controllers/LoginController.js';
@@ -27,7 +28,9 @@ const router = express.Router(); //Function express
 // router.post('/login', loginController.loginUser);
 
 router.get('/users',getUser);
+router.get('/users/:user_id', getUserById)
 router.post('/users',createProfile);
+router.patch('/users/:user_id',updateUser); 
 router.delete('/users/:user_id', deleteUser);
 
 

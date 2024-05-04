@@ -53,80 +53,69 @@ export const createProfile = async (req, res) => {
     });
 };
 
+export const getUserById = async (req, res) => { 
+    try {
+        const response = await db.models.Users.findOne({ 
+            where: {
+                user_id: req.params.user_id // Use req.params.user_id instead of req.params.id
+            }
+        });
+        res.status(200).json(response);
+    } catch(error) {
+        console.log(error.message);
+    }
+};
 
-// export const updateUser = async (req, res) => {
-//     const user = await db.models.User.findOne({
-//         where: {
-//             id: req.params.id
-//         }
-//     });
+export const updateUser = async (req, res) => {
+    try {
+        const userId = req.params.user_id;
+        const user = await db.models.Users.findOne({ where: { user_id: userId } });
 
-//     if (!user) {
-//         return res.status(404).json({ msg: "User not found" });
-//     }
+        if (!user) {
+            return res.status(404).json({ msg: "User not found" });
+        }
 
-//     let fileName = user.image;
+        let fileName = user.image;
 
-//     if (req.files !== null && req.files.file) { 
-//         const file = req.files.file;
-//         const fileSize = file.data.length;
-//         const ext = path.extname(file.name);
-//         fileName = file.md5 + ext;
-//         const allowedType = ['.png', '.jpg', '.jpeg'];
+        if (req.files && req.files.file) {
+            const file = req.files.file;
+            const fileSize = file.data.length;
+            const ext = path.extname(file.name);
+            fileName = file.md5 + ext;
+            const allowedTypes = ['.png', '.jpg', '.jpeg'];
 
-//         if (!allowedType.includes(ext.toLowerCase())) return res.status(422).json({ msg: "Invalid Images" });
-//         if (fileSize > 5000000) return res.status(422).json({ msg: "Image must be less than 5MB" });
+            if (!allowedTypes.includes(ext.toLowerCase())) {
+                return res.status(422).json({ msg: "Invalid image format. Allowed formats: .png, .jpg, .jpeg" });
+            }
+            if (fileSize > 5000000) {
+                return res.status(422).json({ msg: "Image size must be less than 5MB" });
+            }
 
-//         file.mv(`./public/images/${fileName}`, (err) => {
-//             if (err) return res.status(500).json({ msg: "Failed to upload image" });
-//         });
+            await file.mv(`./public/images/${fileName}`);
 
-//         const filepath = `./public/images/${user.image}`;
-//         fs.unlinkSync(filepath);
-//     }
+            // Delete old image file
+            const oldImagePath = `./public/images/${user.image}`;
+            fs.unlinkSync(oldImagePath);
+        }
 
-//     const { name, email, password, role } = req.body;
-//     const url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
+        const { name, email, password, role } = req.body;
+        const imageUrl = `${req.protocol}://${req.get("host")}/images/${fileName}`;
 
-//     try {
-//         await db.models.User.update({ name, email, password, role, image: fileName, url }, {
-//             where: {
-//                 id: req.params.id
-//             }
-//         });
-//         res.status(200).json({ msg: "User Updated" });
-//     } catch (error) {
-//         console.log(error.message);
-//         res.status(500).json({ msg: "Internal Server Error" });
-//     }
-// }
+        await db.models.Users.update({ name, email, password, role, image_url: fileName }, {
+            where: { user_id: userId }
+        });
 
-// export const deleteUser = async (req, res) => {
-//     const users = await db.models.Users.findOne({ 
-//         where: {
-//             user_id: req.params.db.models.Users.id
-//         }
-//     });
-//     if (!users) {
-//         return res.status(404).json({ msg: "User not found" });
-//     }
-//     try {
-//         const filepath = `./public/images/${users.image}`; //Corrected the path by adding a slash after 'images'
-//         fs.unlinkSync(filepath); //Deleting the associated image file
-//         await db.models.Users.destroy({ //Deleting the user from the database
-//             where: {
-//                 id: req.params.id
-//             }
-//         });
-//         res.status(200).json({ msg: "User Deleted" });
-//     } catch (error) {
-//         console.log(error.message);
-//         res.status(500).json({ msg: "Internal Server Error" });
-//     }
-// };
+        res.status(200).json({ msg: "User updated successfully", imageUrl });
+    } catch (error) {
+        console.error("Error updating user:", error);
+        res.status(500).json({ msg: "Internal Server Error" });
+    }
+};
+
+
 export const deleteUser = async (req, res) => {
     try {
-        const userId = req.params.id; // Extract user id from request parameters
+        const userId = req.params.user_id; // Extract user id from request parameters
         const user = await db.models.Users.findOne({ 
             where: {
                 user_id: userId // Assuming user_id is the correct column name in the Users table
@@ -137,8 +126,10 @@ export const deleteUser = async (req, res) => {
             return res.status(404).json({ msg: "User not found" });
         }
 
-        const imagePath = `./public/images/${user.image}`; // Path to the user's image
-        fs.unlinkSync(imagePath); // Delete the associated image file
+        if (user.image) {
+            const imagePath = `./public/images/${user.image}`; // Path to the user's image
+            fs.unlinkSync(imagePath); // Delete the associated image file
+        }
 
         await db.models.Users.destroy({ 
             where: {
@@ -152,6 +143,7 @@ export const deleteUser = async (req, res) => {
         res.status(500).json({ msg: "Internal Server Error" });
     }
 };
+
 
 
 // export const createUser = async(req,res)=>{ //request, response

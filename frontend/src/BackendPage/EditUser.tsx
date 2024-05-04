@@ -18,7 +18,7 @@ const EditUser: React.FC = () => {
     const [image, setImage] = useState<File | null>(null);
     const [previewURL, setPreviewURL] = useState<string | null>(null);
     const navigate = useNavigate();
-    const { id } = useParams<{ id: string }>();
+    const { user_id } = useParams<{ user_id: string }>();
 
     useEffect(() => {
         getUserById();
@@ -26,7 +26,7 @@ const EditUser: React.FC = () => {
 
     const getUserById = async () => {
         try {
-            const response = await axios.get<User>(`http://localhost:5000/users/${id}`);
+            const response = await axios.get<User>(`http://localhost:5000/users/${user_id}`);
             const userData: User = response.data;
             setName(userData.name);
             setEmail(userData.email);
@@ -57,7 +57,7 @@ const EditUser: React.FC = () => {
             if (image) {
                 formData.append('file', image);
             }
-            await axios.patch(`http://localhost:5000/users/${id}`, formData, {
+            await axios.patch(`http://localhost:5000/users/${user_id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
