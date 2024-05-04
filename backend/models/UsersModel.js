@@ -15,15 +15,5 @@ const Users = {
     image_url: { type : DataTypes.STRING, allowNull: true } // New attribute for user image URL
 };
 
-// Users.hasOne(Staff, {
-//     foreignKey: "user-id", 
-//     onDelete: "CASCADE", 
-//     onUpdate: "RESTRICT",
-// });
-// Users.hasMany(JobApplication, {
-//     foreignKey: "user-id", 
-//     onDelete: "RESTRICT", 
-//     onUpdate: "RESTRICT"
-// }); 
 
 export default Users;

@@ -6,8 +6,8 @@ import fs from 'fs';
 
 export const getUsers = async(req,res)=>{ //request, response
     try{
-        const response =  await db.sync({ force: true });; 
-        // const response = await Assoc.findAll(); //dari model User, findAll() dari sequelize
+        //const response =  await db.sync({ force: true });; 
+        const response = await Assoc.findAll(); //dari model User, findAll() dari sequelize
         res.status(200).json(response);
     } catch(error){
         console.log(error.message)

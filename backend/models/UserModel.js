@@ -16,6 +16,6 @@ const User = db.define('user',{ //nama tabel
 
 export default User;
 
-(async()=>{
-    await db.sync(); // Function run ketika dipanggil file UserModel
-})();
+// (async()=>{
+//     await db.sync(); // Function run ketika dipanggil file UserModel
+// })();

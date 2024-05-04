@@ -90,6 +90,7 @@ jobApplication.belongsTo(job,
 
 db.sync();
 export default db; 
+
 // // Define association
 // Users.hasOne(Staff);
 

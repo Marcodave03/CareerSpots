@@ -19,7 +19,7 @@ const UserList: React.FC = () => {
 
     const getUsers = async () => {
         try {
-            const response = await axios.get<User[]>('http://localhost:5000/user');
+            const response = await axios.get<User[]>('http://localhost:5000/users');
             setUsers(response.data);
         } catch (error) {
             console.log(error);
@@ -28,7 +28,7 @@ const UserList: React.FC = () => {
 
     const deleteUser = async (id: number) => {
         try {
-            await axios.delete(`http://localhost:5000/user/${id}`);
+            await axios.delete(`http://localhost:5000/users/${id}`);
             getUsers();
         } catch (error) {
             console.log(error);
