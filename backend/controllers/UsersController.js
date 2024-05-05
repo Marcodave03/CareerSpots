@@ -75,7 +75,7 @@ export const updateUser = async (req, res) => {
             return res.status(404).json({ msg: "User not found" });
         }
 
-        let fileName = user.image;
+        let fileName = user.image_url;
 
         if (req.files && req.files.file) {
             const file = req.files.file;
@@ -94,7 +94,7 @@ export const updateUser = async (req, res) => {
             await file.mv(`./public/images/${fileName}`);
 
             // Delete old image file
-            const oldImagePath = `./public/images/${user.image}`;
+            const oldImagePath = `./public/images/${user.image_url}`;
             fs.unlinkSync(oldImagePath);
         }
 
