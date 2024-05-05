@@ -8,6 +8,8 @@ export const getUser = async(req,res)=>{ //request, response
     try{
         //const response =  await db.sync({ force: true });; 
         const response = await db.models.Users.findAll(); //dari model User, findAll() dari sequelize
+        // console.log("coba"); 
+        // res.send(response); 
         res.status(200).json(response);
     } catch(error){
         console.log(error.message)

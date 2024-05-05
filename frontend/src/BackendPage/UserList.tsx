@@ -9,7 +9,6 @@ interface User {
     password: string;
     role: string;
     image_url : string;
-    url: string;
 }
 
 const UserList: React.FC = () => {

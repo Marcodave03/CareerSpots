@@ -24,7 +24,7 @@ const company = db.define("Companies", Company,
     tableName: "companies"
 }); 
 
-const jobApplication = db.define("Job Applications", JobApplication, 
+const jobApplication = db.define("JobApplications", JobApplication, 
 {
     tableName: "job applications"
 }); 

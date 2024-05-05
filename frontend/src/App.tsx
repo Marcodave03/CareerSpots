@@ -9,6 +9,7 @@ import UserList from "./BackendPage/UserList";
 import AddUser from "./BackendPage/AddUser";
 import EditUser from "./BackendPage/EditUser";
 import LoginUser from "./BackendPage/LoginUser";
+import Job from "./BackendPage/Job"; 
 import Admin from "./Page/Admin";
 
 function App() {
@@ -25,6 +26,8 @@ function App() {
         <Route path="/add" element={<AddUser/>}></Route>
         <Route path="edit/:id" element={<EditUser/>}></Route>
         <Route path="/login" element={<LoginUser/>}></Route>
+
+        <Route path=":id/jobs" element={<Job/>}></Route>
       </Routes>
     </Router>
   );
