@@ -17,13 +17,13 @@ Content-Type: application/json
 
 
 ###
-PATCH http://localhost:5000/users/1
+PATCH http://localhost:5000/users/18
 Content-Type: application/json
 
 {
-    "name": "M Fikri",
-    "email": "fikri@gmail.com",
-    "gender": "Male"
+    "name": "M Ferlinss",
+    "email": "ff@gmail.com",
+    "role": "Staff Gojek"
 }
 
 

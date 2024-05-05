@@ -8,7 +8,8 @@ interface User {
     email: string;
     password: string;
     role: string;
-    image: string;
+    image_url : string;
+    url: string;
 }
 
 const UserList: React.FC = () => {
@@ -61,7 +62,7 @@ const UserList: React.FC = () => {
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>
                                     <td>{user.role}</td>
-                                    <td><img src={`http://localhost:5000/images/${user.image}`} alt={user.name} width="50" /></td>
+                                    <td><img src={`http://localhost:5000/images/${user.image_url}`} alt={user.name} width="50" /></td>
                                     <td>
                                         <Link to={`/edit/${user.user_id}`} className='btn btn-sm btn-info'>Edit</Link>
                                         <button onClick={() => deleteUser(user.user_id)} className='btn btn-sm btn-danger ml-2'>Delete</button>
@@ -76,7 +77,7 @@ const UserList: React.FC = () => {
                 {users.map(user => (
                     <div className="col-md-4 mb-5" key={user.user_id}>
                         <div className="card h-100 mb-3">
-                            <img src={`http://localhost:5000/images/${user.image}`} className="card-img-top" alt={user.name} style={{ height: '200px', objectFit: 'cover' }} />
+                            <img src={`http://localhost:5000/images/${user.image_url}`} className="card-img-top" alt={user.name} style={{ height: '200px', objectFit: 'cover' }} />
                             <div className="card-body">
                                 <h5 className="card-title">{user.name}</h5>
                                 <p className="card-text">Email: {user.email}</p>

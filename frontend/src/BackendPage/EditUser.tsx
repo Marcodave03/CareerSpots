@@ -7,7 +7,7 @@ interface User {
     email: string;
     password: string;
     role:string;
-    image:string;
+    image_url:string;
 }
 
 const EditUser: React.FC = () => {
