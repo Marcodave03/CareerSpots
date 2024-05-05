@@ -12,26 +12,31 @@ const Jobs = () => {
   const columns = [
     { field: "id", headerName: "ID" },
     {
-      field: "name",
-      headerName: "Name",
+      field: "jobname",
+      headerName: "Job Name",
       flex: 1,
       cellClassName: "name-column--cell",
     },
     {
-      field: "age",
-      headerName: "Age",
+      field: "jobsalary",
+      headerName: "Salary",
       type: "number",
       headerAlign: "left",
       align: "left",
     },
     {
-      field: "phone",
-      headerName: "Phone Number",
+      field: "jobtype",
+      headerName: "Job Type",
       flex: 1,
     },
     {
-      field: "email",
-      headerName: "Email",
+      field: "joblevel",
+      headerName: "Job Level",
+      flex: 1,
+    },
+    {
+      field: "joblocation",
+      headerName: "Job Location",
       flex: 1,
     },
   ];
