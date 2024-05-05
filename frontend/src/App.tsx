@@ -10,7 +10,6 @@ import AddUser from "./BackendPage/AddUser";
 import EditUser from "./BackendPage/EditUser";
 import LoginUser from "./BackendPage/LoginUser";
 import Admin from "./Page/Admin";
-import UserDashboard from './Page/UserDashboard';
 import Interview from "./Page/Interview";
 
 function App() {
@@ -21,7 +20,6 @@ function App() {
         <Route path="/signup" element={<Login />} /> 
         <Route path="/Portal" element={<Portal />} /> 
         <Route path="/Admin/*" element={<Admin/>} /> 
-        <Route path="/UserDashboard/*" element={<UserDashboard/>} /> 
 
 
         <Route path="/users" element={<UserList/>}></Route> 

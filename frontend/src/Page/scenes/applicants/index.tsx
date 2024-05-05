@@ -3,6 +3,7 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import Header from "../../../components/Header";
 import { useTheme } from "@mui/material";
+import { mockDataContacts } from "../../../data/mockData";
 
 const Applicants = () => {
   const theme = useTheme();
@@ -89,6 +90,11 @@ const Applicants = () => {
           },
         }}
       >
+        <DataGrid
+          rows={mockDataContacts}
+          columns={columns}
+          // components={{ Toolbar: GridToolbar }}
+        />
       </Box>
     </Box>
   );

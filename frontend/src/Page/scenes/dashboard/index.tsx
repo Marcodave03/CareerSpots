@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
+import { mockTransactions } from "../../../data/mockData";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import AwaitingIcon from '@mui/icons-material/HourglassBottom';
@@ -13,7 +14,6 @@ import Header from "../../../components/Header";
 import LineChart from "../../../components/LineChart";
 import BarChart from "../../../components/BarChart";
 import StatBox from "../../../components/StatBox";
-import GeographyChart from "../../../components/GeographyChart";
 import ProgressCircle from "../../../components/ProgressCircle";
 
 interface Transaction {
@@ -23,7 +23,7 @@ interface Transaction {
   cost: number;
 }
 
-const mockTransactions: Transaction[] = []; // Define your mock transactions here
+// const mockTransactions: Transaction[] = []; // Define your mock transactions here
 
 const Dashboard: React.FC = () => {
   const theme = useTheme(); // No need to explicitly type the return value of useTheme, it's inferred by TypeScript
@@ -244,7 +244,7 @@ const Dashboard: React.FC = () => {
             alignItems="center"
             marginTop="25px"
           >
-            <ProgressCircle size="125" />
+            <ProgressCircle size={125} />
             <Typography
               variant="h5"
               color={colors.custom[400]}
@@ -272,25 +272,8 @@ const Dashboard: React.FC = () => {
             <BarChart isDashboard={true} /> 
           </Box>
         </Box>
-          {/* <Box
-          gridColumn="span 4"
-          gridRow="span 2"
-          backgroundColor={colors.primary[400]}
-          padding="30px"
-        >
-          <Typography
-            variant="h5"
-            fontWeight="600"
-            sx={{ marginBottom: "15px" }}
-          >
-            Geography Based Traffic
-          </Typography>
-          <Box height="200px">
-            <GeographyChart isDashboard={true} />
-          </Box> */}
         </Box>
       </Box>
-    // </Box>
   );
 };
 
