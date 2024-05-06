@@ -1,31 +1,29 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
-import { mockDataTeam } from "../../../data/mockData";
-// import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
-// import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
-// import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
+import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
+import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
+import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import Header from "../../../components/Header";
 
 const Jobs = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-
   const columns = [
-    { field: "id", headerName: "ID", flex: 0.5 },
+    { field: "id", headerName: "ID" },
     {
       field: "jobname",
       headerName: "Job Name",
       flex: 1,
       cellClassName: "name-column--cell",
     },
-    // {
-    //   field: "jobsalary",
-    //   headerName: "Salary",
-    //   type: "number",
-    //   headerAlign: "left",
-    //   align: "left",
-    // },
+    {
+      field: "jobsalary",
+      headerName: "Salary",
+      type: "number",
+      headerAlign: "left",
+      align: "left",
+    },
     {
       field: "jobtype",
       headerName: "Job Type",
@@ -75,7 +73,6 @@ const Jobs = () => {
           },
         }}
       >
-        <DataGrid checkboxSelection rows={mockDataTeam} columns={columns} />
       </Box>
     </Box>
   );

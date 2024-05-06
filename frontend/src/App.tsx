@@ -26,7 +26,7 @@ function App() {
         <Route path="/add" element={<AddUser/>}></Route>
         <Route path="edit/:id" element={<EditUser/>}></Route>
         <Route path="/login" element={<LoginUser/>}></Route>
-        <Route path="/interview" element={<InterviewPage />} />
+        <Route path="/interview" element={<InterviewPage/>}/>
       </Routes>
     </Router>
   );

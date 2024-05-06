@@ -161,21 +161,13 @@ const Sidebars: React.FC<SidebarProps> = () => {
             selected={selected}
             setSelected={setSelected}
           />
-          {/* <Item
-            title="Invoices Balances"
-            to="/Admin/invoices"
-            icon={<ReceiptOutlinedIcon />}
+          <Item
+            title="Jobs Applied List"
+            to="/Admin/jobsapplied"
+            icon={<JobOutlineIcon />}
             selected={selected}
             setSelected={setSelected}
-          /> */}
-
-          {/* <Typography
-            variant="h6"
-            color={colors.grey[300]}
-            style={{ margin: "15px 0 5px 20px" }}
-          >
-            Pages
-          </Typography> */}
+          />
           <Item
             title="Job Form"
             to="/Admin/form"
@@ -226,13 +218,6 @@ const Sidebars: React.FC<SidebarProps> = () => {
             selected={selected}
             setSelected={setSelected}
           />
-          {/* <Item
-            title="Geography Chart"
-            to="/Admin/geography"
-            icon={<MapOutlinedIcon />}
-            selected={selected}
-            setSelected={setSelected}
-          /> */}
         </div>
       </Menu>
     </Sidebar>

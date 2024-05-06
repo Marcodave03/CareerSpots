@@ -3,6 +3,7 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import Header from "../../../components/Header";
 import { useTheme } from "@mui/material";
+import { mockDataContacts } from "../../../data/mockData";
 
 const Applicants = () => {
   const theme = useTheme();
@@ -17,38 +18,38 @@ const Applicants = () => {
       flex: 1,
       cellClassName: "name-column--cell",
     },
-    {
-      field: "age",
-      headerName: "Age",
-      type: "number",
-      headerAlign: "left",
-      align: "left",
-    },
-    {
-      field: "phone",
-      headerName: "Phone Number",
-      flex: 1,
-    },
+    // {
+    //   field: "age",
+    //   headerName: "Age",
+    //   type: "number",
+    //   headerAlign: "left",
+    //   align: "left",
+    // },
+    // {
+    //   field: "phone",
+    //   headerName: "Phone Number",
+    //   flex: 1,
+    // },
     {
       field: "email",
       headerName: "Email",
       flex: 1,
     },
-    {
-      field: "address",
-      headerName: "Address",
-      flex: 1,
-    },
-    {
-      field: "city",
-      headerName: "City",
-      flex: 1,
-    },
-    {
-      field: "zipCode",
-      headerName: "Zip Code",
-      flex: 1,
-    },
+    // {
+    //   field: "address",
+    //   headerName: "Address",
+    //   flex: 1,
+    // },
+    // {
+    //   field: "city",
+    //   headerName: "City",
+    //   flex: 1,
+    // },
+    // {
+    //   field: "zipCode",
+    //   headerName: "Zip Code",
+    //   flex: 1,
+    // },
   ];
 
   return (
@@ -89,6 +90,11 @@ const Applicants = () => {
           },
         }}
       >
+        <DataGrid
+          rows={mockDataContacts}
+          columns={columns}
+          // components={{ Toolbar: GridToolbar }}
+        />
       </Box>
     </Box>
   );

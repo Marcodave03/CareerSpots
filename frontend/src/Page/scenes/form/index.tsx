@@ -24,6 +24,7 @@ const Form = () => {
     actions: FormikHelpers<FormValues>
   ) => {
     console.log(values);
+    actions.resetForm;
     // You can access formik helpers like actions.resetForm() here if needed.
   };
 
@@ -65,9 +66,9 @@ const Form = () => {
                 name="jobname"
                 error={!!touched.jobname && !!errors.jobname}
                 helperText={touched.jobname && errors.jobname}
-                sx={{ gridColumn: "span 4" }}
+                sx={{ gridColumn: "span 8" }}
               />
-              <FormControl fullWidth variant="filled" sx={{ gridColumn: "span 2" }}>
+              <FormControl fullWidth variant="filled" sx={{ gridColumn: "span 4" }}>
                 <InputLabel id="job-type-label">Job Type</InputLabel>
                 <Select
                   labelId="job-type-label"
@@ -87,7 +88,7 @@ const Form = () => {
                   <div style={{ color: 'red' }}>{errors.jobtype}</div>
                 )}
               </FormControl>
-              <FormControl fullWidth variant="filled" sx={{ gridColumn: "span 2" }}>
+              <FormControl fullWidth variant="filled" sx={{ gridColumn: "span 4" }}>
                 <InputLabel id="job-level-label">Job Level</InputLabel>
                 <Select
                   labelId="job-level-label"
