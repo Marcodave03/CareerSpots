@@ -12,18 +12,9 @@ const Users = {
     email: { type : DataTypes.STRING, allowNull: true },
     password: { type : DataTypes.STRING, allowNull: true },
     role: { type : DataTypes.STRING, allowNull: true },
-    image_url: { type : DataTypes.STRING, allowNull: true } // New attribute for user image URL
+    image_url: { type : DataTypes.STRING, allowNull: true }, // New attribute for user image URL
+    url : { type: DataTypes.STRING, allowNull: true }
 };
 
-// Users.hasOne(Staff, {
-//     foreignKey: "user-id", 
-//     onDelete: "CASCADE", 
-//     onUpdate: "RESTRICT",
-// });
-// Users.hasMany(JobApplication, {
-//     foreignKey: "user-id", 
-//     onDelete: "RESTRICT", 
-//     onUpdate: "RESTRICT"
-// }); 
 
 export default Users;
