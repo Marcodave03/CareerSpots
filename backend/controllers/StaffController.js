@@ -19,6 +19,7 @@ export const getStaff = async (req, res) => {
 export const createStaff = async (req, res) => {
     try {
         const { user_id, company_id } = req.body;
+        // console.log(user_id); 
         const user = await db.models.Users.findByPk(user_id);
         const company = await db.models.Companies.findByPk(company_id);
         if (!user || !company) {

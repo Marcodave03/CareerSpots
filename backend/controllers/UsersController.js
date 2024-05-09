@@ -14,6 +14,7 @@ export const getUser = async(req,res)=>{
 }
 
 export const createUser = async (req,res) => {
+    // console.log("tes"); 
     try {
         await db.models.Users.create(req.body);
         res.status(201).json({msg: "User created"});

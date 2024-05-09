@@ -13,4 +13,3 @@ const JobApplication = {
 };
 
 export default JobApplication;
-

@@ -3,7 +3,7 @@ import Users from'./UsersModel.js';
 import Staff from './StaffModel.js';
 import Job from './JobModel.js';
 import Company from './CompanyModel.js';
-import JobApplication from './JobApplicationModel.js';
+import JobApplication from './JobapplicationModel.js';
 
 const user = db.define("Users", Users, 
 {
@@ -24,7 +24,7 @@ const company = db.define("Companies", Company,
     tableName: "companies"
 }); 
 
-const jobApplication = db.define("Job Applications", JobApplication, 
+const jobApplication = db.define("JobApplications", JobApplication, 
 {
     tableName: "job applications"
 }); 
@@ -152,4 +152,3 @@ jobApplication.belongsTo(job,
 
 db.sync();
 export default db; 
-
