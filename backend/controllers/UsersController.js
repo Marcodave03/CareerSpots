@@ -1,13 +1,12 @@
-import Users from  '../models/UsersModel.js';
 import db from '../models/Association.js'; 
-import path from "path"; //dari node js
+import path from "path"; 
 import fs from 'fs';
 import { v4 as uuidv4 } from 'uuid';    
 
-export const getUser = async(req,res)=>{ //request, response
+//User
+export const getUser = async(req,res)=>{ 
     try{
-        //const response =  await db.sync({ force: true });; 
-        const response = await db.models.Users.findAll(); //dari model User, findAll() dari sequelize
+        const response = await db.models.Users.findAll(); 
         res.status(200).json(response);
     } catch(error){
         console.log(error.message)
@@ -33,7 +32,7 @@ export const createProfile = async (req, res) => {
     const file = req.files.file;
     const fileSize = file.data.length;
     const ext = path.extname(file.name);
-    const fileName = uuidv4() + ext; // Generate a unique filename using UUID
+    const fileName = uuidv4() + ext; 
     const url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
     const allowedType = ['.png', '.jpg', '.jpeg'];
 
@@ -57,7 +56,7 @@ export const getUserById = async (req, res) => {
     try {
         const response = await db.models.Users.findOne({ 
             where: {
-                user_id: req.params.user_id // Use req.params.user_id instead of req.params.id
+                user_id: req.params.user_id 
             }
         });
         res.status(200).json(response);
@@ -75,7 +74,7 @@ export const updateUser = async (req, res) => {
             return res.status(404).json({ msg: "User not found" });
         }
 
-        let fileName = user.image;
+        let fileName = user.image_url;
 
         if (req.files && req.files.file) {
             const file = req.files.file;
@@ -94,7 +93,7 @@ export const updateUser = async (req, res) => {
             await file.mv(`./public/images/${fileName}`);
 
             // Delete old image file
-            const oldImagePath = `./public/images/${user.image}`;
+            const oldImagePath = `./public/images/${user.image_url}`;
             fs.unlinkSync(oldImagePath);
         }
 
@@ -115,10 +114,10 @@ export const updateUser = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
     try {
-        const userId = req.params.user_id; // Extract user id from request parameters
+        const userId = req.params.user_id; 
         const user = await db.models.Users.findOne({ 
             where: {
-                user_id: userId // Assuming user_id is the correct column name in the Users table
+                user_id: userId 
             }
         });
 
@@ -127,13 +126,13 @@ export const deleteUser = async (req, res) => {
         }
 
         if (user.image) {
-            const imagePath = `./public/images/${user.image}`; // Path to the user's image
-            fs.unlinkSync(imagePath); // Delete the associated image file
+            const imagePath = `./public/images/${user.image}`; 
+            fs.unlinkSync(imagePath); 
         }
 
         await db.models.Users.destroy({ 
             where: {
-                user_id: userId // Delete the user from the database
+                user_id: userId 
             }
         });
 
@@ -143,14 +142,3 @@ export const deleteUser = async (req, res) => {
         res.status(500).json({ msg: "Internal Server Error" });
     }
 };
-
-
-
-// export const createUser = async(req,res)=>{ //request, response
-//     try{
-//         await User.create(req.body);
-//         res.status(201).json({msg: "User created"});
-//     } catch(error){
-//         console.log(error.message)
-//     }
-// }

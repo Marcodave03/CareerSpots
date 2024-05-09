@@ -2,12 +2,13 @@ import React, { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 
-interface User {
+interface Users {
     name: string;
     email: string;
     password: string;
-    role:string;
-    image:string;
+    role: string;
+    image_url: string;
+    url: string;
 }
 
 const EditUser: React.FC = () => {
@@ -18,7 +19,7 @@ const EditUser: React.FC = () => {
     const [image, setImage] = useState<File | null>(null);
     const [previewURL, setPreviewURL] = useState<string | null>(null);
     const navigate = useNavigate();
-    const { user_id } = useParams<{ user_id: string }>();
+    const { id } = useParams<{ id: string }>();
 
     useEffect(() => {
         getUserById();
@@ -26,8 +27,9 @@ const EditUser: React.FC = () => {
 
     const getUserById = async () => {
         try {
-            const response = await axios.get<User>(`http://localhost:5000/users/${user_id}`);
-            const userData: User = response.data;
+            const response = await axios.get<Users>(`http://localhost:5000/users/${id}`);
+            const userData: Users = response.data;
+            console.log(id);
             setName(userData.name);
             setEmail(userData.email);
             setPassword(userData.password);
@@ -57,7 +59,7 @@ const EditUser: React.FC = () => {
             if (image) {
                 formData.append('file', image);
             }
-            await axios.patch(`http://localhost:5000/users/${user_id}`, formData, {
+            await axios.patch(`http://localhost:5000/users/${id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

@@ -12,7 +12,8 @@ const Users = {
     email: { type : DataTypes.STRING, allowNull: true },
     password: { type : DataTypes.STRING, allowNull: true },
     role: { type : DataTypes.STRING, allowNull: true },
-    image_url: { type : DataTypes.STRING, allowNull: true } // New attribute for user image URL
+    image_url: { type : DataTypes.STRING, allowNull: true }, // New attribute for user image URL
+    url : { type: DataTypes.STRING, allowNull: true }
 };
 
 
