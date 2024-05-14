@@ -1,17 +1,28 @@
 import { Box, Typography, useTheme } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { mockDataTeam } from "../../../data/mockData";
 // import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 // import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
 // import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import Header from "../../../components/Header";
+import { Button } from '@mui/material';
+
+const handleEditClick = (id: number) => {
+  // Handle edit action
+  console.log('Edit', id);
+};
+
+const handleDeleteClick = (id: number) => {
+  // Handle delete action
+  console.log('Delete', id);
+};
 
 const Jobs = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-  const columns = [
+  const columns: GridColDef[] = [
     { field: "id", headerName: "ID", flex: 0.5 },
     {
       field: "jobname",
@@ -40,6 +51,32 @@ const Jobs = () => {
       field: "joblocation",
       headerName: "Job Location",
       flex: 1,
+    },
+    {
+      field: 'actions',
+      headerName: 'Actions',
+      width: 200,
+      renderCell: (params: GridRenderCellParams) => (
+        <div>
+          <Button
+            variant="contained"
+            color="primary"
+            size="small"
+            onClick={() => handleEditClick(params.id)}
+            style={{ marginRight: 16 }}
+          >
+            Edit
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            size="small"
+            onClick={() => handleDeleteClick(params.id)}
+          >
+            Delete
+          </Button>
+        </div>
+      ),
     },
   ];
 
