@@ -11,24 +11,32 @@ import EditUser from "./BackendPage/EditUser";
 import LoginUser from "./BackendPage/LoginUser";
 import Admin from "./Page/Admin";
 import InterviewPage from "./Page/Interview";
+import { ProtectedRoute } from "./components/protected-route";
+import { AuthProvider } from "./auth/context";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} /> 
-        <Route path="/signup" element={<Login />} /> 
-        <Route path="/Portal" element={<Portal />} /> 
-        <Route path="/Admin/*" element={<Admin/>} /> 
+    <AuthProvider>
+     <Router>
+        <Routes>
+          <Route path="/" element={<Home />} /> 
+          <Route path="/signup" element={<Login />} /> 
+          <Route path="/Portal" element={<Portal />} /> 
+          {/* if the requiredRoles={['admin', 'staff']} it means that the route can only be access by admin and staff */}
+          <Route element={<ProtectedRoute requiredRoles={["admin"]} />}>
+            <Route path="/Admin/*" element={<Admin />} />
+          </Route>
 
 
-        <Route path="/users" element={<UserList/>}></Route> 
-        <Route path="/add" element={<AddUser/>}></Route>
-        <Route path="edit/:id" element={<EditUser/>}></Route>
-        <Route path="/login" element={<LoginUser/>}></Route>
-        <Route path="/interview" element={<InterviewPage/>}/>
-      </Routes>
-    </Router>
+          <Route path="/users" element={<UserList/>}></Route> 
+          <Route path="/add" element={<AddUser/>}></Route>
+          <Route path="edit/:id" element={<EditUser/>}></Route>
+          <Route path="/login" element={<LoginUser/>}></Route>
+          <Route path="/interview" element={<InterviewPage/>}/>
+        </Routes>
+      </Router>
+    </AuthProvider>
+    
   );
 }
 
