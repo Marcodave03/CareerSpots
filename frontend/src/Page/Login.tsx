@@ -6,7 +6,7 @@ import Regisvg from "../assets/register.svg";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getMe } from "../features/auth";
+import { getMe } from "../features/authSlice.js";
 
 const Login: React.FC = () => {
   const dispatch = useDispatch();
