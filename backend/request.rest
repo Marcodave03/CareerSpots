@@ -1,6 +1,8 @@
 GET http://localhost:5000/users
 
-### GET http://localhost:5000/users/1
+### 
+
+GET http://localhost:5000/users/1
 
 ### 
 
@@ -8,9 +10,29 @@ POST http://localhost:5000/users HTTP/1.1
 content-type: application/json
 
 {
-    "name": "merlin", 
-    "email": "tes-email@gmail.com"
+    "name": "userName", 
+    "email": "user@gmail.com",
+    "password": "userPassword", 
+    "role": "user"
 }
+
+### 
+
+POST http://localhost:5000/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "user@gmail.com",
+    "password": "userPassword"
+}
+
+### 
+
+GET http://localhost:5000/me 
+
+### 
+
+DELETE http://localhost:5000/logout
 
 ###
 POST http://localhost:5000/createjobapplication
