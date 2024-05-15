@@ -1,16 +1,19 @@
 import React from "react";
 import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
+import { mockTransactions } from "../../../data/mockData";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import EmailIcon from "@mui/icons-material/Email";
-import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
-import TrafficIcon from "@mui/icons-material/Traffic";
+import AwaitingIcon from '@mui/icons-material/HourglassBottom';
+// import EmailIcon from "@mui/icons-material/Email";
+// import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
+import ReviewIcon from '@mui/icons-material/Grading';
+// import TrafficIcon from "@mui/icons-material/Traffic";
+import RejectIcon from '@mui/icons-material/CancelPresentation';
 import Header from "../../../components/Header";
 import LineChart from "../../../components/LineChart";
 import BarChart from "../../../components/BarChart";
 import StatBox from "../../../components/StatBox";
-import GeographyChart from "../../../components/GeographyChart";
 import ProgressCircle from "../../../components/ProgressCircle";
 
 interface Transaction {
@@ -20,7 +23,7 @@ interface Transaction {
   cost: number;
 }
 
-const mockTransactions: Transaction[] = []; // Define your mock transactions here
+// const mockTransactions: Transaction[] = []; // Define your mock transactions here
 
 const Dashboard: React.FC = () => {
   const theme = useTheme(); // No need to explicitly type the return value of useTheme, it's inferred by TypeScript
@@ -30,12 +33,12 @@ const Dashboard: React.FC = () => {
     <Box m="20px">
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
+        <Header title="DASHBOARD" subtitle="Welcome to your dashboard"  />
 
         <Box>
           <Button
             sx={{
-              backgroundColor: colors.blueAccent[700],
+              backgroundColor: colors.custom[400],
               color: colors.grey[100],
               fontSize: "14px",
               fontWeight: "bold",
@@ -65,12 +68,12 @@ const Dashboard: React.FC = () => {
         >
           <StatBox
             title="12,361"
-            subtitle="Emails Sent"
+            subtitle="Awaiting"
             progress={0.75}
             increase="+14%"
             icon={
-              <EmailIcon
-                sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
+              <AwaitingIcon
+                sx={{ color: colors.custom[400], fontSize: "26px" }}
               />
             }
           />
@@ -84,12 +87,12 @@ const Dashboard: React.FC = () => {
         >
           <StatBox
             title="431,225"
-            subtitle="Sales Obtained"
+            subtitle="Reviewed"
             progress={0.50}
             increase="+21%"
             icon={
-              <PointOfSaleIcon
-                sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
+              <ReviewIcon
+                sx={{ color: colors.custom[400], fontSize: "26px" }}
               />
             }
           />
@@ -103,12 +106,12 @@ const Dashboard: React.FC = () => {
         >
           <StatBox
             title="32,441"
-            subtitle="New Clients"
+            subtitle="Hired"
             progress={0.30}
             increase="+5%"
             icon={
               <PersonAddIcon
-                sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
+                sx={{ color: colors.custom[400], fontSize: "26px" }}
               />
             }
           />
@@ -122,12 +125,12 @@ const Dashboard: React.FC = () => {
         >
           <StatBox
             title="1,325,134"
-            subtitle="Traffic Received"
+            subtitle="Rejected"
             progress={0.80}
             increase="+43%"
             icon={
-              <TrafficIcon
-                sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
+              <RejectIcon
+                sx={{ color: colors.custom[400], fontSize: "26px" }}
               />
             }
           />
@@ -152,20 +155,20 @@ const Dashboard: React.FC = () => {
                 fontWeight="600"
                 color={colors.grey[100]}
               >
-                Revenue Generated
+                Acceptance Status Statistics
               </Typography>
               <Typography
                 variant="h3"
                 fontWeight="bold"
                 color={colors.greenAccent[500]}
               >
-                $59,342.32
+                32,441 Accepted
               </Typography>
             </Box>
             <Box>
               <IconButton>
                 <DownloadOutlinedIcon
-                  sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
+                  sx={{ fontSize: "26px", color: colors.custom[400] }}
                 />
               </IconButton>
             </Box>
@@ -188,7 +191,7 @@ const Dashboard: React.FC = () => {
             padding="15px"
           >
             <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
-              Recent Transactions
+              Recent Job Positions Filled
             </Typography>
           </Box>
           {mockTransactions.map((transaction, i) => (
@@ -227,13 +230,13 @@ const Dashboard: React.FC = () => {
 
         {/* ROW 3 */}
         <Box
-          gridColumn="span 4"
+          gridColumn="span 6"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
           padding="30px"
         >
           <Typography variant="h5" fontWeight="600">
-            Campaign
+            Acceptance Rate
           </Typography>
           <Box
             display="flex"
@@ -241,19 +244,19 @@ const Dashboard: React.FC = () => {
             alignItems="center"
             marginTop="25px"
           >
-            <ProgressCircle size="125" />
+            <ProgressCircle size={125} />
             <Typography
               variant="h5"
-              color={colors.greenAccent[500]}
+              color={colors.custom[400]}
               marginTop="15px"
             >
-              $48,352 revenue generated
+              25% of Candidates Accepted
             </Typography>
-            <Typography>Includes extra misc expenditures and costs</Typography>
+            <Typography color={colors.greenAccent[500]}>75% of Candidates Rejected</Typography>
           </Box>
         </Box>
         <Box
-          gridColumn="span 4"
+          gridColumn="span 6"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
           padding="30px"
@@ -263,31 +266,14 @@ const Dashboard: React.FC = () => {
             fontWeight="600"
             padding="30px 30px 0 30px"
           >
-            Sales Quantity
+            Job Positions Statistics
           </Typography>
           <Box height="250px" marginTop="-20px">
             <BarChart isDashboard={true} /> 
           </Box>
         </Box>
-          <Box
-          gridColumn="span 4"
-          gridRow="span 2"
-          backgroundColor={colors.primary[400]}
-          padding="30px"
-        >
-          <Typography
-            variant="h5"
-            fontWeight="600"
-            sx={{ marginBottom: "15px" }}
-          >
-            Geography Based Traffic
-          </Typography>
-          <Box height="200px">
-            <GeographyChart isDashboard={true} />
-          </Box>
         </Box>
       </Box>
-    </Box>
   );
 };
 

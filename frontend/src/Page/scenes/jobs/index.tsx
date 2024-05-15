@@ -1,62 +1,51 @@
-import { Box } from "@mui/material";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { Box, Typography, useTheme } from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
+import { mockDataTeam } from "../../../data/mockData";
+// import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
+// import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
+// import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import Header from "../../../components/Header";
-import { useTheme } from "@mui/material";
 
-const Contacts = () => {
+const Jobs = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
   const columns = [
     { field: "id", headerName: "ID", flex: 0.5 },
-    { field: "registrarId", headerName: "Registrar ID" },
     {
-      field: "name",
-      headerName: "Name",
+      field: "jobname",
+      headerName: "Job Name",
       flex: 1,
       cellClassName: "name-column--cell",
     },
+    // {
+    //   field: "jobsalary",
+    //   headerName: "Salary",
+    //   type: "number",
+    //   headerAlign: "left",
+    //   align: "left",
+    // },
     {
-      field: "age",
-      headerName: "Age",
-      type: "number",
-      headerAlign: "left",
-      align: "left",
-    },
-    {
-      field: "phone",
-      headerName: "Phone Number",
+      field: "jobtype",
+      headerName: "Job Type",
       flex: 1,
     },
     {
-      field: "email",
-      headerName: "Email",
+      field: "joblevel",
+      headerName: "Job Level",
       flex: 1,
     },
     {
-      field: "address",
-      headerName: "Address",
-      flex: 1,
-    },
-    {
-      field: "city",
-      headerName: "City",
-      flex: 1,
-    },
-    {
-      field: "zipCode",
-      headerName: "Zip Code",
+      field: "joblocation",
+      headerName: "Job Location",
       flex: 1,
     },
   ];
 
   return (
     <Box m="20px">
-      <Header
-        title="CONTACTS"
-        subtitle="List of Contacts for Future Reference"
-      />
+      <Header title="Jobs" subtitle="List of Existing Jobs" />
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -84,14 +73,12 @@ const Contacts = () => {
           "& .MuiCheckbox-root": {
             color: `${colors.greenAccent[200]} !important`,
           },
-          "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
-            color: `${colors.grey[100]} !important`,
-          },
         }}
       >
+        <DataGrid checkboxSelection rows={mockDataTeam} columns={columns} />
       </Box>
     </Box>
   );
 };
 
-export default Contacts;
+export default Jobs;

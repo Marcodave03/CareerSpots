@@ -2,20 +2,16 @@ import React, { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 
-interface Users {
+interface User {
     name: string;
     email: string;
-    password: string;
-    role: string;
-    image_url: string;
-    url: string;
+    gender: string;
 }
 
 const EditUser: React.FC = () => {
     const [name, setName] = useState<string>("");
     const [email, setEmail] = useState<string>("");
-    const [password, setPassword] = useState<string>("");
-    const [role, setRole] = useState<string>("");
+    const [gender, setGender] = useState<string>("Male");
     const [image, setImage] = useState<File | null>(null);
     const [previewURL, setPreviewURL] = useState<string | null>(null);
     const navigate = useNavigate();
@@ -27,13 +23,11 @@ const EditUser: React.FC = () => {
 
     const getUserById = async () => {
         try {
-            const response = await axios.get<Users>(`http://localhost:5000/users/${id}`);
-            const userData: Users = response.data;
-            console.log(id);
+            const response = await axios.get<User>(`http://localhost:5000/user/${id}`);
+            const userData: User = response.data;
             setName(userData.name);
             setEmail(userData.email);
-            setPassword(userData.password);
-            setRole(userData.role);
+            setGender(userData.gender);
         } catch (error) {
             console.log(error);
         }
@@ -54,12 +48,11 @@ const EditUser: React.FC = () => {
             const formData = new FormData();
             formData.append('name', name);
             formData.append('email', email);
-            formData.append('password', password);
-            formData.append('role', role);
+            formData.append('gender', gender);
             if (image) {
                 formData.append('file', image);
             }
-            await axios.patch(`http://localhost:5000/users/${id}`, formData, {
+            await axios.patch(`http://localhost:5000/user/${id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -98,26 +91,16 @@ const EditUser: React.FC = () => {
                             />
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="password" className="form-label">Password</label>
-                            <input
-                                type="password"
-                                className="form-control"
-                                id="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                placeholder="Password"
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="role" className="form-label">Role</label>
-                            <input
-                                type="role"
-                                className="form-control"
-                                id="role"
-                                value={role}
-                                onChange={(e) => setRole(e.target.value)}
-                                placeholder="role"
-                            />
+                            <label htmlFor="gender" className="form-label">Gender</label>
+                            <select
+                                className="form-select"
+                                id="gender"
+                                value={gender}
+                                onChange={(e) => setGender(e.target.value)}
+                            >
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
                         </div>
                         <div className="mb-3">
                             <label htmlFor="image" className="form-label">Image</label>
