@@ -4,27 +4,7 @@ import "./Style/login.css";
 import Logsvg from "../assets/log.svg";
 import Regisvg from "../assets/register.svg";
 
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { getMe } from "../features/authSlice.js";
-
 const Login: React.FC = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { isError, user } = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    dispatch(getMe());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (isError) {
-      navigate("/");
-    }
-    if (user && user.role !== "admin") {
-      navigate("/dashboard");
-    }
-  }, [isError, user, navigate]);
   useEffect(() => {
     const sign_in_btn =
       document.querySelector<HTMLButtonElement>("#sign-in-btn");
