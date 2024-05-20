@@ -24,11 +24,10 @@ const company = db.define("Companies", Company,
     tableName: "companies"
 }); 
 
-const jobApplication = db.define("Job Applications", JobApplication, 
+const jobApplication = db.define("JobApplications", JobApplication, 
 {
-    tableName: "job applications"
-}); 
-
+    tableName: "job applications",
+});
 
 user.hasOne(staff, {
     foreignKey: "user_id", 
@@ -90,66 +89,5 @@ jobApplication.belongsTo(job,
     onUpdate: "CASCADE"
 }); 
 
-// user.hasOne(staff, {
-//     foreignKey: "user_id", 
-//     onDelete: "CASCADE", 
-//     onUpdate: "RESTRICT"
-// });
-// user.hasMany(jobApplication, {
-//     foreignKey: "user_id", 
-//     onDelete: "CASCADE", 
-//     onUpdate: "RESTRICT"
-// }); 
-// staff.belongsTo(user, {
-//     foreignKey: "user_id", 
-//     onDelete: "CASCADE", 
-//     onUpdate: "RESTRICT"
-// });
-
-// staff.hasMany(job, {
-//     foreignKey: "staff_id", 
-//     onDelete: "RESTRICT", 
-//     onUpdate: "RESTRICT"
-// }); 
-
-// company.hasMany(staff, {
-//     foreignKey: "company_id", 
-//     onDelete: "RESTRICT", 
-//     onUpdate: "RESTRICT"
-// }); 
-
-// staff.belongsTo(company, {
-//     foreignKey: "company_id", 
-//     onDelete: "RESTRICT", 
-//     onUpdate: "RESTRICT"
-// }); 
-
-// jobApplication.belongsTo(user, {
-//     foreignKey: "user_id", 
-//     onDelete: "RESTRICT", 
-//     onUpdate: "RESTRICT"
-// }); 
-
-// job.belongsTo(staff, {
-//     foreignKey: "staff_id", 
-//     onDelete: "RESTRICT", 
-//     onUpdate: "RESTRICT"
-// }); 
-
-// job.hasMany(jobApplication, 
-// {
-//     foreignKey: "job_id", 
-//     onDelete: "CASCADE", 
-//     onUpdate: "RESTRICT"
-// }); 
-
-// jobApplication.belongsTo(job, 
-// {
-//     foreignKey: "job_id", 
-//     onDelete: "CASCADE", 
-//     onUpdate: "RESTRICT"
-// }); 
-
 db.sync();
-export default db; 
-
+export default db;
