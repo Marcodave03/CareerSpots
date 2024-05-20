@@ -19,6 +19,7 @@ npm i nodemon
 
 Frontend
 npx create-react-app "nama" : create react+typescript+vite project
+
 npm i : 
 1. react-router-dom - route.navigation
 2. axios - interaksi dengan API
