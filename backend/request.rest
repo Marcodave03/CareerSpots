@@ -1,12 +1,10 @@
 GET http://localhost:5000/users
 
-
 ###
 GET http://localhost:5000/users/1
 
-
 ###
-POST http://localhost:5000/users
+POST http://localhost:5000/users HTTP/1.1
 Content-Type: application/json
 
 {
@@ -15,7 +13,6 @@ Content-Type: application/json
     "role": "Karyawan",
     "password": "123"
 }
-
 
 ###
 PATCH http://localhost:5000/users/2
@@ -27,21 +24,56 @@ Content-Type: application/json
     "role": "Staff Gojek"
 }
 
-
 ###
 DELETE http://localhost:5000/users/2
 Content-Type: application/json
 
+
 ###
-POST http://localhost:5000/users/1
-Content-Type: application/json
+POST http://localhost:5000/users HTTP/1.1
+content-type: application/json
 
 {
-    "name": "M Fikri",
-    "email": "fikri@gmail.com",
-    "password": "Male"
+    "name": "userName", 
+    "email": "user@gmail.com",
+    "password": "userPassword", 
+    "role": "user"
 }
 
+###
+POST http://localhost:5000/users HTTP/1.1
+content-type: application/json
+
+{
+    "name": "userAdmin", 
+    "email": "admiin@gmail.com",
+    "password": "userPassword", 
+    "role": "admin"
+}
+
+### 
+POST http://localhost:5000/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "user@gmail.com",
+    "password": "userPassword"
+}
+
+### 
+POST http://localhost:5000/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "admiin@gmail.com",
+    "password": "userPassword"
+}
+
+### 
+GET http://localhost:5000/me 
+
+### 
+DELETE http://localhost:5000/logout
 
 ### 
 POST http://localhost:5000/companies
@@ -52,7 +84,6 @@ Content-Type: application/json
     "location": "Jakarta Barat"
 }
 
-
 ### 
 GET http://localhost:5000/companies
 
@@ -61,7 +92,6 @@ GET http://localhost:5000/companies/1
 
 ###
 DELETE http://localhost:5000/companies/3
-
 
 ###
 POST http://localhost:5000/staffs
@@ -75,10 +105,8 @@ Content-Type: application/json
 ###
 GET http://localhost:5000/staffs
 
-
 ###
 DELETE http://localhost:5000/staffs/1
-
 
 ###
 POST http://localhost:5000/job
@@ -96,3 +124,31 @@ Content-Type: application/json
 
 ###
 GET http://localhost:5000/job
+
+
+
+
+###
+POST http://localhost:5000/createjobapplication
+content-type: application/json  
+
+{
+    "user_id": 1, "job_id": 1
+}
+
+###
+POST http://localhost:5000/changejobapplicationstatus
+content-type: application/json  
+
+{
+    "jobApplicationId": 2, "new_status": "accepted"
+}
+
+###
+
+POST http://localhost:5000/getjobapplicationbyuserid
+content-type: application/json 
+
+{
+    "userId": 1
+}

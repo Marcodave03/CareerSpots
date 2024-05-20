@@ -11,6 +11,10 @@ npm i :
 3. mysql2 - database
 4. sequelize - relational database - ORM ( Object Relational Mapping )
 5. cors - API ke frontend / bisa diakses ke luar domain - Cross Origin Resouce Sharing
+6. express-session
+7. dotenv
+8. connect-session-sequelize
+9. argon2
 
 VSCode extension : 
 1. rest client

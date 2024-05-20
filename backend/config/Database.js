@@ -1,4 +1,4 @@
-import { Sequelize } from "sequelize";const db = new Sequelize('careerspots', 'root', '', {
+import { Sequelize } from "sequelize";const db = new Sequelize('careerspotss', 'root', '', {
     host: 'localhost',
     dialect: 'mysql',
     logging: console.log, 
