@@ -15,37 +15,58 @@ import Geography from "./scenes/geography";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import Calendar from "./scenes/calendar/calendar";
+import Layout from "./Layout";
+import { AppDispatch } from "../app/store";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getMe } from "../features/authSlice";
 
 function Admin() {
-  
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
+  const { isError, message } = useSelector((state: any) => state.auth);
+
+  useEffect(() => {
+    dispatch(getMe());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isError) {
+      console.log(message);
+      navigate("/");
+    }
+  }, [isError, navigate]);
 
   return (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <div className="app">
-          <Sidebars isSidebar={isSidebar} />  
-              <main className="content">
-                <Topbar setIsSidebar={setIsSidebar} /> 
-                  <Routes>
-                    <Route path="/" element={<Dashboard />} />
-                    <Route path="team" element={<Team />} />
-                    <Route path="contacts" element={<Contacts />} />
-                    <Route path="invoices" element={<Invoices />} />
-                    <Route path="form" element={<Form />} />
-                    <Route path="bar" element={<Bar />} />
-                    <Route path="/pie" element={<Pie />} />
-                    <Route path="line" element={<Line />} />
-                    <Route path="faq" element={<FAQ />} />
-                    <Route path="calendar" element={<Calendar />} />
-                    <Route path="geography" element={<Geography />} />
-                  </Routes>
-              </main>
-        </div>
-      </ThemeProvider>
-    </ColorModeContext.Provider>
+    <Layout>
+      <ColorModeContext.Provider value={colorMode}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <div className="app">
+            <Sidebars isSidebar={isSidebar} />
+            <main className="content">
+              <Topbar setIsSidebar={setIsSidebar} />
+              {/* <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="team" element={<Team />} />
+                <Route path="contacts" element={<Contacts />} />
+                <Route path="invoices" element={<Invoices />} />
+                <Route path="form" element={<Form />} />
+                <Route path="bar" element={<Bar />} />
+                <Route path="/pie" element={<Pie />} />
+                <Route path="line" element={<Line />} />
+                <Route path="faq" element={<FAQ />} />
+                <Route path="calendar" element={<Calendar />} />
+                <Route path="geography" element={<Geography />} />
+              </Routes> */}
+            </main>
+          </div>
+        </ThemeProvider>
+      </ColorModeContext.Provider>
+    </Layout>
   );
 }
 

@@ -36,7 +36,7 @@ app.use(
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:3000",
+    origin: "http://localhost:5173",
   })
 );
 app.use(express.json());
@@ -48,5 +48,5 @@ app.use(CompanyRoute);
 app.use(JobApplicationRoute);
 app.use(JobRoute);
 app.use(StaffRoute);
-
+store.sync();
 app.listen(5000, () => console.log("Server up and running..."));
