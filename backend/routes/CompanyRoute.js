@@ -3,6 +3,7 @@ import express from "express";
 import {
   getCompany,
   createCompany,
+  createCompanys,
   deleteCompany,
   getCompanyById,
 } from "../controllers/CompanyController.js";
@@ -12,7 +13,8 @@ const router = express.Router();
 
 router.get("/companies", getCompany);
 router.get("/companies/:company_id", getCompanyById);
-router.post("/companies", verifyUser, adminOnly, createCompany);
-router.delete("/companies/:company_id", verifyUser, adminOnly, deleteCompany);
+//router.post("/companies",createCompany);
+router.post("/companies",createCompanys);
+router.delete("/companies/:company_id",deleteCompany);
 
 export default router;

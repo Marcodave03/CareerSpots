@@ -1,7 +1,7 @@
 GET http://localhost:5000/users
 
 ###
-GET http://localhost:5000/users/1
+GET http://localhost:5000/users/3
 
 ###
 POST http://localhost:5000/users HTTP/1.1
@@ -98,7 +98,7 @@ POST http://localhost:5000/staffs
 Content-Type: application/json
 
 {
-    "user_id": 5,
+    "user_id": 3,
     "company_id": 1
 }
 
