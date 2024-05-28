@@ -6,7 +6,7 @@ import { verifyUser, staffOnly, adminOnly } from "../middleware/AuthUser.js";
 const router = express.Router();
 
 router.get("/job", getJob);
-router.post("/job", verifyUser, staffOnly, createJob);
+router.post("/job", verifyUser, adminOnly, createJob);
 router.delete("/job/:job_id", verifyUser, adminOnly, deleteJob);
 
 export default router;

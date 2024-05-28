@@ -37,7 +37,7 @@ content-type: application/json
     "name": "userName", 
     "email": "user@gmail.com",
     "password": "userPassword", 
-    "role": "user"
+    "role": "staff"
 }
 
 ###
@@ -113,7 +113,7 @@ POST http://localhost:5000/job
 Content-Type: application/json
 
 {
-    "staff_id": 2,
+    "staff_id": 1,
     "job_name": "Software Engineer",
     "job_type": "Full-time",
     "job_level": "Senior",
@@ -133,7 +133,7 @@ POST http://localhost:5000/createjobapplication
 content-type: application/json  
 
 {
-    "user_id": 1, "job_id": 1
+    "user_id": 3, "job_id": 1
 }
 
 ###

@@ -6,7 +6,7 @@ import {
   getJobApplicationsByUserId,
   getJobApplicationsByJobId,
 } from "../controllers/JobApplicationController.js";
-import { verifyUser, staffOnly, userOnly } from "../middleware/AuthUser.js";
+import { verifyUser, staffOnly, userOnly, adminOnly } from "../middleware/AuthUser.js";
 
 const router = express.Router(); //Function express
 
@@ -14,7 +14,7 @@ const router = express.Router(); //Function express
 router.post(
   "/createjobapplication",
   verifyUser,
-  userOnly,
+  adminOnly,
   createJobApplication
 );
 router.post(
