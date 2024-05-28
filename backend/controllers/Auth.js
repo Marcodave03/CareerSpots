@@ -17,10 +17,12 @@ export const Login = async (req, res) => {
   const name = user.name;
   const email = user.email;
   const role = user.role;
+  console.log("ini berhasil: " + req.session.userId);
   res.status(200).json({ uuid, name, email, role });
 };
 
 export const Me = async (req, res) => {
+  console.log("coba: " + req.session.userId);
   if (!req.session.userId) {
     return res.status(401).json({ msg: "Mohon login ke akun Anda!" });
   }
