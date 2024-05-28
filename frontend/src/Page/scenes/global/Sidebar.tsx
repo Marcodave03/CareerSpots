@@ -15,6 +15,9 @@ import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutl
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import JobOutlineIcon from '@mui/icons-material/WorkOutline';
+import PostAddIcon from '@mui/icons-material/PostAdd';
+
 
 interface ItemProps {
   title: string;
@@ -136,7 +139,7 @@ const Sidebars: React.FC<SidebarProps> = () => {
             selected={selected}
             setSelected={setSelected}
           />
-
+{/* 
           <Typography
             variant="h6"
             color={colors.grey[300]}
@@ -164,19 +167,33 @@ const Sidebars: React.FC<SidebarProps> = () => {
             icon={<ReceiptOutlinedIcon />}
             selected={selected}
             setSelected={setSelected}
-          />
+          /> */}
 
-          <Typography
-            variant="h6"
-            color={colors.grey[300]}
-            style={{ margin: "15px 0 5px 20px" }}
-          >
-            Pages
-          </Typography>
+<Item
+            title="Job List"
+            to="/Admin/jobs"
+            icon={<JobOutlineIcon />}
+            selected={selected}
+            setSelected={setSelected}
+          />
           <Item
-            title="Profile Form"
+            title="Applicant List"
+            to="/Admin/applicants"
+            icon={<PeopleOutlinedIcon />}
+            selected={selected}
+            setSelected={setSelected}
+          />
+          <Item
+            title="Jobs Applied List"
+            to="/Admin/jobsapplied"
+            icon={<JobOutlineIcon />}
+            selected={selected}
+            setSelected={setSelected}
+          />
+          <Item
+            title="Job Form"
             to="/Admin/form"
-            icon={<PersonOutlinedIcon />}
+            icon={<PostAddIcon />}
             selected={selected}
             setSelected={setSelected}
           />
@@ -195,12 +212,12 @@ const Sidebars: React.FC<SidebarProps> = () => {
             setSelected={setSelected}
           />
 
-          <Typography
+          {/* <Typography
             variant="h6"
             color={colors.grey[300]}
             style={{ margin: "15px 0 5px 20px" }}
-          >
-            Charts
+          > */}
+            {/* Charts
           </Typography>
           <Item
             title="Bar Chart"
@@ -229,7 +246,7 @@ const Sidebars: React.FC<SidebarProps> = () => {
             icon={<MapOutlinedIcon />}
             selected={selected}
             setSelected={setSelected}
-          />
+          /> */}
         </div>
       </Menu>
     </Sidebar>

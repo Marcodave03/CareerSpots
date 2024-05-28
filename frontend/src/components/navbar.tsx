@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import Logo from "../assets/CarrerSpotlogo.svg";
 import LogoBlue from "../assets/CareerSpotBlue.svg";
 import React from "react";
+// import { useNavigate } from "react-router-dom";
+// const navigate = useNavigate();
 
 function Navbar() {
   return (
@@ -33,7 +35,7 @@ function Navbar() {
         >
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
+              <a className="nav-link active" aria-current="page" href="">
                 Home
               </a>
             </li>
@@ -41,8 +43,13 @@ function Navbar() {
               <a className="nav-link" href="#"></a>
             </li> */}
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="Portal">
                 Explore Jobs
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="Interview">
+                Interviews
               </a>
             </li>
             <li className="nav-item">

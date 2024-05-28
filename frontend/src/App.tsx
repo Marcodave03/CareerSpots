@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from "./Page/Home";
 import Login from "./Page/Login";
 import Portal from "./Page/Portal";
+import InterviewPage from "./Page/Interview";
 import UserList from "./BackendPage/UserList";
 import AddUser from "./BackendPage/AddUser";
 import EditUser from "./BackendPage/EditUser";
@@ -18,7 +19,8 @@ function App() {
         <Route path="/" element={<Home />} /> 
         <Route path="/signup" element={<Login />} /> 
         <Route path="/Portal" element={<Portal />} /> 
-        <Route path="/Admin/*" element={<Admin/>} /> 
+        <Route path="/Admin/*" element={<Admin/>} />     
+        <Route path="/interview" element={<InterviewPage/>}/>
 
 
         <Route path="/users" element={<UserList/>}></Route> 
