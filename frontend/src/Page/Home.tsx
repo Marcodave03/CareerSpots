@@ -1,3 +1,6 @@
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
+import { Link } from "react-router-dom";
 import Navbar from "../components/navbar.tsx";
 import Jobs from "../components/jobs.tsx";
 import Search from "../components/search.tsx";
@@ -13,8 +16,8 @@ import img6 from '../assets/SquareSpace.svg';
 import img7 from '../assets/WealthSimple.svg';
 
 
+const Home: React.FC = () => {
 
-const Home = () => {
   return (
     <div className='Home bg-body-secondary'>
       <Navbar/>
@@ -91,11 +94,11 @@ const Home = () => {
             <h2>Available <span className='text-primary'>Jobs</span></h2>
             <div className="d-flex flex-wrap justify-content-center mt-4">
               <div className="col col-md-5 col-lg-4"><Jobs /></div>
+              {/* <div className="col col-md-5 col-lg-4"><Jobs /></div>
               <div className="col col-md-5 col-lg-4"><Jobs /></div>
               <div className="col col-md-5 col-lg-4"><Jobs /></div>
               <div className="col col-md-5 col-lg-4"><Jobs /></div>
-              <div className="col col-md-5 col-lg-4"><Jobs /></div>
-              <div className="col col-md-5 col-lg-4"><Jobs /></div>
+              <div className="col col-md-5 col-lg-4"><Jobs /></div> */}
             </div>
           </div>
         </div>

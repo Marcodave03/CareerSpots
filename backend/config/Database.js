@@ -1,18 +1,7 @@
-// import {Sequelize} from "sequelize";
-
-// const db = new Sequelize('crud__db','root','',{  // nama db, user, password
-//     host:'localhost',
-//     dialect:'mysql' //dbms yang digunakan
-// });
-
-// export default db;
-
-import { Sequelize } from "sequelize";
-
-const db = new Sequelize('careerspot', 'root', '', {
+import { Sequelize } from "sequelize";const db = new Sequelize('careerspotss', 'root', '', {
     host: 'localhost',
     dialect: 'mysql',
-    logging: console.log, // Log all SQL queries to the console
+    logging: console.log, 
 });
 
 db.authenticate()

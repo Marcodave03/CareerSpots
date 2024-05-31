@@ -1,16 +1,52 @@
 import express from "express";
 import cors from "cors";
-import UserRoute from "./routes/UserRoute.js"; // Import router
+import session from "express-session";
+import dotenv from "dotenv";
+import db from "./config/Database.js";
+import SequelizeStore from "connect-session-sequelize";
+import UserRoute from "./routes/UserRoute.js";
+import CompanyRoute from "./routes/CompanyRoute.js";
+import JobApplicationRoute from "./routes/JobApplicationRoute.js";
+import JobRoute from "./routes/JobRoute.js";
+import StaffRoute from "./routes/StaffRoute.js";
+import AuthRoute from "./routes/AuthRoute.js";
 import FileUpload from "express-fileupload";
+dotenv.config();
 
 const app = express();
 
-// Middleware
-app.use(cors());
-app.use(express.json());
-app.use(FileUpload()); // File upload middleware should come first
-app.use(express.static("public")); // Serve static files from the 'public' directory
-app.use(UserRoute); // Use user router
+const sessionStore = SequelizeStore(session.Store);
 
-// Start the server
-app.listen(5000, () => console.log('Server up and running...'));
+const store = new sessionStore({
+  db: db,
+});
+
+app.use(
+  session({
+    secret: process.env.SESS_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    store: store,
+    cookie: {
+      secure: "auto",
+    },
+  })
+);
+
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:5173",
+  })
+);
+app.use(express.json());
+app.use(FileUpload());
+app.use(express.static("public"));
+app.use(UserRoute);
+app.use(AuthRoute);
+app.use(CompanyRoute);
+app.use(JobApplicationRoute);
+app.use(JobRoute);
+app.use(StaffRoute);
+store.sync();
+app.listen(5000, () => console.log("Server up and running..."));

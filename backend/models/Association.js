@@ -24,87 +24,70 @@ const company = db.define("Companies", Company,
     tableName: "companies"
 }); 
 
-const jobApplication = db.define("Job Applications", JobApplication, 
+const jobApplication = db.define("JobApplications", JobApplication, 
 {
-    tableName: "job applications"
-}); 
+    tableName: "job applications",
+});
+
 user.hasOne(staff, {
     foreignKey: "user_id", 
     onDelete: "CASCADE", 
-    onUpdate: "RESTRICT"
+    onUpdate: "CASCADE"
 });
 user.hasMany(jobApplication, {
     foreignKey: "user_id", 
-    onDelete: "RESTRICT", 
-    onUpdate: "RESTRICT"
+    onDelete: "CASCADE", 
+    onUpdate: "CASCADE"
 }); 
 staff.belongsTo(user, {
     foreignKey: "user_id", 
     onDelete: "CASCADE", 
-    onUpdate: "RESTRICT"
+    onUpdate: "CASCADE"
 });
 
 staff.hasMany(job, {
     foreignKey: "staff_id", 
-    onDelete: "RESTRICT", 
-    onUpdate: "RESTRICT"
+    onDelete: "CASCADE", 
+    onUpdate: "CASCADE"
 }); 
 
 company.hasMany(staff, {
     foreignKey: "company_id", 
-    onDelete: "RESTRICT", 
-    onUpdate: "RESTRICT"
+    onDelete: "CASCADE", 
+    onUpdate: "CASCADE"
 }); 
 
 staff.belongsTo(company, {
     foreignKey: "company_id", 
-    onDelete: "RESTRICT", 
-    onUpdate: "RESTRICT"
+    onDelete: "CASCADE", 
+    onUpdate: "CASCADE"
 }); 
 
 jobApplication.belongsTo(user, {
     foreignKey: "user_id", 
-    onDelete: "RESTRICT", 
-    onUpdate: "RESTRICT"
+    onDelete: "CASCADE", 
+    onUpdate: "CASCADE"
 }); 
 
 job.belongsTo(staff, {
     foreignKey: "staff_id", 
-    onDelete: "RESTRICT", 
-    onUpdate: "RESTRICT"
+    onDelete: "CASCADE", 
+    onUpdate: "CASCADE"
 }); 
 
 job.hasMany(jobApplication, 
 {
     foreignKey: "job_id", 
     onDelete: "CASCADE", 
-    onUpdate: "RESTRICT"
+    onUpdate: "CASCADE"
 }); 
 
 jobApplication.belongsTo(job, 
 {
     foreignKey: "job_id", 
     onDelete: "CASCADE", 
-    onUpdate: "RESTRICT"
+    onUpdate: "CASCADE"
 }); 
 
 db.sync();
-export default db; 
-// // Define association
-// Users.hasOne(Staff);
-
-// // Define associations
-// Staff.belongsTo(Users, { onDelete: 'CASCADE', onUpdate: 'CASCADE' }); // Delete staff if user is deleted
-// Staff.belongsTo(Company, { onDelete: 'CASCADE', onUpdate: 'CASCADE' }); // Delete staff if company is deleted
-
-// // Define association
-// Job.belongsTo(Staff, { foreignKey: 'posted_by', onDelete: 'CASCADE', onUpdate: 'CASCADE' }); // Delete job if staff member who posted it is deleted
-// Job.hasMany(JobApplication, { onDelete: 'CASCADE', onUpdate: 'CASCADE' }); // Delete job applications if job is deleted
-
-// // Define associations
-// JobApplication.belongsTo(Users, { onDelete: 'CASCADE', onUpdate: 'CASCADE' }); // Delete job application if user is deleted
-// JobApplication.belongsTo(Job, { onDelete: 'CASCADE', onUpdate: 'CASCADE' }); // Delete job application if job is deleted
-
-// // Define association
-// Company.hasMany(Staff);
-
+export default db;

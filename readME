@@ -2,6 +2,7 @@ Run Code :
 1. nodemon index - backend nodejs
 2. npm run dev - frontend vite
 3. npm start - frontend dashboard no vite
+4. 
 
 Backend,
 npm init -y : package.json
@@ -11,6 +12,10 @@ npm i :
 3. mysql2 - database
 4. sequelize - relational database - ORM ( Object Relational Mapping )
 5. cors - API ke frontend / bisa diakses ke luar domain - Cross Origin Resouce Sharing
+6. express-session
+7. dotenv
+8. connect-session-sequelize
+9. argon2
 
 VSCode extension : 
 1. rest client
@@ -19,6 +24,7 @@ npm i nodemon
 
 Frontend
 npx create-react-app "nama" : create react+typescript+vite project
+
 npm i : 
 1. react-router-dom - route.navigation
 2. axios - interaksi dengan API
@@ -27,6 +33,7 @@ npm i :
 5. react-pro-sidebar
 6. @mui/material @mui/material/style
 7. @fullcalendar
+8. react-redux
 
 Note :
 1. Nodemon : Install Nodemon Secara global untuk eksekusi backend 
