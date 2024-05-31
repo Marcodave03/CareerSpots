@@ -6,10 +6,6 @@ import Home from "./Page/Home";
 import Login from "./Page/Login";
 import Portal from "./Page/Portal";
 import InterviewPage from "./Page/Interview";
-import UserList from "./BackendPage/UserList";
-import AddUser from "./BackendPage/AddUser";
-import EditUser from "./BackendPage/EditUser";
-import LoginUser from "./BackendPage/LoginUser";
 import Admin from "./Page/Admin";
 
 function App() {
@@ -18,15 +14,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} /> 
         <Route path="/signup" element={<Login />} /> 
-        <Route path="/Portal" element={<Portal />} /> 
-        <Route path="/Admin/*" element={<Admin/>} />     
+        <Route path="/portal" element={<Portal />} /> 
+        <Route path="/dashboard" element={<Admin/>} />     
         <Route path="/interview" element={<InterviewPage/>}/>
-
-
-        <Route path="/users" element={<UserList/>}></Route> 
-        <Route path="/add" element={<AddUser/>}></Route>
-        <Route path="edit/:id" element={<EditUser/>}></Route>
-        <Route path="/login" element={<LoginUser/>}></Route>
       </Routes>
     </Router>
   );
