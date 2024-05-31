@@ -1,7 +1,49 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
+import { Link } from "react-router-dom";
 import Logo from '../assets/Ellipse.png';
 
-const jobs = () => {
+
+  interface Company {
+    company_name: string;
+    location: string;
+  }
+  
+  interface Staff {
+    staff_id: number;
+    Company: Company;
+  }
+  
+  interface Job {
+    uuid: string;
+    job_id: number;
+    job_name: string;
+    job_type: string;
+    job_location: string;
+    job_salary: number;
+    is_hiring: boolean;
+    staff_id: number;
+    Staff: Staff;
+  }
+  
+
+  
+const jobs: React.FC = () => {
+
+    const [job, setJob] = useState<Job[]>([]);
+    const getJob = async()=>{
+      try{
+        const response = await axios.get<Job[]>('http://localhost:5000/job');
+        setJob(response.data)
+      } catch (error){
+        console.log(error)
+      }
+    }
+  
+    useEffect(()=>{
+      getJob();
+    },[]);
+
   return (
     <div className="container">
         <div className="row justify-content-center">

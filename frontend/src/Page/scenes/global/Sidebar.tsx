@@ -145,22 +145,22 @@ const Sidebars: React.FC<SidebarProps> = () => {
             Data
           </Typography>
           <Item
-            title="Manage Team"
-            to="/Admin/team"
+            title="User list"
+            to="/Admin/user"
             icon={<PeopleOutlinedIcon />}
             selected={selected}
             setSelected={setSelected}
           />
           <Item
-            title="Contacts Information"
-            to="/Admin/contacts"
+            title="Job Information"
+            to="/Admin/job"
             icon={<ContactsOutlinedIcon />}
             selected={selected}
             setSelected={setSelected}
           />
           <Item
-            title="Invoices Balances"
-            to="/Admin/invoices"
+            title="Company Information"
+            to="/Admin/company"
             icon={<ReceiptOutlinedIcon />}
             selected={selected}
             setSelected={setSelected}

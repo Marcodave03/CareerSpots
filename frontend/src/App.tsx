@@ -10,6 +10,7 @@ import AddUser from "./BackendPage/AddUser";
 import EditUser from "./BackendPage/EditUser";
 import LoginUser from "./BackendPage/LoginUser";
 import Admin from "./Page/Admin";
+import Applist from "./BackendPage/Applist";
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
         <Route path="/add" element={<AddUser/>}></Route>
         <Route path="edit/:id" element={<EditUser/>}></Route>
         <Route path="/login" element={<LoginUser/>}></Route>
+        <Route path="/applist" element={<Applist/>}></Route>
+
       </Routes>
     </Router>
   );
