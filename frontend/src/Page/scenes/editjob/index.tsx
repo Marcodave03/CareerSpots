@@ -41,20 +41,24 @@ const EditJob: React.FC = () => {
     const updateJob = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const updatedJob: Job = {
-                job_name: jobName,
-                job_type: jobType,
-                job_location: jobLocation,
-                job_salary: jobSalary,
-                is_hiring: isHiring
-            };
-            await axios.put(`http://localhost:5000/job/${id}`, updatedJob);
+            const formData = new FormData();
+            formData.append('job_name', jobName);
+            formData.append('job_type', jobType);
+            formData.append('job_location', jobLocation);
+            formData.append('job_salary', jobSalary.toString());
+            formData.append('is_hiring', isHiring.toString());
+            
+            await axios.patch(`http://localhost:5000/job/${id}`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
             navigate("/Admin/job");
         } catch (error) {
             console.log(error);
         }
     };
-
+    
     return (
         <div className="container mt-5">
             <div className="row justify-content-center">

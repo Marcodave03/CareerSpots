@@ -187,11 +187,11 @@ const Sidebars: React.FC<SidebarProps> = () => {
             color={colors.grey[300]}
             style={{ margin: "15px 0 5px 20px" }}
           >
-            Pages
+            Create Data
           </Typography>
           <Item
-            title="Profile Form"
-            to="/Admin/form"
+            title="Create User"
+            to="/Admin/createuser"
             icon={<PersonOutlinedIcon />}
             selected={selected}
             setSelected={setSelected}

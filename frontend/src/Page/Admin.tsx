@@ -9,7 +9,7 @@ import Company from "./scenes/company";
 import Jobs from "./scenes/job";
 import JobApplication from "./scenes/application";
 import Bar from "./scenes/bar";
-import Form from "./scenes/form";
+import CreateUser from "./scenes/createuser";
 import Line from "./scenes/line";
 import Pie from "./scenes/pie";
 import FAQ from "./scenes/faq";
@@ -63,7 +63,7 @@ function Admin() {
                 <Route path="job" element={<Jobs />} />
                 <Route path="jobapplication" element={<JobApplication />} />
                 <Route path="company" element={<Company/>} />
-                <Route path="form" element={<Form />} />
+                <Route path="createuser" element={<CreateUser />} />
                 <Route path="bar" element={<Bar />} />
                 <Route path="pie" element={<Pie />} />
                 <Route path="line" element={<Line />} />

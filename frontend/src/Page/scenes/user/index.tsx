@@ -71,8 +71,7 @@ const Users: React.FC = () => {
                       <th>Email</th>
                       <th>Password</th>
                       <th>Role</th>
-                      <th>Image URL</th>
-                      <th>URL</th>
+                      <th>Image</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
@@ -84,8 +83,7 @@ const Users: React.FC = () => {
                         <td>{user.email}</td>
                         <td>{user.password}</td>
                         <td>{user.role}</td>
-                        <td>{user.image_url}</td>
-                        <td>{user.url}</td>
+                        <td><img src={`http://localhost:5000/images/${user.image_url}`} alt={user.name} width="50" /></td>
                         <td>
                           <Button
                             variant="contained"
