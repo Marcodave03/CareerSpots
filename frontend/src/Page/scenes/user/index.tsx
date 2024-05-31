@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import Header from "../../../components/Header";
+import { Link } from "react-router-dom";
 
 // Define the User interface
 interface User {
@@ -94,13 +95,19 @@ const Users: React.FC = () => {
                             Delete
                           </Button>
                           <Button
-                            style={{marginLeft:"10px"}}
+                            style={{marginLeft:'10px'}}
                             variant="contained"
                             color="secondary"
-                            onClick={() => deleteUser(user.user_id)}
-                          >
-                            Edit
-                          </Button>
+                            
+                            >
+                            <Link
+                            style={{ textDecoration: 'none' }} 
+                            to={`/Admin/edituser/${user.user_id}`}
+                            >
+                              Edit
+                            </Link>
+                          </Button>{}
+                          {/* <Link to={`/Admin/edituser/${user.user_id}`} className='btn btn-sm btn-info mr-2'>Edit</Link> */}
                         </td>
                       </tr>
                     ))}

@@ -24,6 +24,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getMe } from "../features/authSlice";
 
+import EditUser from "../Page/scenes/edituser";
+import EditJob from "../Page/scenes/editjob";
+import EditCompany from "../Page/scenes/editcompany";
+import EditApplication from "../Page/scenes/editapplication";
+
 function Admin() {
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
@@ -60,11 +65,18 @@ function Admin() {
                 <Route path="company" element={<Company/>} />
                 <Route path="form" element={<Form />} />
                 <Route path="bar" element={<Bar />} />
-                <Route path="/pie" element={<Pie />} />
+                <Route path="pie" element={<Pie />} />
                 <Route path="line" element={<Line />} />
                 <Route path="faq" element={<FAQ />} />
                 <Route path="calendar" element={<Calendar />} />
                 <Route path="geography" element={<Geography />} />
+
+                <Route path="edituser/:id" element={<EditUser />} />
+                <Route path="editjob/:id" element={<EditJob />} />
+                <Route path="editcompany/:id" element={<EditCompany />} />
+                <Route path="editapplication/:id" element={<EditApplication />} />
+
+
               </Routes>
             </main>
           </div>

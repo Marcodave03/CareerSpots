@@ -4,6 +4,7 @@ import { useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 interface Company {
   company_name: string;
@@ -35,7 +36,9 @@ const Jobs = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await axios.get<{ jobs: Job[] }>("http://localhost:5000/job");
+        const response = await axios.get<{ jobs: Job[] }>(
+          "http://localhost:5000/job"
+        );
         setJobs(response.data.jobs);
         setLoading(false);
       } catch (error) {
@@ -49,7 +52,7 @@ const Jobs = () => {
   const deleteJob = async (jobId: number) => {
     try {
       await axios.delete(`http://localhost:5000/job/${jobId}`);
-      setJobs(job.filter(j => j.job_id !== jobId));
+      setJobs(job.filter((j) => j.job_id !== jobId));
     } catch (error) {
       console.error("Error deleting job:", error);
     }
@@ -57,10 +60,7 @@ const Jobs = () => {
 
   return (
     <Box m="20px">
-      <Header
-        title="JOBS"
-        subtitle="List of Jobs"
-      />
+      <Header title="JOBS" subtitle="List of Jobs" />
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -131,13 +131,18 @@ const Jobs = () => {
                         Delete
                       </Button>
                       <Button
-                            style={{marginLeft:"10px"}}
-                            variant="contained"
-                            color="secondary"
-                            onClick={() => deleteJob(job.job_id)}
+                        style={{ marginLeft: "10px" }}
+                        variant="contained"
+                        color="secondary"
                       >
-                        Edit
+                        <Link
+                          style={{ textDecoration: "none" }}
+                          to={`/Admin/editjob/${job.job_id}`}
+                        >
+                          Edit
+                        </Link>
                       </Button>
+                      {}
                     </td>
                   </tr>
                 ))

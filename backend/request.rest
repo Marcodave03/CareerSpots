@@ -98,8 +98,8 @@ POST http://localhost:5000/staffs
 Content-Type: application/json
 
 {
-    "user_id": 11,
-    "company_id": 4
+    "user_id": 14,
+    "company_id": 5
 }
 
 ###
@@ -113,7 +113,7 @@ POST http://localhost:5000/job
 Content-Type: application/json
 
 {
-    "staff_id": 2,
+    "staff_id": 3,
     "job_name": "Computer Engineer",
     "job_type": "Full-time",
     "job_level": "Senior",
@@ -133,7 +133,7 @@ POST http://localhost:5000/createjobapplication
 content-type: application/json  
 
 {
-    "user_id": 9, "job_id": 3
+    "user_id": 13, "job_id": 4
 }
 
 ###

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "../../../components/Header";
 import { Table } from "react-bootstrap";
-
+import {Link} from "react-router-dom";
 
 // Define the Company interface
 interface Company {
@@ -22,7 +22,9 @@ const Company: React.FC = () => {
   useEffect(() => {
     const fetchCompanies = async () => {
       try {
-        const response = await axios.get<Company[]>("http://localhost:5000/companies");
+        const response = await axios.get<Company[]>(
+          "http://localhost:5000/companies"
+        );
         setCompanies(response.data);
         setLoading(false);
       } catch (error) {
@@ -36,7 +38,9 @@ const Company: React.FC = () => {
   const handleDelete = async (companyId: number) => {
     try {
       await axios.delete(`http://localhost:5000/companies/${companyId}`);
-      setCompanies((prevCompanies) => prevCompanies.filter((company) => company.company_id !== companyId));
+      setCompanies((prevCompanies) =>
+        prevCompanies.filter((company) => company.company_id !== companyId)
+      );
     } catch (error) {
       console.error("Error deleting company:", error);
     }
@@ -71,22 +75,27 @@ const Company: React.FC = () => {
                   <td>{company.image_url}</td>
                   <td>{company.url}</td>
                   <td>
-                      <Button 
-                        variant="contained" 
-                        color="error" 
-                        onClick={() => handleDelete(company.company_id)}
+                    <Button
+                      variant="contained"
+                      color="error"
+                      onClick={() => handleDelete(company.company_id)}
+                    >
+                      Delete
+                    </Button>
+                    <Button
+                      style={{ marginLeft: "10px" }}
+                      variant="contained"
+                      color="secondary"
+                    >
+                      <Link
+                        style={{ textDecoration: "none" }}
+                        to={`/Admin/editcompany/${company.company_id}`}
                       >
-                        Delete
-                      </Button>
-                      <Button
-                            style={{marginLeft:"10px"}}
-                            variant="contained"
-                            color="secondary"
-                            onClick={() => handleDelete(company.company_id)}
-                        >
-                            Edit
-                        </Button>
-                    </td>
+                        Edit
+                      </Link>
+                    </Button>
+                    {}
+                  </td>
                 </tr>
               ))
             )}

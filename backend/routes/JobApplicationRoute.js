@@ -21,8 +21,8 @@ router.post(
 );
 router.post(
   "/changejobapplicationstatus",
-  verifyUser,
-  staffOnly,
+  // verifyUser,
+  // staffOnly,
   changeJobApplicationStatus
 );
 router.post(
