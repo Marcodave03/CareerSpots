@@ -101,9 +101,9 @@
                 <th>Job Type</th>
                 <th>Location</th>
                 <th>Salary</th>
-                {/* <th>Company</th>
+                <th>Company</th>
                 <th>Company Location</th>
-                <th>Hiring</th> */}
+                <th>Hiring</th>
               </tr>
             </thead>
             <tbody>
