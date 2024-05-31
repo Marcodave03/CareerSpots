@@ -7,15 +7,15 @@
   import axios from "axios";
   import { Table } from "react-bootstrap";
 
-  // interface Company {
-  //   company_name: string;
-  //   location: string;
-  // }
+  interface Company {
+   company_name: string;
+   location: string;
+ }
 
-  // interface Staff {
-  //   staff_id: number;
-  //   Company: Company;
-  // }
+  interface Staff {
+   staff_id: number;
+   Company: Company;
+ }
 
   interface Job {
     uuid: string;
@@ -26,7 +26,7 @@
     job_salary: number;
     is_hiring: boolean;
     staff_id: number;
-    // Staff: Staff;
+    Staff: Staff;
   }
 
 
@@ -41,7 +41,7 @@
       const fetchJobs = async () => {
         try {
           const response = await axios.get<Job[]>("http://localhost:5000/job");
-          setJobs(response.data);
+          setJobs(response.data.jobs);
           setLoading(false);
         } catch (error) {
           console.error("Error fetching jobs:", error);
@@ -115,9 +115,9 @@
                   <td>{job.job_type}</td>
                   <td>{job.job_location}</td>
                   <td>${job.job_salary}</td>
-                  {/* <td>{job.Staff.Company.company_name}</td>
+                  <td>{job.Staff.Company.company_name}</td>
                   <td>{job.Staff.Company.location}</td>
-                  <td>{job.is_hiring ? "Yes" : "No"}</td> */}
+                  <td>{job.is_hiring ? "Yes" : "No"}</td>
                 </tr>
               ))
             ) : (

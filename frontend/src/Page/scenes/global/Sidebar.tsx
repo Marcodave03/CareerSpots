@@ -8,6 +8,8 @@ import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import GroupOutlinedIcon from "@mui/icons-material/WorkOutline";
+import BookOutlinedIcon from "@mui/icons-material/BookOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
@@ -152,6 +154,13 @@ const Sidebars: React.FC<SidebarProps> = () => {
             setSelected={setSelected}
           />
           <Item
+            title="Staff Information"
+            to="/Admin/staff"
+            icon={<GroupOutlinedIcon/>}
+            selected={selected}
+            setSelected={setSelected}
+          />
+          <Item
             title="Job Information"
             to="/Admin/job"
             icon={<ContactsOutlinedIcon />}
@@ -162,6 +171,13 @@ const Sidebars: React.FC<SidebarProps> = () => {
             title="Company Information"
             to="/Admin/company"
             icon={<ReceiptOutlinedIcon />}
+            selected={selected}
+            setSelected={setSelected}
+          />
+          <Item
+            title="Job Application"
+            to="/Admin/jobapplication"
+            icon={<BookOutlinedIcon />}
             selected={selected}
             setSelected={setSelected}
           />

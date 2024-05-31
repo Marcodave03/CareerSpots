@@ -5,6 +5,7 @@ import {
   changeJobApplicationStatus,
   getJobApplicationsByUserId,
   getJobApplicationsByJobId,
+  getAllJobApplications,
 } from "../controllers/JobApplicationController.js";
 import { verifyUser, staffOnly, userOnly, adminOnly } from "../middleware/AuthUser.js";
 
@@ -34,5 +35,10 @@ router.post(
   verifyUser,
   staffOnly,
   getJobApplicationsByJobId
+);
+
+router.get(
+  "/getjobapplication",
+  getAllJobApplications
 );
 export default router;

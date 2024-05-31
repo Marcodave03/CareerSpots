@@ -152,3 +152,6 @@ content-type: application/json
 {
     "userId": 1
 }
+
+###
+GET http://localhost:5000/getjobapplication

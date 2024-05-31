@@ -74,3 +74,19 @@ export const getJobApplicationsByJobId = async(req, res) =>
         res.status(500).json({ msg: "Internal Server Error" });
     }
 }
+
+export const getAllJobApplications = async (req, res) => {
+    try {
+        const jobApplications = await db.models.JobApplications.findAll({
+            include: [
+                { model: db.models.Users, attributes: ['name', 'email', 'role'] },
+                { model: db.models.Jobs, attributes: ['job_name', 'job_type', 'job_location', 'job_salary'] }
+            ]
+        });
+
+        res.status(200).json({ jobApplications });
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({ msg: "Internal Server Error" });
+    }
+}

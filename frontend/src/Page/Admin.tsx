@@ -4,8 +4,10 @@ import Topbar from "./scenes/global/Topbar";
 import Sidebars from "./scenes/global/Sidebar";
 import Dashboard from "./scenes/dashboard";
 import Users from "./scenes/user";
+import Staff from "./scenes/staff";
 import Company from "./scenes/company";
 import Jobs from "./scenes/job";
+import JobApplication from "./scenes/application";
 import Bar from "./scenes/bar";
 import Form from "./scenes/form";
 import Line from "./scenes/line";
@@ -52,7 +54,9 @@ function Admin() {
               <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="user" element={<Users />} />
+                <Route path="staff" element={<Staff/>} />
                 <Route path="job" element={<Jobs />} />
+                <Route path="jobapplication" element={<JobApplication />} />
                 <Route path="company" element={<Company/>} />
                 <Route path="form" element={<Form />} />
                 <Route path="bar" element={<Bar />} />
