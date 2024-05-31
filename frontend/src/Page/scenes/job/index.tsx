@@ -130,6 +130,14 @@ const Jobs = () => {
                       >
                         Delete
                       </Button>
+                      <Button
+                            style={{marginLeft:"10px"}}
+                            variant="contained"
+                            color="secondary"
+                            onClick={() => deleteJob(job.job_id)}
+                      >
+                        Edit
+                      </Button>
                     </td>
                   </tr>
                 ))

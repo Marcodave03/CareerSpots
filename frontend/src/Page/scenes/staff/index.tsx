@@ -91,6 +91,14 @@ const StaffList = () => {
                       >
                         Delete
                       </Button>
+                      <Button
+                            style={{marginLeft:"10px"}}
+                            variant="contained"
+                            color="secondary"
+                            onClick={() => deleteStaff(staff.staff_id)}
+                        >
+                            Edit
+                        </Button>
                     </td>
                   </tr>
                 ))

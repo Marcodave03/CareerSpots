@@ -20,15 +20,15 @@ const Users: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const theme = useTheme();
 
-
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const response = await axios.get<User[]>("http://localhost:5000/users");
         setUsers(response.data);
-        setLoading(false);
       } catch (error) {
         console.log("Error fetching users:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -60,41 +60,56 @@ const Users: React.FC = () => {
           {loading ? (
             <p>Loading...</p>
           ) : (
-            <Table striped bordered hover responsive>
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Password</th>
-                  <th>Role</th>
-                  <th>Image URL</th>
-                  <th>URL</th>
-                </tr>
-              </thead>
-              <tbody>
-                {users.map((user) => (
-                  <tr key={user.user_id}>
-                    <td>{user.user_id}</td>
-                    <td>{user.name}</td>
-                    <td>{user.email}</td>
-                    <td>{user.password}</td>
-                    <td>{user.role}</td>
-                    <td>{user.image_url}</td>
-                    <td>{user.url}</td>
-                    <td>
-                      <Button
-                        variant="contained"
-                        color="error"
-                        onClick={() => deleteUser(user.user_id)}
-                      >
-                        Delete
-                      </Button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
+            <>
+              {users.length > 0 ? (
+                <Table striped bordered hover responsive>
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Password</th>
+                      <th>Role</th>
+                      <th>Image URL</th>
+                      <th>URL</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {users.map((user) => (
+                      <tr key={user.user_id}>
+                        <td>{user.user_id}</td>
+                        <td>{user.name}</td>
+                        <td>{user.email}</td>
+                        <td>{user.password}</td>
+                        <td>{user.role}</td>
+                        <td>{user.image_url}</td>
+                        <td>{user.url}</td>
+                        <td>
+                          <Button
+                            variant="contained"
+                            color="error"
+                            onClick={() => deleteUser(user.user_id)}
+                          >
+                            Delete
+                          </Button>
+                          <Button
+                            style={{marginLeft:"10px"}}
+                            variant="contained"
+                            color="secondary"
+                            onClick={() => deleteUser(user.user_id)}
+                          >
+                            Edit
+                          </Button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+              ) : (
+                <p>No users found</p>
+              )}
+            </>
           )}
         </div>
       </Box>

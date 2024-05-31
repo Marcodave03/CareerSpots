@@ -1,8 +1,9 @@
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "../../../components/Header";
-import { Table, Button } from "react-bootstrap";
+import { Table } from "react-bootstrap";
+
 
 // Define the Company interface
 interface Company {
@@ -70,10 +71,22 @@ const Company: React.FC = () => {
                   <td>{company.image_url}</td>
                   <td>{company.url}</td>
                   <td>
-                    <Button variant="danger" onClick={() => handleDelete(company.company_id)}>
-                      Delete
-                    </Button>
-                  </td>
+                      <Button 
+                        variant="contained" 
+                        color="error" 
+                        onClick={() => handleDelete(company.company_id)}
+                      >
+                        Delete
+                      </Button>
+                      <Button
+                            style={{marginLeft:"10px"}}
+                            variant="contained"
+                            color="secondary"
+                            onClick={() => handleDelete(company.company_id)}
+                        >
+                            Edit
+                        </Button>
+                    </td>
                 </tr>
               ))
             )}

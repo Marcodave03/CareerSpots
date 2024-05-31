@@ -86,6 +86,14 @@ const JobApplicationList = () => {
                     >
                       Delete
                     </Button>
+                    <Button
+                            style={{marginTop:"10px"}}
+                            variant="contained"
+                            color="secondary"
+                            onClick={() => handleDelete(jobApplication.jobhistoryid)}
+                      >
+                        Edit
+                    </Button>
                   </td>
                 </tr>
               ))}
