@@ -90,3 +90,23 @@ export const getAllJobApplications = async (req, res) => {
         res.status(500).json({ msg: "Internal Server Error" });
     }
 }
+
+export const deleteJobApplication = async (req, res) => {
+    try {
+        const { jobApplicationId } = req.params;
+        const jobApplication = await db.models.JobApplications.findByPk(jobApplicationId);
+        
+        if (!jobApplication) {
+            return res.status(404).json({ msg: "Job application not found" });
+        }
+
+        await db.models.JobApplications.destroy({
+            where: { jobhistoryid: jobApplicationId }
+        });
+
+        res.status(200).json({ msg: "Job application deleted successfully" });
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({ msg: "Internal Server Error" });
+    }
+}

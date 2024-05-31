@@ -6,6 +6,7 @@ import {
   getJobApplicationsByUserId,
   getJobApplicationsByJobId,
   getAllJobApplications,
+  deleteJobApplication,
 } from "../controllers/JobApplicationController.js";
 import { verifyUser, staffOnly, userOnly, adminOnly } from "../middleware/AuthUser.js";
 
@@ -41,4 +42,10 @@ router.get(
   "/getjobapplication",
   getAllJobApplications
 );
+
+router.get(
+  "/deletejobapplication",
+  deleteJobApplication
+);
+
 export default router;

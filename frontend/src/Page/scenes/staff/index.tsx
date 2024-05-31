@@ -1,6 +1,5 @@
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import Header from "../../../components/Header";
-import { useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Table } from "react-bootstrap";
@@ -23,16 +22,13 @@ interface Staff {
 }
 
 const StaffList = () => {
-  const theme = useTheme();
-  //const colors = tokens(theme.palette.mode);
-
   const [staff, setStaff] = useState<Staff[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchStaff = async () => {
       try {
-        const response = await axios.get<Staff[]>("http://localhost:5000/staffs");
+        const response = await axios.get<{ staff: Staff[] }>("http://localhost:5000/staffs");
         setStaff(response.data.staff);
         setLoading(false);
       } catch (error) {
@@ -43,6 +39,15 @@ const StaffList = () => {
     fetchStaff();
   }, []);
 
+  const deleteStaff = async (staffId: number) => {
+    try {
+      await axios.delete(`http://localhost:5000/staffs/${staffId}`);
+      setStaff(staff.filter(s => s.staff_id !== staffId));
+    } catch (error) {
+      console.error("Error deleting staff:", error);
+    }
+  };
+
   return (
     <Box m="20px">
       <Header
@@ -52,9 +57,6 @@ const StaffList = () => {
       <Box
         m="40px 0 0 0"
         height="75vh"
-        sx={{
-          // Styles for DataGrid
-        }}
       >
         {loading ? (
           <p>Loading...</p>
@@ -68,6 +70,7 @@ const StaffList = () => {
                 <th>Role</th>
                 <th>Company</th>
                 <th>Location</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -80,11 +83,20 @@ const StaffList = () => {
                     <td>{staff.User.role}</td>
                     <td>{staff.Company.company_name}</td>
                     <td>{staff.Company.location}</td>
+                    <td>
+                      <Button 
+                        variant="contained" 
+                        color="error" 
+                        onClick={() => deleteStaff(staff.staff_id)}
+                      >
+                        Delete
+                      </Button>
+                    </td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan={6}>No staff found</td>
+                  <td colSpan={7}>No staff found</td>
                 </tr>
               )}
             </tbody>

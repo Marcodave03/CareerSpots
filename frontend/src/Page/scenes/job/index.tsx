@@ -1,98 +1,101 @@
-  import { Box } from "@mui/material";
-  import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-  import { tokens } from "../../theme";
-  import Header from "../../../components/Header";
-  import { useTheme } from "@mui/material";
-  import { useEffect, useState } from "react";
-  import axios from "axios";
-  import { Table } from "react-bootstrap";
+import { Box, Button } from "@mui/material";
+import Header from "../../../components/Header";
+import { useTheme } from "@mui/material";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Table } from "react-bootstrap";
 
-  interface Company {
-   company_name: string;
-   location: string;
- }
+interface Company {
+  company_name: string;
+  location: string;
+}
 
-  interface Staff {
-   staff_id: number;
-   Company: Company;
- }
+interface Staff {
+  staff_id: number;
+  Company: Company;
+}
 
-  interface Job {
-    uuid: string;
-    job_id: number;
-    job_name: string;
-    job_type: string;
-    job_location: string;
-    job_salary: number;
-    is_hiring: boolean;
-    staff_id: number;
-    Staff: Staff;
-  }
+interface Job {
+  uuid: string;
+  job_id: number;
+  job_name: string;
+  job_type: string;
+  job_location: string;
+  job_salary: number;
+  is_hiring: boolean;
+  staff_id: number;
+  Staff: Staff;
+}
 
+const Jobs = () => {
+  const theme = useTheme();
+  const [job, setJobs] = useState<Job[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  const Jobs = () => {
-    const theme = useTheme();
-    const colors = tokens(theme.palette.mode);
-  
-    const [job, setJobs] = useState<Job[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        const response = await axios.get<{ jobs: Job[] }>("http://localhost:5000/job");
+        setJobs(response.data.jobs);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching jobs:", error);
+      }
+    };
 
-    useEffect(() => {
-      const fetchJobs = async () => {
-        try {
-          const response = await axios.get<Job[]>("http://localhost:5000/job");
-          setJobs(response.data.jobs);
-          setLoading(false);
-        } catch (error) {
-          console.error("Error fetching jobs:", error);
-        }
-      };
-  
-      fetchJobs();
-    }, []);
+    fetchJobs();
+  }, []);
 
+  const deleteJob = async (jobId: number) => {
+    try {
+      await axios.delete(`http://localhost:5000/job/${jobId}`);
+      setJobs(job.filter(j => j.job_id !== jobId));
+    } catch (error) {
+      console.error("Error deleting job:", error);
+    }
+  };
 
-    return (
-      <Box m="20px">
-        <Header
-          title="CONTACTS"
-          subtitle="List of Contacts for Future Reference"
-        />
-        <Box
-          m="40px 0 0 0"
-          height="75vh"
-          sx={{
-            "& .MuiDataGrid-root": {
-              border: "none",
-            },
-            "& .MuiDataGrid-cell": {
-              borderBottom: "none",
-            },
-            "& .name-column--cell": {
-              color: colors.greenAccent[300],
-            },
-            "& .MuiDataGrid-columnHeaders": {
-              backgroundColor: colors.blueAccent[700],
-              borderBottom: "none",
-            },
-            "& .MuiDataGrid-virtualScroller": {
-              backgroundColor: colors.primary[400],
-            },
-            "& .MuiDataGrid-footerContainer": {
-              borderTop: "none",
-              backgroundColor: colors.blueAccent[700],
-            },
-            "& .MuiCheckbox-root": {
-              color: `${colors.greenAccent[200]} !important`,
-            },
-            "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
-              color: `${colors.grey[100]} !important`,
-            },
-          }}
-        >
-          {loading ? (
-            <p>Loading...</p>
-          ) : ( 
+  return (
+    <Box m="20px">
+      <Header
+        title="JOBS"
+        subtitle="List of Jobs"
+      />
+      <Box
+        m="40px 0 0 0"
+        height="75vh"
+        sx={{
+          "& .MuiDataGrid-root": {
+            border: "none",
+          },
+          "& .MuiDataGrid-cell": {
+            borderBottom: "none",
+          },
+          "& .name-column--cell": {
+            color: theme.palette.success.main,
+          },
+          "& .MuiDataGrid-columnHeaders": {
+            backgroundColor: theme.palette.primary.dark,
+            borderBottom: "none",
+          },
+          "& .MuiDataGrid-virtualScroller": {
+            backgroundColor: theme.palette.background.default,
+          },
+          "& .MuiDataGrid-footerContainer": {
+            borderTop: "none",
+            backgroundColor: theme.palette.primary.dark,
+          },
+          "& .MuiCheckbox-root": {
+            color: `${theme.palette.success.light} !important`,
+          },
+          "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
+            color: `${theme.palette.grey[100]} !important`,
+          },
+        }}
+      >
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
           <Table striped bordered hover responsive>
             <thead>
               <tr>
@@ -104,33 +107,43 @@
                 <th>Company</th>
                 <th>Company Location</th>
                 <th>Hiring</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-            {job.length > 0 ? (
-              job.map((job) => (
-                <tr key={job.uuid}>
-                  <td>{job.job_id}</td>
-                  <td>{job.job_name}</td>
-                  <td>{job.job_type}</td>
-                  <td>{job.job_location}</td>
-                  <td>${job.job_salary}</td>
-                  <td>{job.Staff.Company.company_name}</td>
-                  <td>{job.Staff.Company.location}</td>
-                  <td>{job.is_hiring ? "Yes" : "No"}</td>
+              {job.length > 0 ? (
+                job.map((job) => (
+                  <tr key={job.uuid}>
+                    <td>{job.job_id}</td>
+                    <td>{job.job_name}</td>
+                    <td>{job.job_type}</td>
+                    <td>{job.job_location}</td>
+                    <td>${job.job_salary}</td>
+                    <td>{job.Staff.Company.company_name}</td>
+                    <td>{job.Staff.Company.location}</td>
+                    <td>{job.is_hiring ? "Yes" : "No"}</td>
+                    <td>
+                      <Button
+                        variant="contained"
+                        color="error"
+                        onClick={() => deleteJob(job.job_id)}
+                      >
+                        Delete
+                      </Button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={9}>No jobs found</td>
                 </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan={5}>No jobs found</td>
-              </tr>
-            )}
+              )}
             </tbody>
-          </Table>)}
-
-        </Box>
+          </Table>
+        )}
       </Box>
-    );
-  };
+    </Box>
+  );
+};
 
-  export default Jobs;
+export default Jobs;

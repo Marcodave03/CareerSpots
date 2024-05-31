@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import Header from "../../../components/Header";
 import { useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
@@ -7,7 +7,6 @@ import { Table } from "react-bootstrap";
 
 const JobApplicationList = () => {
   const theme = useTheme();
-
   const [jobApplications, setJobApplications] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -24,6 +23,15 @@ const JobApplicationList = () => {
 
     fetchJobApplications();
   }, []);
+
+  const handleDelete = async (jobApplicationId) => {
+    try {
+      await axios.delete(`http://localhost:5000/jobApplication/${jobApplicationId}`);
+      setJobApplications(jobApplications.filter(app => app.jobhistoryid !== jobApplicationId));
+    } catch (error) {
+      console.error("Error deleting job application:", error);
+    }
+  };
 
   return (
     <Box m="20px">
@@ -54,6 +62,7 @@ const JobApplicationList = () => {
                 <th>Job Type</th>
                 <th>Job Location</th>
                 <th>Job Salary</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -69,6 +78,15 @@ const JobApplicationList = () => {
                   <td>{jobApplication.Job.job_type}</td>
                   <td>{jobApplication.Job.job_location}</td>
                   <td>{jobApplication.Job.job_salary}</td>
+                  <td>
+                    <Button 
+                      variant="contained" 
+                      color="error"
+                      onClick={() => handleDelete(jobApplication.jobhistoryid)}
+                    >
+                      Delete
+                    </Button>
+                  </td>
                 </tr>
               ))}
             </tbody>
