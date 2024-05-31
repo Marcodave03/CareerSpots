@@ -1,6 +1,6 @@
 import express from "express";
 
-import { getJob, createJob, deleteJob } from "../controllers/JobController.js";
+import { getJob, createJob, deleteJob, updateJob } from "../controllers/JobController.js";
 import { verifyUser, staffOnly, adminOnly } from "../middleware/AuthUser.js";
 
 const router = express.Router();
@@ -8,5 +8,6 @@ const router = express.Router();
 router.get("/job", getJob);
 router.post("/job", verifyUser, adminOnly, createJob);
 router.delete("/job/:job_id", verifyUser, adminOnly, deleteJob);
+router.patch("/job/:job_id", verifyUser, adminOnly, updateJob);
 
 export default router;

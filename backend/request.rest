@@ -126,6 +126,19 @@ Content-Type: application/json
 GET http://localhost:5000/job
 
 
+###
+PATCH http://localhost:5000/job/4
+Content-Type: application/json
+
+{
+    "job_name": "Computer Engineerrr",
+    "job_type": "Full-time",
+    "job_level": "Senior",
+    "job_location": "New York",
+    "job_salary": 100000,
+    "is_hiring": true
+}
+
 
 
 ###
