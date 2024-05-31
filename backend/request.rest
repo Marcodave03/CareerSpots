@@ -114,7 +114,7 @@ Content-Type: application/json
 
 {
     "staff_id": 1,
-    "job_name": "Software Engineer",
+    "job_name": "Computer Engineer",
     "job_type": "Full-time",
     "job_level": "Senior",
     "job_location": "New York",
