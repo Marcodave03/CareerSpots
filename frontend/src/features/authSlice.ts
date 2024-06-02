@@ -71,7 +71,7 @@ export const authSlice = createSlice({
     builder.addCase(LoginUser.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(LoginUser.fulfilled, (state, action) => {
+    builder.addCase(LoginUser.fulfilled, (state, action: any) => {
       state.isLoading = false;
       state.isSuccess = true;
       state.user = action.payload;
@@ -87,16 +87,19 @@ export const authSlice = createSlice({
     // Get User Login
     builder.addCase(getMe.pending, (state) => {
       state.isLoading = true;
+      console.log("bisa"); 
     });
-    builder.addCase(getMe.fulfilled, (state, action) => {
+    builder.addCase(getMe.fulfilled, (state, action: any) => {
       state.isLoading = false;
       state.isSuccess = true;
       state.user = action.payload;
+      console.log("bisaa"); 
     });
     builder.addCase(getMe.rejected, (state, action: any) => {
       state.isLoading = false;
       state.isError = true;
       state.message = action.payload;
+      console.log("bisaaa"); 
     });
   },
 });

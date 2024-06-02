@@ -4,7 +4,7 @@ export const verifyUser = async (req, res, next) => {
   if (!req.session.userId) {
     return res.status(401).json({ msg: "Mohon login ke akun Anda!" });
   }
-  const user = await db.models.User.findOne({
+  const user = await db.models.Users.findOne({
     where: {
       uuid: req.session.userId,
     },
@@ -16,7 +16,7 @@ export const verifyUser = async (req, res, next) => {
 };
 
 export const adminOnly = async (req, res, next) => {
-  const user = await db.models.User.findOne({
+  const user = await db.models.Users.findOne({
     where: {
       uuid: req.session.userId,
     },
@@ -28,7 +28,7 @@ export const adminOnly = async (req, res, next) => {
 };
 
 export const staffOnly = async (req, res, next) => {
-  const user = await db.models.User.findOne({
+  const user = await db.models.Users.findOne({
     where: {
       uuid: req.session.userId,
     },

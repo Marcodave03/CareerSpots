@@ -18,6 +18,7 @@ const Job = () => {
     const response = await axios.get("http://localhost:5000/job");
     console.log(response.data.jobs); 
     setJobs(Array.from(response.data.jobs));
+    console.log(jobs);
   };
   return (
     <div>
@@ -30,7 +31,13 @@ const Job = () => {
             <div className="col text-center">
             <div className="d-flex flex-wrap justify-content-center mt-4">
                 {jobs.map((j: any)=>
-                <div className="col col-md-5 col-lg-4"><Jobs jobTitle={j.job_name} jobLocation={j.job_location} jobType={j.job_type} companyName={j.company_name}/></div>)
+                <div className="col col-md-5 col-lg-4"><Jobs 
+                jobTitle={j.job_name} 
+                jobLocation={j.job_location} 
+                jobType={j.job_type} 
+                companyName={j.company_name}
+                jobId={j.job_id}
+                jobSalary={j.job_salary}/></div>)
                 }
               </div>
             </div>

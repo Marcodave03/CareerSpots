@@ -18,7 +18,7 @@ const Job = {
   job_type: { type: DataTypes.STRING, allowNull: true, field:'job_type'},
   job_level: { type: DataTypes.STRING, allowNull: true, field:'job_level'},
   job_location: { type: DataTypes.STRING, allowNull: true, field:'job_location'},
-  job_salary: { type: DataTypes.STRING, allowNull: true, field:"job_salary" },
+  job_salary: { type: DataTypes.INTEGER, allowNull: true, field:"job_salary" },
   is_hiring: { type: DataTypes.STRING, allowNull: true, field:"is_hiring" },
   company_name: { type: DataTypes.STRING, allowNull: true, field:"company_name"},
 };

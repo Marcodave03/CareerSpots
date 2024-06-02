@@ -30,7 +30,7 @@ const Login: React.FC = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      navigate("/Admin");
+      navigate("/dashboard");
     }
     // if (user || isSuccess) {
     //   navigate("/Admin");
@@ -47,7 +47,7 @@ const Login: React.FC = () => {
         password: password,
         role: "user",
       });
-      navigate("/Admin");
+      navigate("/dashboard");
     } catch (error: any) {
       if (error.response) {
         setMsg(error.response.data.msg);

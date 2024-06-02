@@ -7,6 +7,7 @@ import Login from "./Page/Login";
 import Portal from "./Page/Portal";
 import InterviewPage from "./Page/Interview";
 import Admin from "./Page/Admin";
+import JobDetailPage from "./Page/JobDetailPage"; 
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
         <Route path="/portal" element={<Portal />} /> 
         <Route path="/dashboard" element={<Admin/>} />     
         <Route path="/interview" element={<InterviewPage/>}/>
+
+        <Route path="/jobdetail/:id" element={<JobDetailPage/>}/>
       </Routes>
     </Router>
   );

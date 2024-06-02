@@ -3,7 +3,7 @@ import Users from'./UsersModel.js';
 import Staff from './StaffModel.js';
 import Job from './JobModel.js';
 import Company from './CompanyModel.js';
-import JobApplication from './JobApplicationModel.js';
+import JobApplication from './JobapplicationModel.js';
 
 const user = db.define("Users", Users, 
 {
@@ -89,7 +89,7 @@ jobApplication.belongsTo(job,
     onUpdate: "CASCADE"
 }); 
 
-// db.sync();
+db.sync();
 
 // var userData = 
 // [
@@ -128,12 +128,12 @@ jobApplication.belongsTo(job,
 // var staffData = 
 // [
 //     {
-//         user_id: 1,
-//         company_id: 1
+//         user_id: 13,
+//         company_id: 9
 //     }, 
 //     {
-//         user_id: 2,
-//         company_id: 2
+//         user_id: 14,
+//         company_id: 10
 //     }
 // ]
 // staff.bulkCreate(staffData); 
@@ -141,33 +141,33 @@ jobApplication.belongsTo(job,
 // [
 //    {
 //         job_name: "backend software developer", 
-//         job_type: "software developer",
-//         job_level: "mid-level", 
+//         job_type: "Full Time",
+//         job_level: "Mid Level", 
 //         job_location: "Jakarta, Indonesia", 
-//         job_salary: "1mil - 2mil rupiah/month",
+//         job_salary: 2200,
 //         is_hiring: "true", 
 //         company_name: "Telkomsol",
-//         staff_id: 1
+//         staff_id: 9
 //     },
 //     {
 //         job_name: "frontend software developer", 
-//         job_type: "software developer",
-//         job_level: "mid-level", 
+//         job_type: "Full Time",
+//         job_level: "Mid Level", 
 //         job_location: "Jakarta, Indonesia", 
-//         job_salary: "1mil - 2mil rupiah/month",
+//         job_salary: 1560,
 //         is_hiring: "true", 
 //         company_name: "Telkomsol",
-//         staff_id: 1
+//         staff_id: 9
 //     }, 
 //     {
 //         job_name: "data analyst intern", 
-//         job_type: "data analyst",
-//         job_level: "entry-level", 
+//         job_type: "Part Time",
+//         job_level: "Entry Level", 
 //         job_location: "Jakarta, Indonesia", 
-//         job_salary: "500k rupiah/month",
+//         job_salary: 600,
 //         is_hiring: "true", 
 //         company_name: "Telkomsol",
-//         staff_id: 1}];
+//         staff_id: 9}];
 // job.bulkCreate(jobData);
 // db.sync();
 export default db;

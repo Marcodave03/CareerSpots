@@ -42,7 +42,7 @@ export const createJob = async (req, res) => {
 
 export const deleteJob = async(req,res)=>{ 
     try{
-        await db.models.Job.destroy({
+        await db.models.Jobs.destroy({
             where:{
                 job_id: req.params.job_id
             }
@@ -52,3 +52,16 @@ export const deleteJob = async(req,res)=>{
         console.log(error.message)
     }
 }
+
+export const getJobById = async (req, res) => { 
+    try {
+        const response = await db.models.Jobs.findOne({ 
+            where: {
+                job_id: req.params.job_id
+            }
+        });
+        res.status(200).json(response);
+    } catch(error) {
+        console.log(error.message);
+    }
+};
