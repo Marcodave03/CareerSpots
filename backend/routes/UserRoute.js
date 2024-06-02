@@ -6,11 +6,13 @@ import {
   createUser,
   updateUser,
   deleteUser,
+  countUser
 } from "../controllers/UsersController.js";
 
 const router = express.Router(); //Function express
 
 router.get("/users", getUser);
+router.get("/users",countUser);
 router.get("/users/:user_id", getUserById);
 router.post("/users", createProfile);
 router.patch("/users/:user_id", updateUser);
