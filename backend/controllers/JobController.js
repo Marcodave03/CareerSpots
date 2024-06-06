@@ -65,3 +65,28 @@ export const getJobById = async (req, res) => {
         console.log(error.message);
     }
 };
+
+export const getJobByStaffId = async (req, res) => { 
+    try {
+        const response = await db.models.Jobs.findAll({ 
+            where: {
+                staff_id: req.params.staff_id 
+            },
+            include: [
+                {
+                    model: db.models.Staffs,
+                    attributes: ['staff_id'], 
+                    include:[
+                        {
+                            model: db.models.Companies,
+                            attributes: ['company_name', 'location'], 
+                        },
+                    ]
+                },
+            ],
+        });
+        res.status(200).json(response);
+    } catch(error) {
+        console.log(error.message);
+    }
+};

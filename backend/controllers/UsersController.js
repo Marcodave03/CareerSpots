@@ -13,6 +13,17 @@ export const getUser = async(req,res)=>{
     }
 }
 
+//count
+export const countUser = async (req, res) => {
+    try {
+        const userCount = await db.models.Users.count();
+        res.status(200).json({ count: userCount });
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+
 export const createUser = async (req,res) => {
     try {
         await db.models.Users.create(req.body);
@@ -93,8 +104,11 @@ export const updateUser = async (req, res) => {
             await file.mv(`./public/images/${fileName}`);
 
             // Delete old image file
-            const oldImagePath = `./public/images/${user.image_url}`;
-            fs.unlinkSync(oldImagePath);
+            if(user.image_url != null)
+            {
+                const oldImagePath = `./public/images/${user.image_url}`;
+                fs.unlinkSync(oldImagePath);
+            }
         }
 
         const { name, email, password, role } = req.body;

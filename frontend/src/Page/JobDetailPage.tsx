@@ -37,7 +37,6 @@ const JobDetailPage = () => {
     }
     setJobs(selectedJob);
   };
-
   
   return (
     <div>

@@ -26,7 +26,7 @@
     "@nivo/line": "^0.85.1",
     "@nivo/pie": "^0.85.1",
     "@reduxjs/toolkit": "^2.2.5",
-    "axios": "^1.6.8",
+    "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
     "bulma": "^1.0.0",
     "formik": "^2.4.6",

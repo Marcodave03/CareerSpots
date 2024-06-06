@@ -1,17 +1,15 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Topbar from "./scenes/global/Topbar";
-import Sidebars from "./scenes/global/Sidebar";
-import UserSideBar from "./scenes/global/UserSideBar";
-import Dashboard from "./scenes/dashboard";
-import Invoices from "./scenes/invoices";
+import SideBar from "./scenes/global/Sidebar";
 import EditUser from "./scenes/editprofile";
-import Form from "./scenes/form";
+import Jobs from "./scenes/createdjobs";
+import StaffList from "./scenes/staff"; 
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import Layout from "./Layout";
 import { AppDispatch } from "../app/store";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getMe } from "../features/authSlice";
@@ -24,7 +22,7 @@ function Admin() {
   const [userImage, setUserImage] = useState<string | undefined>(""); 
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const { isError, isLoading, isSuccess, message, user } = useSelector((state: any) => state.auth);
+  const { isError, isSuccess, user } = useSelector((state: any) => state.auth);
 
   useEffect(() => {
     dispatch(getMe());
@@ -39,7 +37,6 @@ function Admin() {
       setUserName(user.name); 
       setUserImage(user.image_url); 
       console.log(userImage); 
-      // navigate("/"); 
     }
   }, [isError, user, navigate]);
 
@@ -50,11 +47,13 @@ function Admin() {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <div className="app">
-            <UserSideBar isSidebar={isSidebar} userName={userName} userRole={userRole} userImage={userImage}/>
+            <SideBar isSidebar={isSidebar} userName={userName} userRole={userRole} userImage={userImage}/>
             <main className="content">
                 <Topbar setIsSidebar={setIsSidebar} /> 
                   <Routes>
                     <Route path="profile" element={<EditUser />} />
+                    <Route path="staff" element={<StaffList />} />
+                    <Route path="createdjobs" element={<Jobs />} />
                   </Routes>
               </main>
           </div>

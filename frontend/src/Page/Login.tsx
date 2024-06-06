@@ -5,7 +5,7 @@ import Logsvg from "../assets/log.svg";
 import Regisvg from "../assets/register.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { LoginUser, reset } from "../features/authSlice";
+import { LoginUser, getMe, reset } from "../features/authSlice";
 import { AppDispatch } from "../app/store";
 import axios from "axios";
 
@@ -29,14 +29,19 @@ const Login: React.FC = () => {
   );
 
   useEffect(() => {
-    if (isSuccess) {
+    console.log(isSuccess); 
+    // console.log(user); 
+    if (isError) {
+      navigate("/");
+    }
+    if (user && user.role == "user") {
       navigate("/dashboard");
     }
-    // if (user || isSuccess) {
-    //   navigate("/Admin");
-    // }
-    dispatch(reset());
-  }, [user, isSuccess, dispatch, navigate]);
+    if(user && user.role == "staff")
+    {
+      navigate("/staffdashboard"); 
+    }
+  }, [isError, isSuccess, user, navigate, dispatch]);
 
   const saveUser = async (e: any) => {
     e.preventDefault();
@@ -60,7 +65,7 @@ const Login: React.FC = () => {
       username: "",
       email: email,
       password: password,
-      role: "role",
+      role: "user",
     };
     dispatch(LoginUser(User));
   };

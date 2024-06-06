@@ -16,6 +16,40 @@ export const getStaff = async (req, res) => {
     }
 };
 
+export const getStaffByUserId = async (req, res) => { 
+    try {
+        const response = await db.models.Staffs.findOne({ 
+            where: {
+                user_id: req.params.user_id 
+            }
+        });
+        res.status(200).json(response);
+    } catch(error) {
+        console.log(error.message);
+    }
+};
+
+export const getFellowStaff = async(req, res) => 
+{
+    try {
+
+        const staff = await db.models.Staffs.findAll({
+            where: 
+            {
+                company_id: req.params.company_id
+            },
+            include: [
+                { model: db.models.Users, attributes: ['name', 'email', 'role'] },
+                { model: db.models.Companies, attributes: ['company_name', 'location'] }
+            ]
+        });
+        res.status(200).json({ staff });
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({ msg: "Internal Server Error" });
+    }
+}; 
+
 export const createStaff = async (req, res) => {
     try {
         const { user_id, company_id } = req.body;

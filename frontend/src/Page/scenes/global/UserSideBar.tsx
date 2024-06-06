@@ -4,20 +4,9 @@ import { IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
-import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
-import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
-import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
-import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
-import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlined";
-import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import JobOutlineIcon from '@mui/icons-material/WorkOutline';
-import PostAddIcon from '@mui/icons-material/PostAdd';
-
 
 interface ItemProps {
   title: string;
@@ -54,13 +43,18 @@ const Item: React.FC<ItemProps> = ({
 
 interface SidebarProps {
   isSidebar: boolean;
+  userName: string, 
+  userImage: string |undefined, 
+  userRole: string
 }
 
-const Sidebars: React.FC<SidebarProps> = () => {
+
+const Sidebars: React.FC<SidebarProps> = (SidebarProps) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
+  const [previewURL, setPreviewURL] = useState<string | null>(null);
 
   return (
     <Sidebar
@@ -111,7 +105,7 @@ const Sidebars: React.FC<SidebarProps> = () => {
                 alt="profile-user"
                 width="100px"
                 height="100px"
-                src={`../../../src/assets/Atkinson_Rowan.jpg`}
+                src={`http://localhost:5000/images/${SidebarProps.userImage}`} 
                 style={{ cursor: "pointer", borderRadius: "50%" }}
               />
             </div>
@@ -122,10 +116,10 @@ const Sidebars: React.FC<SidebarProps> = () => {
                 fontWeight="bold"
                 style={{ margin: "10px 0 0 0" }}
               >
-                Mr Bean
+                {SidebarProps.userName}
               </Typography>
               <Typography variant="h5" color={colors.greenAccent[500]}>
-                Hollywood Company Admin
+                {SidebarProps.userRole}
               </Typography>
             </div>
           </div>
@@ -133,52 +127,16 @@ const Sidebars: React.FC<SidebarProps> = () => {
 
         <div style={{ paddingLeft: isCollapsed ? undefined : "10%" }}>
           <Item
-            title="Dashboard"
-            to="/Admin"
-            icon={<HomeOutlinedIcon />}
-            selected={selected}
-            setSelected={setSelected}
-          />
-
-<Item
-            title="Job List"
-            to="/Admin/jobs"
-            icon={<JobOutlineIcon />}
-            selected={selected}
-            setSelected={setSelected}
-          />
-          <Item
-            title="Applicant List"
-            to="/Admin/applicants"
-            icon={<PeopleOutlinedIcon />}
+            title="Profile"
+            to="/dashboard/profile"
+            icon={<PersonOutlinedIcon />}
             selected={selected}
             setSelected={setSelected}
           />
           <Item
             title="Jobs Applied List"
-            to="/Admin/jobsapplied"
+            to="/dashboard/jobsapplied"
             icon={<JobOutlineIcon />}
-            selected={selected}
-            setSelected={setSelected}
-          />
-          <Item
-            title="Job Form"
-            to="/Admin/form"
-            icon={<PostAddIcon />}
-            selected={selected}
-            setSelected={setSelected}
-          />
-          <Item
-            title="Calendar"
-            to="/Admin/calendar"
-            icon={<CalendarTodayOutlinedIcon />}
-            selected={selected}
-            setSelected={setSelected}
-          />
-          <Item
-            title="FAQ Page"
-            to="/Admin/faq"
-            icon={<HelpOutlineOutlinedIcon />}
             selected={selected}
             setSelected={setSelected}
           />

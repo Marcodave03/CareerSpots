@@ -29,11 +29,11 @@ export const LoginUser = createAsyncThunk(
   async (User: userProp, thunkAPI) => {
     try {
       const response = await axios.post("http://localhost:5000/login", {
-        email: User.email,
+        email: User.email, 
         password: User.password,
       });
-      console.log(response.data);
-      //   return response.data;
+      // console.log(response.data);
+        return response.data;
     } catch (error: any) {
       if (error.response) {
         const message = error.response.data.msg;
@@ -75,31 +75,28 @@ export const authSlice = createSlice({
       state.isLoading = false;
       state.isSuccess = true;
       state.user = action.payload;
-      //   console.log("success");
+      console.log(action.payload); 
     });
     builder.addCase(LoginUser.rejected, (state, action: any) => {
       state.isLoading = false;
       state.isError = true;
       state.message = action.payload;
-      //   console.log("error");
     });
 
     // Get User Login
     builder.addCase(getMe.pending, (state) => {
       state.isLoading = true;
-      console.log("bisa"); 
     });
     builder.addCase(getMe.fulfilled, (state, action: any) => {
       state.isLoading = false;
       state.isSuccess = true;
       state.user = action.payload;
-      console.log("bisaa"); 
+      console.log(state.user); 
     });
     builder.addCase(getMe.rejected, (state, action: any) => {
       state.isLoading = false;
       state.isError = true;
       state.message = action.payload;
-      console.log("bisaaa"); 
     });
   },
 });
