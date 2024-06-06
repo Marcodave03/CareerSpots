@@ -4,6 +4,7 @@ import Topbar from "./scenes/global/Topbar";
 import SideBar from "./scenes/global/Sidebar";
 import EditUser from "./scenes/editprofile";
 import Jobs from "./scenes/adminDashboard/createdjobs";
+import JobApplication from "./scenes/adminDashboard/application"; 
 import StaffList from "./scenes/adminDashboard/staff"; 
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
@@ -55,7 +56,7 @@ function Admin() {
                     <Route path="profile" element={<EditUser />} />
                     <Route path="staff" element={<StaffList />} />
                     <Route path="createdjobs" element={<Jobs />} />
-
+                    <Route path="jobapplication" element={<JobApplication />} />
                     <Route path="editjob/:id" element={<EditJob />} />
                   </Routes>
               </main>

@@ -6,8 +6,8 @@ import Home from "./Page/Home";
 import Login from "./Page/Login";
 import Portal from "./Page/Portal";
 import InterviewPage from "./Page/Interview";
-import Admin from "./Page/Admin";
-import AdminDashboard from "./Page/AdminDashboard"; 
+import UserDashboard from "./Page/UserDashboard";
+import StaffDashboard from "./Page/StaffDashboard"; 
 import JobDetailPage from "./Page/JobDetailPage"; 
 
 function App() {
@@ -17,8 +17,8 @@ function App() {
         <Route path="/" element={<Home />} /> 
         <Route path="/signup" element={<Login />} /> 
         <Route path="/portal" element={<Portal />} /> 
-        <Route path="/dashboard/*" element={<Admin/>} />     
-        <Route path="/staffdashboard/*" element={<AdminDashboard/>} />     
+        <Route path="/dashboard/*" element={<UserDashboard/>} />     
+        <Route path="/staffdashboard/*" element={<StaffDashboard/>} />     
         <Route path="/interview" element={<InterviewPage/>}/>
 
         <Route path="/jobdetail/:id" element={<JobDetailPage/>}/>
