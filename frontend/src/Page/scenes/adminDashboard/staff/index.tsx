@@ -1,12 +1,12 @@
-import { Box, Button, accordionSummaryClasses } from "@mui/material";
-import Header from "../../../components/Header";
+import { Box } from "@mui/material";
+import Header from "../../../../components/Header";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getMe } from "../../../features/authSlice";
-import { AppDispatch } from "../../../app/store";
+import { getMe } from "../../../../features/authSlice";
+import { AppDispatch } from "../../../../app/store";
 
 interface User {
   name: string;

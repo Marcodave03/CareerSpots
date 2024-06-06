@@ -3,8 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import Topbar from "./scenes/global/Topbar";
 import SideBar from "./scenes/global/Sidebar";
 import EditUser from "./scenes/editprofile";
-import Jobs from "./scenes/createdjobs";
-import StaffList from "./scenes/staff"; 
+import Jobs from "./scenes/adminDashboard/createdjobs";
+import StaffList from "./scenes/adminDashboard/staff"; 
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import Layout from "./Layout";
@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getMe } from "../features/authSlice";
+import EditJob from "./scenes/adminDashboard/editjob";
 
 function Admin() {
   const [theme, colorMode] = useMode();
@@ -54,6 +55,8 @@ function Admin() {
                     <Route path="profile" element={<EditUser />} />
                     <Route path="staff" element={<StaffList />} />
                     <Route path="createdjobs" element={<Jobs />} />
+
+                    <Route path="editjob/:id" element={<EditJob />} />
                   </Routes>
               </main>
           </div>

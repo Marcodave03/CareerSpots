@@ -1,13 +1,13 @@
 import { Box, Button } from "@mui/material";
-import Header from "../../../components/Header";
+import Header from "../../../../components/Header";
 import { useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Table } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "../../../app/store";
-import { getMe } from "../../../features/authSlice";
+import { AppDispatch } from "../../../../app/store";
+import { getMe } from "../../../../features/authSlice";
 
 interface Company {
   company_name: string;
@@ -160,7 +160,7 @@ const Jobs = () => {
                       >
                         <Link
                           style={{ textDecoration: "none" }}
-                          to={`/Admin/editjob/${job.job_id}`}
+                          to={`/staffdashboard/editjob/${job.job_id}`}
                         >
                           Edit
                         </Link>

@@ -90,3 +90,22 @@ export const getJobByStaffId = async (req, res) => {
         console.log(error.message);
     }
 };
+
+
+export const updateJob = async (req, res) => {
+    try {
+        const { job_id } = req.params;
+        const jobToUpdate = await db.models.Jobs.findByPk(job_id);
+
+        if (!jobToUpdate) {
+            return res.status(404).json({ msg: "Job not found" });
+        }
+
+        const updatedJob = await jobToUpdate.update(req.body);
+
+        res.status(200).json({ msg: "Job updated successfully", job: updatedJob });
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({ msg: "Internal Server Error" });
+    }
+};
