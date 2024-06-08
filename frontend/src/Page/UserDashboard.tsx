@@ -3,10 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import Topbar from "./scenes/global/Topbar";
 import Sidebars from "./scenes/global/Sidebar";
 import UserSideBar from "./scenes/global/UserSideBar";
-import Dashboard from "./scenes/dashboard";
-import Invoices from "./scenes/invoices";
 import EditUser from "./scenes/editprofile";
-import Form from "./scenes/form";
+import JobApplication from "./scenes/userDashboard/application"; 
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import Layout from "./Layout";
@@ -55,6 +53,7 @@ function Admin() {
                 <Topbar setIsSidebar={setIsSidebar} /> 
                   <Routes>
                     <Route path="profile" element={<EditUser />} />
+                    <Route path="jobsapplied" element={<JobApplication/>} />
                   </Routes>
               </main>
           </div>

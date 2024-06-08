@@ -10,6 +10,11 @@ GET http://localhost:5000/staff/13
 GET http://localhost:5000/jobByStaffId/9
 
 ###
+GET http://localhost:5000/getjobapplicationbystaffid/9
+
+###
+GET http://localhost:5000/getjobapplicationbyuserid/15
+###
 GET http://localhost:5000/jobById/16
 
 ###

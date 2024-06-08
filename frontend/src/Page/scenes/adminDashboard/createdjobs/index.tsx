@@ -56,12 +56,11 @@ const Jobs = () => {
     const fetchJobs = async () => {
       try {
         const selectedStaff = (await axios.get<any>(`http://localhost:5000/staff/` + userID));
-        console.log(userID); 
-        console.log(selectedStaff); 
+        // console.log(userID); 
+        // console.log(selectedStaff); 
         const staffID = selectedStaff.data.staff_id;  
         const response = await axios.get<any>(
           "http://localhost:5000/jobByStaffId/" + staffID);
-        // console.log(response.data); 
         setJobs(response.data);
         setLoading(false);
       } catch (error) {

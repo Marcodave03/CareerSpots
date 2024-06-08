@@ -56,7 +56,7 @@ function Admin() {
                     <Route path="profile" element={<EditUser />} />
                     <Route path="staff" element={<StaffList />} />
                     <Route path="createdjobs" element={<Jobs />} />
-                    <Route path="jobapplication" element={<JobApplication />} />
+                    <Route path="applications" element={<JobApplication />} />
                     <Route path="editjob/:id" element={<EditJob />} />
                   </Routes>
               </main>

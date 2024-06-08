@@ -113,6 +113,8 @@ db.sync();
 //     }
 // ]
 // user.bulkCreate(userData); 
+
+// db.sync();
 // var companyData = 
 // [
 //     {
