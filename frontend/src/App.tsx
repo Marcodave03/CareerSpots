@@ -5,10 +5,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from "./Page/Home";
 import Login from "./Page/Login";
 import Portal from "./Page/Portal";
-import InterviewPage from "./Page/Interview";
+import InterviewPage from "./Page/InterviewPage";
 import UserDashboard from "./Page/UserDashboard";
 import StaffDashboard from "./Page/StaffDashboard"; 
 import JobDetailPage from "./Page/JobDetailPage"; 
+import InterviewDetailPage from "./Page/InterviewDetailPage"; 
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/interview" element={<InterviewPage/>}/>
 
         <Route path="/jobdetail/:id" element={<JobDetailPage/>}/>
+        <Route path="/interviewdetail/:id/*" element={<InterviewDetailPage/>}/>
       </Routes>
     </Router>
   );

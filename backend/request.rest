@@ -4,13 +4,27 @@ GET http://localhost:5000/users
 GET http://localhost:5000/users/1
 
 ###
+GET http://localhost:5000/interviews
+
+###
 GET http://localhost:5000/staff/13
 
 ###
 GET http://localhost:5000/jobByStaffId/9
 
 ###
+GET http://localhost:5000/getjobapplicationbystaffid/9
+
+###
+GET http://localhost:5000/getjobapplicationbyuserid/15
+
+###
+GET http://localhost:5000/getuserinterviewsbyuserid/15
+###
 GET http://localhost:5000/jobById/16
+
+###
+GET http://localhost:5000/interviews/1
 
 ###
 POST http://localhost:5000/users HTTP/1.1

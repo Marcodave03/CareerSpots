@@ -12,7 +12,7 @@ const JobApplicationList = () => {
   const [jobApplications, setJobApplications] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [job, setJobs] = useState<any[]>([]);
-  const [userID, setUserID] = useState<number>(); 
+  const [userID, setUserID] = useState<number>(-1); 
   const navigate = useNavigate();
   
   const { isError, user, isSuccess } = useSelector((state: any) => state.auth);
@@ -31,15 +31,15 @@ const JobApplicationList = () => {
     }, [isError, isSuccess, user, navigate]);
   const fetchJobApplications = async () => {
     try {
-      const selectedStaff = (await axios.get<any>(`http://localhost:5000/staff/` + userID));
-      // console.log(userID); 
-      // console.log(selectedStaff); 
-      const staffID = selectedStaff.data.staff_id;  
-      const response = await axios.get<any>(
-        "http://localhost:5000/getjobapplicationbystaffid/" + staffID);
-      setJobApplications(response.data); 
-      console.log(response.data); 
-      setLoading(false); 
+      if(userID != -1)
+      {
+        console.log(userID); 
+        const response = await axios.get<any>(
+          "http://localhost:5000/getjobapplicationbyuserid/" + userID);
+        setJobApplications(response.data); 
+        console.log(response.data); 
+        setLoading(false); 
+      }
 
     } catch (error) {
       console.error("Error fetching jobs:", error);

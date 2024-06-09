@@ -4,6 +4,8 @@ import Staff from './StaffModel.js';
 import Job from './JobModel.js';
 import Company from './CompanyModel.js';
 import JobApplication from './JobapplicationModel.js';
+import Interview from "./InterviewModel.js"; 
+import UserInterview from "./UserInterview.js"; 
 
 const user = db.define("Users", Users, 
 {
@@ -28,6 +30,18 @@ const jobApplication = db.define("JobApplications", JobApplication,
 {
     tableName: "job applications",
 });
+
+const interview = db.define("Interviews", Interview, 
+{
+    tableName: "interviews"
+}
+); 
+
+const userInterview = db.define("UserInterviews", UserInterview, 
+{
+    tableName: "userInterviews"
+}
+)
 
 user.hasOne(staff, {
     foreignKey: "user_id", 
@@ -89,7 +103,64 @@ jobApplication.belongsTo(job,
     onUpdate: "CASCADE"
 }); 
 
+user.hasMany(userInterview, {
+    foreignKey: "user_id", 
+    onDelete: "CASCADE", 
+    onUpdate: "CASCADE"
+}); 
+
+userInterview.belongsTo(interview, 
+{
+    foreignKey: "user_id", 
+    onDelete: "CASCADE", 
+    onUpdate: "CASCADE"
+}); 
+
+interview.hasMany(userInterview, 
+{
+    foreignKey: "interview_id", 
+    onDelete: "CASCADE", 
+    onUpdate: "CASCADE"
+}); 
+    
+userInterview.belongsTo(interview, 
+{
+    foreignKey: "interview_id", 
+    onDelete: "CASCADE", 
+    onUpdate: "CASCADE"
+}); 
+
 db.sync();
+
+// var interviewData = 
+// [
+//     {
+//         interview_name: "Ace your React JS interview", 
+//         interview_link: "https://www.youtube.com/embed/3BN-YHcJfOY?si=E2QvxKQ-lSO_vs4D", 
+//         interview_imagelink: "https://img.youtube.com/vi/3BN-YHcJfOY/default.jpg", 
+//         interview_prompt: "React JS"
+//     },
+//     {
+//         interview_name: "Master Node JS interview", 
+//         interview_link: "https://www.youtube.com/embed/FdaVsce3ftQ?si=FS5ldzReq_rp0Rb_", 
+//         interview_imagelink: "https://img.youtube.com/vi/FdaVsce3ftQ/default.jpg", 
+//         interview_prompt: "Node JS"
+//     },
+//     {
+//         interview_name: "Guide to System Design interview", 
+//         interview_link: "https://www.youtube.com/embed/jPKTo1iGQiE?si=fehDDBrezJTL7eo_", 
+//         interview_imagelink: "https://img.youtube.com/vi/jPKTo1iGQiE/default.jpg", 
+//         interview_prompt: "System Design"
+//     },
+//     {
+//         name: "sarah user", 
+//         email: "sarahuser@gmail.com",
+//         password: "password", 
+//         role: "user"
+//     }
+// ]
+// interview.bulkCreate(interviewData); 
+// db.sync(); 
 
 // var userData = 
 // [
@@ -113,6 +184,8 @@ db.sync();
 //     }
 // ]
 // user.bulkCreate(userData); 
+
+// db.sync();
 // var companyData = 
 // [
 //     {

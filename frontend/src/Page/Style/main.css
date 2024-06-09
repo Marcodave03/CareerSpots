@@ -154,3 +154,13 @@ col{
     margin-left: 50px;
 }
 
+
+
+.interviewdetailnav
+{
+  padding: 5px; 
+  border: 1px solid #0062FF;
+  background-color: white;
+  font-weight: bolder;
+  color: #0062FF; 
+}

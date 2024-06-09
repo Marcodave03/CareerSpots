@@ -1,5 +1,5 @@
 import db from '../models/Association.js';
-
+import Op from "sequelize"; 
 export const createJobApplication = async (req, res) => {
     try {
         const { user_id, job_id } = req.body;
@@ -41,13 +41,17 @@ export const getJobApplicationsByUserId = async(req, res) =>
 {
     try
     {
-        const {userId} = req.body; 
-        const { count, rows } = await db.models.JobApplications.findAndCountAll({
+
+        const response = await db.models.JobApplications.findAll({
             where: {
-              user_id: userId
-            }
+              user_id: req.params.id
+            },
+            include: [
+                { model: db.models.Users, attributes: ['name', 'email', 'role'] },
+                { model: db.models.Jobs, attributes: ['job_name', 'job_type', 'job_location', 'job_salary'] }
+            ]
           });
-        res.status(200).json({ rows, msg: "job application by user id fetched successfully" });
+        res.status(200).json(response);
     }
     catch(error)
     {
@@ -60,16 +64,82 @@ export const getJobApplicationsByJobId = async(req, res) =>
 {
      try
     {
-        const {jobId} = req.body; 
-        const { count, rows } = await db.models.JobApplications.findAndCountAll({
+        const { count, rows } = await db.models.JobApplications.findAll({
             where: {
-                job_id: jobId
-            }
+                job_id: req.params.id
+            },
+            include: [
+                { model: db.models.Users, attributes: ['name', 'email', 'role'] },
+                { model: db.models.Jobs, attributes: ['job_name', 'job_type', 'job_location', 'job_salary'] }
+            ]
         });
         res.status(200).json({ rows, msg: "job application by job id fetched successfully" });
     }
     catch(error)
     {
+        console.log(error.message);
+        res.status(500).json({ msg: "Internal Server Error" });
+    }
+}
+
+export const getJobApplicationByStaffId = async(req, res) => 
+{
+    try {
+        const jobsResponse = await db.models.Jobs.findAll({ 
+            where: {
+                staff_id: req.params.id
+            }
+        });
+        const createdJobs= jobsResponse.map(x => x.job_id); 
+        const applicationResponse = await db.models.JobApplications.findAll(
+            {
+                where: 
+                {
+                    job_id: 16
+                },
+                include: [
+                    { model: db.models.Users, attributes: ['name', 'email', 'role'] },
+                    { model: db.models.Jobs, attributes: ['job_name', 'job_type', 'job_location', 'job_salary'] }
+                ]
+            }
+        )
+        res.status(200).json(applicationResponse);
+    } catch(error) {
+        console.log(error.message);
+    }
+}
+
+export const getAllJobApplications = async (req, res) => {
+    try {
+        const jobApplications = await db.models.JobApplications.findAll({
+            include: [
+                { model: db.models.Users, attributes: ['name', 'email', 'role'] },
+                { model: db.models.Jobs, attributes: ['job_name', 'job_type', 'job_location', 'job_salary'] }
+            ]
+        });
+
+        res.status(200).json({ jobApplications });
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({ msg: "Internal Server Error" });
+    }
+}
+
+export const deleteJobApplication = async (req, res) => {
+    try {
+        const { jobApplicationId } = req.params;
+        const jobApplication = await db.models.JobApplications.findByPk(jobApplicationId);
+        
+        if (!jobApplication) {
+            return res.status(404).json({ msg: "Job application not found" });
+        }
+
+        await db.models.JobApplications.destroy({
+            where: { jobhistoryid: jobApplicationId }
+        });
+
+        res.status(200).json({ msg: "Job application deleted successfully" });
+    } catch (error) {
         console.log(error.message);
         res.status(500).json({ msg: "Internal Server Error" });
     }

@@ -10,6 +10,8 @@ import JobApplicationRoute from "./routes/JobApplicationRoute.js";
 import JobRoute from "./routes/JobRoute.js";
 import StaffRoute from "./routes/StaffRoute.js";
 import AuthRoute from "./routes/AuthRoute.js";
+import InterviewRoute from "./routes/InterviewRoute.js";
+import UserInterviewRoute from "./routes/UserInterviewRoute.js"
 import FileUpload from "express-fileupload";
 dotenv.config();
 
@@ -52,5 +54,7 @@ app.use(CompanyRoute);
 app.use(JobApplicationRoute);
 app.use(JobRoute);
 app.use(StaffRoute);
+app.use(InterviewRoute); 
+app.use(UserInterviewRoute); 
 store.sync();
 app.listen(5000, () => console.log("Server up and running..."));

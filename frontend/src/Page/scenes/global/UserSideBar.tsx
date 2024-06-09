@@ -7,6 +7,7 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import JobOutlineIcon from '@mui/icons-material/WorkOutline';
+import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
 
 interface ItemProps {
   title: string;
@@ -43,8 +44,8 @@ const Item: React.FC<ItemProps> = ({
 
 interface SidebarProps {
   isSidebar: boolean;
-  userName: string, 
-  userImage: string |undefined, 
+  userName: string,
+  userImage: string | undefined,
   userRole: string
 }
 
@@ -105,7 +106,7 @@ const Sidebars: React.FC<SidebarProps> = (SidebarProps) => {
                 alt="profile-user"
                 width="100px"
                 height="100px"
-                src={`http://localhost:5000/images/${SidebarProps.userImage}`} 
+                src={`http://localhost:5000/images/${SidebarProps.userImage}`}
                 style={{ cursor: "pointer", borderRadius: "50%" }}
               />
             </div>
@@ -137,6 +138,13 @@ const Sidebars: React.FC<SidebarProps> = (SidebarProps) => {
             title="Jobs Applied List"
             to="/dashboard/jobsapplied"
             icon={<JobOutlineIcon />}
+            selected={selected}
+            setSelected={setSelected}
+          />
+          <Item
+            title="Interview History"
+            to="/dashboard/interviewhistory"
+            icon={<ContactsOutlinedIcon />}
             selected={selected}
             setSelected={setSelected}
           />

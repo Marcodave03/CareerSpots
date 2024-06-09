@@ -40,19 +40,19 @@ function Navbar() {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="portal">
-                Explore Jobs
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="interview">
+              <Link className="nav-link" to={"/interview"}>
                 Interviews
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="signup">
+              <Link className="nav-link" to={"/portal"}>
+                Explore Jobs
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to={"/signup"}>
                 Login
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
