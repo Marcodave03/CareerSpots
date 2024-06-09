@@ -4,8 +4,7 @@ import Topbar from "./scenes/global/Topbar";
 import Sidebars from "./scenes/global/Sidebar";
 import UserSideBar from "./scenes/global/UserSideBar";
 import EditUser from "./scenes/editprofile";
-import JobApplication from "./scenes/userDashboard/application"; 
-import InterviewHistory from "./scenes/userDashboard/interviewhistory"; 
+import Form from "./scenes/form";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import Layout from "./Layout";
@@ -54,8 +53,6 @@ function Admin() {
                 <Topbar setIsSidebar={setIsSidebar} /> 
                   <Routes>
                     <Route path="profile" element={<EditUser />} />
-                    <Route path="jobsapplied" element={<JobApplication/>} />
-                    <Route path="interviewhistory" element={<InterviewHistory/>} />
                   </Routes>
               </main>
           </div>
