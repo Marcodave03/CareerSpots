@@ -26,7 +26,12 @@ export const countUser = async (req, res) => {
 
 export const createUser = async (req,res) => {
     try {
-        await db.models.Users.create(req.body);
+        const newUser = await db.models.Users.create(req.body);
+        await db.models.UserDetail.create(
+            {
+                user_id: newUser.user_id 
+            }
+        ); 
         res.status(201).json({msg: "User created"});
         return newUser;
     } catch (error) {

@@ -1,9 +1,11 @@
 import React, { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { AppDispatch } from "../../../app/store";
 import { useDispatch, useSelector } from "react-redux";
 import { getMe } from "../../../features/authSlice";
+import '../../Style/userdashboard.css';
+import Header from '../../../components/Header';
 
 interface User {
     name: string;
@@ -21,26 +23,28 @@ const EditUser: React.FC = () => {
     const [role, setRole] = useState<string>("");
     const [image, setImage] = useState<File | null>(null);
     const [previewURL, setPreviewURL] = useState<string | null>(null);
-    const [userID, setUserID] = useState<number>(); 
+    const [userID, setUserID] = useState<number>();
+    const [about, setAbout] = useState<string>("");
+    const [phone, setPhone] = useState<string>("");
+    const [cv, setCV] = useState<string>("");
     const navigate = useNavigate();
 
     const { isError, user, isSuccess } = useSelector((state: any) => state.auth);
     const dispatch = useDispatch<AppDispatch>();
     useEffect(() => {
         dispatch(getMe());
-      }, [dispatch]);
-      useEffect(() => {
+    }, [dispatch]);
+    useEffect(() => {
         if (isError) {
-          navigate("/");
+            navigate("/");
         }
-        if(user)
-        {
+        if (user) {
             setUserID(user.user_id);
-            console.log(userID); 
+            console.log(userID);
         }
-      }, [isError, isSuccess, user, navigate]);
+    }, [isError, isSuccess, user, navigate]);
 
-      useEffect(() => {
+    useEffect(() => {
         getUserById();
     }, [userID]);
 
@@ -52,7 +56,25 @@ const EditUser: React.FC = () => {
             setEmail(userData.email);
             setPassword(userData.password);
             setRole(userData.role);
-
+            const detailResponse = await axios.get<any>(`http://localhost:5000/getuserdetailbyuserid/${userID}`);
+            if (detailResponse.data.user_about == null) {
+                setAbout("");
+            }
+            else {
+                setAbout(detailResponse.data.user_about);
+            }
+            if (detailResponse.data.user_phone == null) {
+                setPhone("");
+            }
+            else {
+                setPhone(detailResponse.data.user_phone);
+            }
+            if (detailResponse.data.user_cv == null) {
+                setCV("");
+            }
+            else {
+                setCV(detailResponse.data.user_cv);
+            }
             // console.log(userData.name); 
         } catch (error) {
             console.log(error);
@@ -71,33 +93,48 @@ const EditUser: React.FC = () => {
     const updateUser = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const formData = new FormData();
-            formData.append('name', name);
-            formData.append('email', email);
-            formData.append('password', password);
-            formData.append('role', role);
-            if (image) {
-                formData.append('file', image);
-            }
-            await axios.patch(`http://localhost:5000/users/${userID}`, formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
+            console.log("sampe sini"); 
+            await axios.patch(`http://localhost:5000/users/${userID}`, {
+                "name": name,
+                "password": password
             });
+            // console.log({about, phone, cv}); 
+            await axios.patch(`http://localhost:5000/updateuserdetail/${userID}`,
+                {
+                    "user_about": about,
+                    "user_phone": phone,
+                    "user_cv": cv
+                });
+                window.location.reload();
+            // const formData = new FormData();
+            // formData.append('name', name);
+            // formData.append('email', email);
+            // formData.append('password', password);
+            // formData.append('role', role);
+            // if (image) {
+            //     formData.append('file', image);
+            // }
+            // await axios.patch(`http://localhost:5000/users/${userID}`, formData, {
+            //     headers: {
+            //         'Content-Type': 'multipart/form-data'
+            //     }
+            // });
             // navigate("/dashboard/profile");
         } catch (error) {
             console.log(error);
         }
     }
 
-    function refreshPage(){ 
-        window.location.reload(); 
+    function refreshPage() {
+        window.location.reload();
     }
 
     return (
-        <div className="container mt-5">
+        <div className="container mt-5 dashboard-content">
             <div className="row">
                 <div className="col-md-6">
+                    <Header title="EDIT PROFILE" subtitle="" />
+                    <Link to={"/dashboard/profile"} style={{ fontSize:"15px"}}> back</Link>
                     <form onSubmit={updateUser}>
                         <div className="mb-3">
                             <label htmlFor="name" className="form-label">Name</label>
@@ -132,7 +169,39 @@ const EditUser: React.FC = () => {
                             />
                             {previewURL && <img src={previewURL} alt="Preview" className="mt-2" style={{ maxWidth: "100%" }} />}
                         </div>
-                        <button type="submit" onClick={refreshPage} className="btn btn-success" style={{border:"none", backgroundColor:"#0062FF"}}>Update</button>
+                        <div className="mb-3">
+                            <label htmlFor="about" className="form-label">About</label>
+                            <textarea
+                                className="form-control"
+                                id="about"
+                                value={about}
+                                onChange={(e) => setAbout(e.target.value)}
+                                placeholder="About"
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="phone" className="form-label">Phone</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="phone"
+                                value={phone}
+                                onChange={(e) => setPhone(e.target.value)}
+                                placeholder="Phone"
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="cv" className="form-label">CV</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="cv"
+                                value={cv}
+                                onChange={(e) => setCV(e.target.value)}
+                                placeholder="CV"
+                            />
+                        </div>
+                        <button type="submit"  className="btn btn-success" style={{ border: "none", backgroundColor: "#0062FF" }}>Update</button>
                     </form>
                 </div>
             </div>

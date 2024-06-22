@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
 import Navbar from "../components/navbar.tsx";
-import Search from "../components/search.tsx";
+import SearchInterviewPage from "../components/searchinterview.tsx";
 import Filter from "../components/filter.tsx";
 import InterviewCard from "../components/interviewCard.tsx";
 import './Style/main.css';
@@ -28,7 +28,7 @@ const InterviewPage = () => {
         <Filter/>
         <div className="container mt-4">
           <div className="row justify-content-center">
-          <Search/>
+          <SearchInterviewPage/>
             <div className="col text-center">
             <div className="d-flex flex-wrap justify-content-center mt-4">
                 {interviews.map((j: any)=>

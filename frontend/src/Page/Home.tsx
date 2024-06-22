@@ -22,12 +22,12 @@ const Home = () => {
         <div className='row'>
           <div className="col text-center">
             <div style={{marginBottom:"25px", marginTop:"50px"}}>
-            <h2 className="typing-text"><span>We'll get you </span><span className='text-primary'>hired</span></h2>
-            <h2 className="typing-text"><span>hired in </span><span className='text-primary'>no time</span></h2>
+            <h2 className="typing-text"><span>We'll get you </span><span className='text-primary'>hired in</span></h2>
+            <h2 className="typing-text"><span className='text-primary'>no time</span></h2>
 
             </div>
             <div className="div">
-              <p className='mb-3'>Find job easy now !</p>
+              <p className='mb-3'>Find job easily now !</p>
               <Search/>
             </div>
           </div>
@@ -88,15 +88,6 @@ const Home = () => {
       <div className="container mt-4">
         <div className="row justify-content-center">
           <div className="col text-center">
-            <h2>Available <span className='text-primary'>Jobs</span></h2>
-            <div className="d-flex flex-wrap justify-content-center mt-4">
-              <div className="col col-md-5 col-lg-4"><Jobs /></div>
-              <div className="col col-md-5 col-lg-4"><Jobs /></div>
-              <div className="col col-md-5 col-lg-4"><Jobs /></div>
-              <div className="col col-md-5 col-lg-4"><Jobs /></div>
-              <div className="col col-md-5 col-lg-4"><Jobs /></div>
-              <div className="col col-md-5 col-lg-4"><Jobs /></div>
-            </div>
           </div>
         </div>
       </div>

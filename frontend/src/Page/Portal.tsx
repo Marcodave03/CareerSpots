@@ -8,7 +8,7 @@ import './Style/main.css';
 import Footer from '../components/footer.tsx';
 
 const Job = () => {
-  const [jobs, setJobs] = useState([]);
+  const [jobs, setJobs] = useState<any>([]);
 
   useEffect(() => {
     getJobs();
@@ -16,7 +16,7 @@ const Job = () => {
 
   const getJobs = async () => {
     const response = await axios.get("http://localhost:5000/job");
-    console.log(response.data.jobs); 
+    console.log(response.data); 
     setJobs(Array.from(response.data.jobs));
     console.log(jobs);
   };
@@ -35,7 +35,7 @@ const Job = () => {
                 jobTitle={j.job_name} 
                 jobLocation={j.job_location} 
                 jobType={j.job_type} 
-                companyName={j.company_name}
+                companyName={j.Staff.Company.company_name}
                 jobId={j.job_id}
                 jobSalary={j.job_salary}/></div>)
                 }

@@ -8,48 +8,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../../../app/store';
 import { getMe } from '../../../../features/authSlice';
 
-const JobApplicationList = () => {
-  const [jobApplications, setJobApplications] = useState<any[]>([]);
+function  JobApps({job_id}:any)
+{
   const [loading, setLoading] = useState(true);
-  const [job, setJobs] = useState<any[]>([]);
-  const [userID, setUserID] = useState<number>(); 
-  const navigate = useNavigate();
+  const [jobApplications, setJobApplications] = useState<any[]>([]);
   
-  const { isError, user, isSuccess } = useSelector((state: any) => state.auth);
-  const dispatch = useDispatch<AppDispatch>();
-  useEffect(() => {
-      dispatch(getMe());
-    }, [dispatch]);
-    useEffect(() => {
-      if (isError) {
-        navigate("/");
-      }
-      if(user)
-      {
-          setUserID(user.user_id);
-      }
-    }, [isError, isSuccess, user, navigate]);
-  const fetchJobApplications = async () => {
-    try {
-      const selectedStaff = (await axios.get<any>(`http://localhost:5000/staff/` + userID));
-      // console.log(userID); 
-      // console.log(selectedStaff); 
-      const staffID = selectedStaff.data.staff_id;  
-      const response = await axios.get<any>(
-        "http://localhost:5000/getjobapplicationbystaffid/" + staffID);
-      setJobApplications(response.data); 
-      console.log(response.data); 
-      setLoading(false); 
-
-    } catch (error) {
-      console.error("Error fetching jobs:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchJobApplications();
-  }, [userID]);
-
   const handleDelete = async (jobApplicationId: any) => {
     try {
       await axios.delete(`http://localhost:5000/jobApplication/${jobApplicationId}`);
@@ -72,23 +35,31 @@ const JobApplicationList = () => {
     }
   };
 
-  return (
-    <Box m="20px">
-      <Header title="JOB APPLICATIONS" subtitle="List of Job Applications" />
-      <Box m="40px 0 0 0">
-        <Table striped bordered hover responsive>
+  const fetchJobApplications = async () => {
+    try {
+      const response = await axios.get<any>(
+        "http://localhost:5000/getjobapplicationbyjobid/" + job_id);
+      setJobApplications(response.data); 
+      console.log(job_id); 
+      setLoading(false); 
+
+    } catch (error) {
+      console.error("Error fetching jobs:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchJobApplications();
+  }, [job_id]);
+
+  return(
+    <Table striped bordered hover responsive>
           <thead>
             <tr>
-              <th>Job History ID</th>
               <th>Application Date</th>
-              <th>Status</th>
               <th>User Name</th>
               <th>User Email</th>
-              <th>User Role</th>
-              <th>Job Name</th>
-              <th>Job Type</th>
-              <th>Job Location</th>
-              <th>Job Salary</th>
+              <th>Status</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -99,16 +70,11 @@ const JobApplicationList = () => {
               </tr>
             ) : (
               jobApplications.map((jobApplication) => (
-                <tr key={jobApplication.uuid}>
-                  <td>{jobApplication.jobhistoryid}</td>
+                <tr key={jobApplication.jobhistoryid}>
                   <td>{jobApplication.createdAt || 'N/A'}</td>
-                  <td>{jobApplication.status}</td> {/* Status TD */}
                   <td>{jobApplication.User.name}</td>
                   <td>{jobApplication.User.email}</td>
-                  <td>{jobApplication.Job.job_name}</td>
-                  <td>{jobApplication.Job.job_type}</td>
-                  <td>{jobApplication.Job.job_location}</td>
-                  <td>{jobApplication.Job.job_salary}</td>
+                  <td>{jobApplication.status}</td>
                   <td>
                     <Button
                       variant="contained"
@@ -117,6 +83,7 @@ const JobApplicationList = () => {
                     >
                       Accept
                     </Button>
+                    <br/>
                     <Button
                       variant="contained"
                       color="secondary"
@@ -125,6 +92,7 @@ const JobApplicationList = () => {
                     >
                       Reject
                     </Button>
+                    <br/>
                     <Button
                       variant="contained"
                       color="error"
@@ -139,6 +107,60 @@ const JobApplicationList = () => {
             )}
           </tbody>
         </Table>
+  )
+}
+
+const JobApplicationList = () => {
+  const [loading, setLoading] = useState(true);
+  const [job, setJobs] = useState<any[]>([]);
+  const [staffID, setStaffID] = useState<number>();
+  const [userID, setUserID] = useState<number>(); 
+  const navigate = useNavigate();
+  
+  const { isError, user, isSuccess } = useSelector((state: any) => state.auth);
+  const dispatch = useDispatch<AppDispatch>();
+  useEffect(() => {
+      dispatch(getMe());
+    }, [dispatch]);
+    useEffect(() => {
+      if (isError) {
+        navigate("/");
+      }
+      if(user)
+      {
+          setUserID(user.user_id);
+      }
+    }, [isError, isSuccess, user, navigate]);
+    useEffect(() => {
+      fetchJobByStaffId();
+  }, [userID]);
+  const fetchJobByStaffId = async () => 
+  {
+    try {
+      const selectedStaff = (await axios.get<any>(`http://localhost:5000/staff/` + userID));
+      const staffID = selectedStaff.data.staff_id;  
+      const response = await axios.get<any>(
+        "http://localhost:5000/jobByStaffId/" + staffID);
+      setJobs(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching jobs:", error);
+    }
+  }
+  return (
+    <Box m="20px">
+      <Header title="JOB APPLICATIONS" subtitle="List of Job Applications" />
+      <Box m="40px 0 0 0">
+      {job.length > 0 ? (
+                job.map((job) => (
+                  <><p>{job.job_name}</p><JobApps job_id={job.job_id} /></>
+                ))
+              ) : (
+                <p>No Jobs Found</p>
+                // <tr>
+                //   <td colSpan={9}>No jobs found</td>
+                // </tr>
+              )}
       </Box>
     </Box>
   );

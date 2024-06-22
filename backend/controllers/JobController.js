@@ -32,6 +32,13 @@ export const createJob = async (req, res) => {
             return res.status(404).json({ msg: "Staff not found" });
         }
         const newJob = await db.models.Jobs.create(req.body);
+        const newJobDetail = await db.models.JobDetail.create(
+            {
+                "job_id": newJob.job_id, 
+                "job_description": req.body.job_description, 
+                "job_requirement": req.body.job_requirement
+            }
+        )
         //await staff.addJob(newJob); // Associate the job with the staff member
         res.status(201).json({ msg: "Job created successfully", job: newJob });
     } catch (error) {
@@ -58,7 +65,19 @@ export const getJobById = async (req, res) => {
         const response = await db.models.Jobs.findOne({ 
             where: {
                 job_id: req.params.job_id
-            }
+            }, 
+            include: [
+                {
+                    model: db.models.Staffs,
+                    attributes: ['staff_id'], 
+                    include:[
+                        {
+                            model: db.models.Companies,
+                            attributes: ['company_name', 'location'], 
+                        },
+                    ]
+                },
+            ],
         });
         res.status(200).json(response);
     } catch(error) {

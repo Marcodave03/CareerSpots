@@ -3,10 +3,11 @@ import axios from 'axios';
 import { Box, Button } from '@mui/material';
 import Header from '../../../../components/Header';
 import { Table } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../../../app/store';
 import { getMe } from '../../../../features/authSlice';
+import '../../../Style/userdashboard.css';
 
 const JobApplicationList = () => {
   const [jobApplications, setJobApplications] = useState<any[]>([]);
@@ -73,22 +74,16 @@ const JobApplicationList = () => {
   };
 
   return (
-    <Box m="20px">
-      <Header title="JOB APPLICATIONS" subtitle="List of Job Applications" />
+    <Box className="jobAppliPage" m="20px">
+      <Header title="JOB APPLICATIONS" subtitle="" />
       <Box m="40px 0 0 0">
         <Table striped bordered hover responsive>
           <thead>
             <tr>
-              <th>Job History ID</th>
               <th>Application Date</th>
+              <th>Job Title</th>
+              <th>Posted By</th>
               <th>Status</th>
-              <th>User Name</th>
-              <th>User Email</th>
-              <th>User Role</th>
-              <th>Job Name</th>
-              <th>Job Type</th>
-              <th>Job Location</th>
-              <th>Job Salary</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -100,17 +95,15 @@ const JobApplicationList = () => {
             ) : (
               jobApplications.map((jobApplication) => (
                 <tr key={jobApplication.uuid}>
-                  <td>{jobApplication.jobhistoryid}</td>
                   <td>{jobApplication.createdAt || 'N/A'}</td>
-                  <td>{jobApplication.status}</td> {/* Status TD */}
-                  <td>{jobApplication.User.name}</td>
-                  <td>{jobApplication.User.email}</td>
                   <td>{jobApplication.Job.job_name}</td>
-                  <td>{jobApplication.Job.job_type}</td>
-                  <td>{jobApplication.Job.job_location}</td>
-                  <td>{jobApplication.Job.job_salary}</td>
+                  <td>{jobApplication.Job.Staff.User.name}</td> 
+                  <td>{jobApplication.status}</td>
                   <td>
-                    <Button
+                  <Link to={`/dashboard/message/compose/${jobApplication.Job.Staff.staff_id}`} style={{color:"white", backgroundColor:"#0062FF", 
+      textDecoration:"none", border:"none", padding:"8px", fontSize:"12px", borderRadius:"5px"
+      }}>Send Message</Link>
+                    {/* <Button
                       variant="contained"
                       color="primary"
                       onClick={() => handleStatusUpdate(jobApplication.jobhistoryid, 'accepted')}
@@ -132,7 +125,7 @@ const JobApplicationList = () => {
                       style={{ marginTop: '10px' }}
                     >
                       Delete
-                    </Button>
+                    </Button> */}
                   </td>
                 </tr>
               ))

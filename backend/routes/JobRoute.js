@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.get("/job", getJob);
 router.get("/jobById/:job_id", getJobById); 
-router.post("/job", verifyUser, staffOnly, createJob);
+router.post("/job", createJob);
 router.delete("/job/:job_id", deleteJob);
 router.patch("/job/:job_id", updateJob);
 

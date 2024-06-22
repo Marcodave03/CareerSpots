@@ -83,6 +83,7 @@ const Jobs = () => {
   return (
     <Box m="20px">
       <Header title="JOBS" subtitle="List of Jobs" />
+      <Link to={"/staffdashboard/createjob"} className="btn btn-success" style={{ border: "none", backgroundColor: "#0062FF" }}>Create Job</Link>
       <Box
         m="40px 0 0 0"
         height="75vh"

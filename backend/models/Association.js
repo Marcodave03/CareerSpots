@@ -1,134 +1,244 @@
-import db from "../config/Database.js"; 
-import Users from'./UsersModel.js';
+import db from "../config/Database.js";
+import Users from './UsersModel.js';
 import Staff from './StaffModel.js';
 import Job from './JobModel.js';
+import JobDetail from "./JobDetailModel.js"; 
 import Company from './CompanyModel.js';
 import JobApplication from './JobapplicationModel.js';
-import Interview from "./InterviewModel.js"; 
-import UserInterview from "./UserInterview.js"; 
+import Interview from "./InterviewModel.js";
+import UserInterview from "./UserInterview.js";
+import Messages from "./MessagesModel.js";
+import ReceivedMessages from "./ReceivedMessagesModel.js";
+import UserDetail from "./UserDetailModel.js"; 
 
-const user = db.define("Users", Users, 
-{
-    tableName: "users"
-}); 
-const staff = db.define("Staffs", Staff, 
-{
-    tableName: "staffs"
-}); 
+const user = db.define("Users", Users,
+    {
+        tableName: "users"
+    });
+const staff = db.define("Staffs", Staff,
+    {
+        tableName: "staffs"
+    });
 
-const job = db.define("Jobs", Job, 
-{
-    tableName: "job"
-}); 
+const job = db.define("Jobs", Job,
+    {
+        tableName: "job"
+    });
 
-const company = db.define("Companies", Company, 
-{
-    tableName: "companies"
-}); 
+const company = db.define("Companies", Company,
+    {
+        tableName: "companies"
+    });
 
-const jobApplication = db.define("JobApplications", JobApplication, 
-{
-    tableName: "job applications",
-});
+const jobApplication = db.define("JobApplications", JobApplication,
+    {
+        tableName: "job applications",
+    });
 
-const interview = db.define("Interviews", Interview, 
+const interview = db.define("Interviews", Interview,
+    {
+        tableName: "interviews"
+    }
+);
+
+const userInterview = db.define("UserInterviews", UserInterview,
+    {
+        tableName: "userInterviews"
+    }
+)
+
+const messages = db.define("Messages", Messages,
+    {
+        tableName: "messages"
+    }
+)
+
+const receivedMessages = db.define("ReceivedMessages", ReceivedMessages,
+    {
+        tableName: "receivedMessages"
+    }
+)
+
+const userDetail = db.define("UserDetail", UserDetail)
 {
-    tableName: "interviews"
+    {
+        tableName: "userDetail"; 
+    }
 }
-); 
 
-const userInterview = db.define("UserInterviews", UserInterview, 
+const jobDetail = db.define("JobDetail", JobDetail)
 {
-    tableName: "userInterviews"
+    {
+        tableName: "jobDetail";
+    }
 }
+
+user.hasMany(messages,
+    {
+        foreignKey: "user_id",
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE"
+    }
+);
+
+messages.belongsTo(user,
+    {
+        foreignKey: "user_id",
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE"
+    }
+)
+
+user.hasMany(receivedMessages,
+    {
+        foreignKey: "user_id",
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE"
+    }
+)
+
+receivedMessages.belongsTo(user,
+    {
+        foreignKey: "user_id",
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE"
+    }
+)
+
+messages.hasMany(receivedMessages,
+    {
+        foreignKey: "message_id",
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE"
+    }
+)
+
+receivedMessages.belongsTo(messages,
+    {
+        foreignKey: "message_id",
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE"
+    }
 )
 
 user.hasOne(staff, {
-    foreignKey: "user_id", 
-    onDelete: "CASCADE", 
+    foreignKey: "user_id",
+    onDelete: "CASCADE",
     onUpdate: "CASCADE"
 });
 user.hasMany(jobApplication, {
+    foreignKey: "user_id",
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE"
+});
+
+user.hasOne(userDetail, 
+{
     foreignKey: "user_id", 
     onDelete: "CASCADE", 
     onUpdate: "CASCADE"
-}); 
-staff.belongsTo(user, {
-    foreignKey: "user_id", 
+}
+)
+
+job.hasOne(jobDetail, 
+{
+    foreignKey: "job_id", 
     onDelete: "CASCADE", 
+    onUpdate: "CASCADE"
+})
+
+jobDetail.belongsTo(job, 
+    {
+        foreignKey: "job_id", 
+        onDelete: "CASCADE", 
+        onUpdate: "CASCADE"
+    })
+    
+
+userDetail.belongsTo(user, 
+    {
+        foreignKey: "user_id", 
+        onDelete: "CASCADE", 
+        onUpdate: "CASCADE"
+    }
+); 
+
+staff.belongsTo(user, {
+    foreignKey: "user_id",
+    onDelete: "CASCADE",
     onUpdate: "CASCADE"
 });
 
 staff.hasMany(job, {
-    foreignKey: "staff_id", 
-    onDelete: "CASCADE", 
+    foreignKey: "staff_id",
+    onDelete: "CASCADE",
     onUpdate: "CASCADE"
-}); 
+});
 
 company.hasMany(staff, {
-    foreignKey: "company_id", 
-    onDelete: "CASCADE", 
+    foreignKey: "company_id",
+    onDelete: "CASCADE",
     onUpdate: "CASCADE"
-}); 
+});
 
 staff.belongsTo(company, {
-    foreignKey: "company_id", 
-    onDelete: "CASCADE", 
+    foreignKey: "company_id",
+    onDelete: "CASCADE",
     onUpdate: "CASCADE"
-}); 
+});
 
 jobApplication.belongsTo(user, {
-    foreignKey: "user_id", 
-    onDelete: "CASCADE", 
+    foreignKey: "user_id",
+    onDelete: "CASCADE",
     onUpdate: "CASCADE"
-}); 
+});
 
 job.belongsTo(staff, {
-    foreignKey: "staff_id", 
-    onDelete: "CASCADE", 
+    foreignKey: "staff_id",
+    onDelete: "CASCADE",
     onUpdate: "CASCADE"
-}); 
+});
 
-job.hasMany(jobApplication, 
-{
-    foreignKey: "job_id", 
-    onDelete: "CASCADE", 
-    onUpdate: "CASCADE"
-}); 
+job.hasMany(jobApplication,
+    {
+        foreignKey: "job_id",
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE"
+    });
 
-jobApplication.belongsTo(job, 
-{
-    foreignKey: "job_id", 
-    onDelete: "CASCADE", 
-    onUpdate: "CASCADE"
-}); 
+jobApplication.belongsTo(job,
+    {
+        foreignKey: "job_id",
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE"
+    });
 
 user.hasMany(userInterview, {
-    foreignKey: "user_id", 
-    onDelete: "CASCADE", 
+    foreignKey: "user_id",
+    onDelete: "CASCADE",
     onUpdate: "CASCADE"
-}); 
+});
 
-userInterview.belongsTo(interview, 
-{
-    foreignKey: "user_id", 
-    onDelete: "CASCADE", 
-    onUpdate: "CASCADE"
-}); 
+userInterview.belongsTo(interview,
+    {
+        foreignKey: "user_id",
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE"
+    });
 
-interview.hasMany(userInterview, 
-{
-    foreignKey: "interview_id", 
-    onDelete: "CASCADE", 
-    onUpdate: "CASCADE"
-}); 
-    
-userInterview.belongsTo(interview, 
-{
-    foreignKey: "interview_id", 
-    onDelete: "CASCADE", 
-    onUpdate: "CASCADE"
-}); 
+interview.hasMany(userInterview,
+    {
+        foreignKey: "interview_id",
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE"
+    });
+
+userInterview.belongsTo(interview,
+    {
+        foreignKey: "interview_id",
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE"
+    });
 
 db.sync();
 

@@ -3,11 +3,11 @@ import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import { tokens } from "../../theme";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import JobOutlineIcon from '@mui/icons-material/WorkOutline';
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
+import ForumIcon from '@mui/icons-material/ForumOutlined';
 
 interface ItemProps {
   title: string;
@@ -102,13 +102,33 @@ const Sidebars: React.FC<SidebarProps> = (SidebarProps) => {
                 alignItems: "center",
               }}
             >
-              <img
+                     {
+                (SidebarProps.userImage == undefined)?
+                (        <img
+                  alt="profile-user"
+                  width="100px"
+                  height="100px"
+                  src={`http://localhost:5000/images/donlot.png`} 
+                  style={{ cursor: "pointer", borderRadius: "50%" }}
+                />)
+                :
+                (
+                  <img
+                  alt="profile-user"
+                  width="100px"
+                  height="100px"
+                  src={`http://localhost:5000/images/${SidebarProps.userImage}`} 
+                  style={{ cursor: "pointer", borderRadius: "50%" }}
+                />
+                )
+              }
+              {/* <img
                 alt="profile-user"
                 width="100px"
                 height="100px"
                 src={`http://localhost:5000/images/${SidebarProps.userImage}`}
                 style={{ cursor: "pointer", borderRadius: "50%" }}
-              />
+              /> */}
             </div>
             <div style={{ textAlign: "center" }}>
               <Typography
@@ -145,6 +165,14 @@ const Sidebars: React.FC<SidebarProps> = (SidebarProps) => {
             title="Interview History"
             to="/dashboard/interviewhistory"
             icon={<ContactsOutlinedIcon />}
+            selected={selected}
+            setSelected={setSelected}
+          />
+
+          <Item
+            title="Messages"
+            to="/dashboard/message/inbox"
+            icon={<ForumIcon />}
             selected={selected}
             setSelected={setSelected}
           />

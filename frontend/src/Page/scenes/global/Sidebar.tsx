@@ -9,6 +9,7 @@ import JobOutlineIcon from '@mui/icons-material/WorkOutline';
 import GroupOutlinedIcon from "@mui/icons-material/WorkOutline";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
+import ForumIcon from '@mui/icons-material/ForumOutlined';
 
 interface ItemProps {
   title: string;
@@ -102,13 +103,26 @@ const Sidebars: React.FC<SidebarProps> = (SidebarProps) => {
                 alignItems: "center",
               }}
             >
-              <img
-                alt="profile-user"
-                width="100px"
-                height="100px"
-                src={`http://localhost:5000/images/${SidebarProps.userImage}`} 
-                style={{ cursor: "pointer", borderRadius: "50%" }}
-              />
+              {
+                (SidebarProps.userImage == undefined)?
+                (        <img
+                  alt="profile-user"
+                  width="100px"
+                  height="100px"
+                  src={`http://localhost:5000/images/donlot.png`} 
+                  style={{ cursor: "pointer", borderRadius: "50%" }}
+                />)
+                :
+                (
+                  <img
+                  alt="profile-user"
+                  width="100px"
+                  height="100px"
+                  src={`http://localhost:5000/images/${SidebarProps.userImage}`} 
+                  style={{ cursor: "pointer", borderRadius: "50%" }}
+                />
+                )
+              }
             </div>
             <div style={{ textAlign: "center" }}>
               <Typography
@@ -152,6 +166,14 @@ const Sidebars: React.FC<SidebarProps> = (SidebarProps) => {
             title="Job Applications"
             to="/staffdashboard/applications"
             icon={<GroupOutlinedIcon />}
+            selected={selected}
+            setSelected={setSelected}
+          />
+
+<Item
+            title="Messages"
+            to="/staffdashboard/message/inbox"
+            icon={<ForumIcon />}
             selected={selected}
             setSelected={setSelected}
           />

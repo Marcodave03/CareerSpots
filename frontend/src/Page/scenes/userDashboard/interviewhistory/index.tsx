@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../../../app/store';
 import { getMe } from '../../../../features/authSlice';
 
+
 const InterviewPage = () => {
   const [interviews, setInterviews] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -50,14 +51,14 @@ const InterviewPage = () => {
   }, [userID]);
 
   return (
-    <div>
-      <div className='Home bg-body-secondary'>
-        <div className="container mt-4">
-          <div className="row justify-content-center">
+    <div style={{backgroundColor:"#ccc"}}>
+      <div className='Home bg-body-secondary' style={{padding:"50px", backgroundColor:"white"}}>
+        {/* <div className="container mt-4"> */}
+          {/* <div className="row justify-content-center"> */}
             <div className="col text-center">
-            <div className="d-flex flex-wrap justify-content-center mt-4">
+            <div className="d-flex flex-wrap mt-4 d-flex">
                 {interviews.map((j: any)=>
-                <div className="col col-md-5 col-lg-4"><InterviewCard
+                <div className="col col-md-5 cardWrapper col-lg-4"><InterviewCard
                 interview_id={j.Interview.interview_id}
                 interview_name={j.Interview.interview_name}
                 interview_imagelink={j.Interview.interview_imagelink}
@@ -69,8 +70,8 @@ const InterviewPage = () => {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      // </div>
+    // </div>
   )
 }
 

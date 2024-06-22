@@ -58,13 +58,16 @@ const jobs = (props: InterviewProps) => {
       }
     }
     return (
-        <div className="card" style={{ width: "18rem" }}>
-            <img className="card-img-top" src={props.interview_imagelink} alt="Card image cap" />
-            <div className="card-body">
+        <div className="card interviewCard-main">
+          {/* // <div className="interviewCard-main"> */}
+            <img className="interviewCard-img" src={props.interview_imagelink} alt="Card image cap" />
+            <div className="card-body interviewCard-detail">
                 <h5 className="card-title">{props.interview_name}</h5>
                 <p className="card-text">{props.interview_prompt}</p>
-                <button className="interviewcard-btn btn btn-primary" onClick={createUserInterview}>Add</button>
-                <Link to={"/interviewdetail/" + props.interview_id + "/video"} className="interviewcard-btn btn btn-primary">Go</Link>
+                <div className="interviewCard-nav">
+                    <button className="interviewcard-btn btn btn-primary" onClick={createUserInterview}>Save</button>
+                    <Link to={"/interviewdetail/" + props.interview_id + "/video"} className="interviewcard-btn btn btn-primary">Go</Link>
+                </div>
             </div>
         </div>
 

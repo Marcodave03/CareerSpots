@@ -8,4 +8,53 @@
 {
     margin-bottom: 5px;
     margin-left: 5px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.interview-body
+{
+    padding-top: 50px;
+}
+
+.interviewCard-mainDash
+{
+    width: 350px; 
+    margin-right: 30px;
+}
+
+.interviewCard-nav
+{
+    margin-top: -30px;
+    display: inline-block;
+}
+
+.interviewCard-main
+{
+    width: 350px;
+    /* background-color: aqua; */
+    /* padding: 100000px; */
+}
+
+.interviewCard-detail
+{
+    padding: 10px;
+    float: left
+}
+
+.interviewCard-img
+{
+    width:280px; 
+}
+
+.card-title
+{
+    font-size: 15px;
+    font-weight: bolder;
+    margin: -5px;
+}
+
+.cardWrapper
+{
+    margin: 60px;
 }

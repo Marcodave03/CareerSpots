@@ -4,6 +4,7 @@ import Navbar from "../components/navbar.tsx";
 import { Link } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import './Style/main.css';
+import './Style/interviewpage.css';
 import Footer from '../components/footer.tsx';
 import { useParams } from 'react-router-dom';
 
@@ -44,7 +45,7 @@ const JobDetailPage = () => {
         <div>
             <div className='Home bg-body-secondary'>
                 <Navbar />
-                <div className="container mt-4">
+                <div className="container mt-4 interview-body">
                     <div className="row" style={{ textAlign: "center" }}>
                         <div className="interviewdetailnav col-sm-4">
                             <Link to={"/interview"} style={{ textDecoration: "none" }}>back</Link>

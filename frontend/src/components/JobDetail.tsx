@@ -12,7 +12,22 @@ type JobProps =
     jobType: any, 
     jobLocation: any, 
     jobSalary: any,
-    jobId: any
+    jobId: any, 
+    staff_id: any,
+    jobDescription: any,
+    jobRequirement: any
+}
+
+const modal = () => {
+  return (
+      <div id="myModal" className="modal">
+          <div className="modal-content">
+              <span className="close">&times;</span>
+              <p>Are you sure you want to apply?</p>
+              <button></button>
+          </div>
+      </div>
+  )
 }
 
 const JobDetail = (props: JobProps) => {
@@ -50,6 +65,7 @@ const JobDetail = (props: JobProps) => {
           }
         )
       }
+      navigate("/portal"); 
     }
     catch(error:any)
     {
@@ -60,6 +76,7 @@ const JobDetail = (props: JobProps) => {
     }
   }
   return (
+    
     <div className="card">
     <div className="card-header">
     <Link to={"/portal"} style={{ fontSize:"10px"}}> back</Link>
@@ -67,6 +84,9 @@ const JobDetail = (props: JobProps) => {
       <button onClick={createJobApplication} style={{float:"right", marginRight:"5px", color:"white", backgroundColor:"#0062FF", 
       textDecoration:"none", border:"none", padding:"8px", fontSize:"12px", borderRadius:"5px"
       }}>Apply</button>
+      <Link to={`/dashboard/message/compose/${props.staff_id}`} style={{float:"right", marginRight:"5px", color:"white", backgroundColor:"#0062FF", 
+      textDecoration:"none", border:"none", padding:"8px", fontSize:"12px", borderRadius:"5px"
+      }}>Send Message</Link>
       <p style={{marginTop: "-5px", fontSize:"14px"}}>{props.companyName}</p>
       <p style={{marginTop: "-15px", fontSize:"14px"}}>{props.jobLocation}</p>
       <hr/>
@@ -77,25 +97,10 @@ const JobDetail = (props: JobProps) => {
     </div>
     <div className="card-body">
       <h2 style={{fontSize:"14px", fontWeight:"bold"}}>Job Description</h2>
-      <p style={{fontSize:"12px"}}>
-      - Writing and testing code for new programs.<br/>
-      - Updating existing programs.<br/>
-      - Identifying and correcting coding errors.<br/>
-      - Rewriting programs for different operating systems.<br/>
-      - Secure programs against cybersecurity threats.<br/>
-      </p>
+      {props.jobDescription}
       <h2 style={{fontSize:"14px", fontWeight:"bold"}}>Requirements</h2>
-      <p style={{fontSize:"12px"}}>
-      - Freshgraduate atau mahasiswa semester akhir<br/>
-- Memiliki pengalaman dalam pengembangan CMS WordPress<br/>
-- Terbiasa dalam penggunaan Plugin Custom Field, Wordpress Security, Elementor Page Builder, Forms, dll<br/>
-- Memahami dengan baik PHP, MySQL, HTML, CSS, dan javascript<br/>
-- Memahami prinsip SEO (Search Engine Optimization)<br/>
-- Memahami Google Tag Manager, Google Search Console, & Google Analytics menjadi nilai lebih<br/>
-memiliki kemauan untuk belajar, meningkatkan diri, dan memberikan kontribusi pada proyek dengan rasa memiliki yang kuat<br/>
-- Logika dan pemecahan masalah yang kuat, dengan kemampuan komunikasi yang baik<br/>
 
-      </p>
+        {props.jobRequirement}
     </div>
   </div>
   )

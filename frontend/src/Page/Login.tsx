@@ -28,19 +28,21 @@ const Login: React.FC = () => {
     (state: any) => state.auth
   );
 
+
   useEffect(() => {
     console.log(isSuccess); 
     // console.log(user); 
-    if (isError) {
-      navigate("/");
-    }
+    // if (isError) {
+    //   navigate("/");
+    // }
     if (user && user.role == "user") {
-      navigate("/dashboard");
+      navigate("/dashboard/profile");
     }
     if(user && user.role == "staff")
     {
-      navigate("/staffdashboard"); 
+      navigate("/staffdashboard/profile"); 
     }
+    dispatch(reset());
   }, [isError, isSuccess, user, navigate, dispatch]);
 
   const saveUser = async (e: any) => {
@@ -51,7 +53,14 @@ const Login: React.FC = () => {
         email: email,
         password: password,
         role: "user",
-      });
+      })
+      const User: userProp = {
+        username: "name",
+        email: email,
+        password: password,
+        role: "user",
+      };
+      dispatch(LoginUser(User));
       navigate("/dashboard");
     } catch (error: any) {
       if (error.response) {
@@ -106,7 +115,7 @@ const Login: React.FC = () => {
     <div className="Login containers full-screen">
       <div className="forms-container">
         <div className="signin-signup">
-          <form onSubmit={Auth} action="#" className="sign-in-form">
+          <form onSubmit={Auth} action="#" className="loginform sign-in-form">
             <h2 className="title">Sign in</h2>
             <div className="input-field">
               <i className="fas fa-user"></i>
@@ -143,7 +152,7 @@ const Login: React.FC = () => {
               </a>
             </div> */}
           </form>
-          <form onSubmit={saveUser} action="#" className="sign-up-form">
+          <form onSubmit={saveUser} action="#" className="loginform sign-up-form">
             <h2 className="title">Sign up</h2>
             <div className="input-field">
               <i className="fas fa-user"></i>
