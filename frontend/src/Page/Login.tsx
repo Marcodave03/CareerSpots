@@ -5,7 +5,7 @@ import Logsvg from "../assets/log.svg";
 import Regisvg from "../assets/register.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { LoginUser, reset } from "../features/authSlice";
+import { LoginUser, getMe, reset } from "../features/authSlice";
 import { AppDispatch } from "../app/store";
 import axios from "axios";
 
@@ -28,15 +28,22 @@ const Login: React.FC = () => {
     (state: any) => state.auth
   );
 
+
   useEffect(() => {
-    if (isSuccess) {
-      navigate("/Admin");
-    }
-    // if (user || isSuccess) {
-    //   navigate("/Admin");
+    console.log(isSuccess); 
+    // console.log(user); 
+    // if (isError) {
+    //   navigate("/");
     // }
+    if (user && user.role == "user") {
+      navigate("/dashboard/profile");
+    }
+    if(user && user.role == "staff")
+    {
+      navigate("/staffdashboard/profile"); 
+    }
     dispatch(reset());
-  }, [user, isSuccess, dispatch, navigate]);
+  }, [isError, isSuccess, user, navigate, dispatch]);
 
   const saveUser = async (e: any) => {
     e.preventDefault();
@@ -46,8 +53,15 @@ const Login: React.FC = () => {
         email: email,
         password: password,
         role: "user",
-      });
-      navigate("/Admin");
+      })
+      const User: userProp = {
+        username: "name",
+        email: email,
+        password: password,
+        role: "user",
+      };
+      dispatch(LoginUser(User));
+      navigate("/dashboard");
     } catch (error: any) {
       if (error.response) {
         setMsg(error.response.data.msg);
@@ -60,7 +74,7 @@ const Login: React.FC = () => {
       username: "",
       email: email,
       password: password,
-      role: "role",
+      role: "user",
     };
     dispatch(LoginUser(User));
   };
@@ -101,7 +115,7 @@ const Login: React.FC = () => {
     <div className="Login containers full-screen">
       <div className="forms-container">
         <div className="signin-signup">
-          <form onSubmit={Auth} action="#" className="sign-in-form">
+          <form onSubmit={Auth} action="#" className="loginform sign-in-form">
             <h2 className="title">Sign in</h2>
             <div className="input-field">
               <i className="fas fa-user"></i>
@@ -138,7 +152,7 @@ const Login: React.FC = () => {
               </a>
             </div> */}
           </form>
-          <form onSubmit={saveUser} action="#" className="sign-up-form">
+          <form onSubmit={saveUser} action="#" className="loginform sign-up-form">
             <h2 className="title">Sign up</h2>
             <div className="input-field">
               <i className="fas fa-user"></i>

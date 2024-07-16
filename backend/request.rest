@@ -1,7 +1,28 @@
 GET http://localhost:5000/users
 
 ###
-GET http://localhost:5000/users/3
+GET http://localhost:5000/users/45
+###
+GET http://localhost:5000/getjobapplicationbyjobid/1
+
+###
+GET http://localhost:5000/getstaffbystaffid/9
+
+
+###
+GET http://localhost:5000/interviews
+
+###
+GET http://localhost:5000/staff/13
+
+###
+GET http://localhost:5000/jobByStaffId/9
+
+###
+GET http://localhost:5000/jobById/16
+
+###
+GET http://localhost:5000/interviews/1
 
 ###
 POST http://localhost:5000/users HTTP/1.1
@@ -15,6 +36,42 @@ Content-Type: application/json
 }
 
 ###
+POST http://localhost:5000/createmessage HTTP/1.1
+Content-Type: application/json
+
+{
+    "user_id":13, 
+    "receiver_id":15,
+    "message_title": "ini message title", 
+    "message_content": "ini message content" 
+}
+
+###
+GET http://localhost:5000/getmessagesbyuserid/15 HTTP/1.1
+Content-Type: application/json
+
+###
+GET http://localhost:5000/getmessagesbyuserid/15 HTTP/1.1
+Content-Type: application/json
+
+###
+GET http://localhost:5000/getmessagebymessageid/1 HTTP/1.1
+Content-Type: application/json
+
+###
+GET http://localhost:5000/getreceivedmessagesbyuserid/13 HTTP/1.1
+Content-Type: application/json
+
+###
+GET http://localhost:5000/getuserdetailbyuserid/45 HTTP/1.1
+Content-Type: application/json
+
+###
+GET http://localhost:5000/getreceivedmessagesbymessageid/1 HTTP/1.1
+Content-Type: application/json
+
+
+###
 PATCH http://localhost:5000/users/2
 Content-Type: application/json
 
@@ -23,6 +80,17 @@ Content-Type: application/json
     "email": "ff@gmail.com",
     "role": "Staff Gojek"
 }
+
+###
+PATCH http://localhost:5000/updateuserdetail/45
+Content-Type: application/json
+
+{
+    "user_about": "about",
+    "user_phone": "081289906171",
+    "user_cv": "https://docs.google.com/document/d/1xsnBEWQlLaK545al050XhqTXqY2MoLDeSysLgGlSnxM/edit?usp=drive_link"
+}
+
 
 ###
 DELETE http://localhost:5000/users/2
@@ -34,11 +102,24 @@ POST http://localhost:5000/users HTTP/1.1
 content-type: application/json
 
 {
-    "name": "userName", 
-    "email": "user@gmail.com",
-    "password": "userPassword", 
-    "role": "staff"
+    "name": "Josephine Githa", 
+    "email": "josephinegitha@gmail.com",
+    "password": "password", 
+    "role": "staff",
 }
+
+###
+POST http://localhost:5000/staffs HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Priscilla Kusuma", 
+    "email": "priscillakusuma@gmail.com",
+    "password": "password", 
+    "role": "staff",
+    "company_id": 17
+}
+
 
 ###
 POST http://localhost:5000/users HTTP/1.1
@@ -124,7 +205,8 @@ Content-Type: application/json
 
 ###
 GET http://localhost:5000/job
-
+###
+GET http://localhost:5000/getjobapplicationbyjobid/:16
 
 ###
 PATCH http://localhost:5000/job/4
@@ -159,12 +241,11 @@ content-type: application/json
 
 ###
 
-POST http://localhost:5000/getjobapplicationbyuserid
-content-type: application/json 
+GET http://localhost:5000/getjobapplicationbyuserid/45
 
-{
-    "userId": 1
-}
+# GET http://localhost:5000/getjobbyuserid
+# content-type: application/json 
 
-###
-GET http://localhost:5000/getjobapplication
+# {
+#     "userId": 1
+# }

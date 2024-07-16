@@ -1,0 +1,30 @@
+.dashboard-content
+{
+    padding:30px; 
+}
+
+.profile-detail p
+{
+    font-size: 15px;
+}
+
+.profile-detail label
+{
+    color: #0062FF
+}
+
+.null-p
+{
+    font-style: italic;
+}
+
+.jobAppliPage
+{
+    padding:40px; 
+}
+
+.createJob-text
+{
+    width: 800px; 
+    height: 300px; 
+}

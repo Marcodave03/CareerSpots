@@ -5,12 +5,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from "./Page/Home";
 import Login from "./Page/Login";
 import Portal from "./Page/Portal";
-import UserList from "./BackendPage/UserList";
-import AddUser from "./BackendPage/AddUser";
-import EditUser from "./BackendPage/EditUser";
-import LoginUser from "./BackendPage/LoginUser";
-import Admin from "./Page/Admin";
-import Applist from "./BackendPage/Applist";
+import InterviewPage from "./Page/InterviewPage";
+import UserDashboard from "./Page/UserDashboard";
+import StaffDashboard from "./Page/StaffDashboard"; 
+import AdminDashboard from "./Page/AdminDashboard"; 
+import JobDetailPage from "./Page/JobDetailPage"; 
+import InterviewDetailPage from "./Page/InterviewDetailPage"; 
 
 function App() {
   return (
@@ -18,16 +18,14 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} /> 
         <Route path="/signup" element={<Login />} /> 
-        <Route path="/Portal" element={<Portal />} /> 
-        <Route path="/Admin/*" element={<Admin/>} /> 
+        <Route path="/portal" element={<Portal />} /> 
+        <Route path="/dashboard/*" element={<UserDashboard/>} />     
+        <Route path="/staffdashboard/*" element={<StaffDashboard/>} /> 
+        <Route path="/admindashboard/*" element={<AdminDashboard/>} />  
+        <Route path="/interview" element={<InterviewPage/>}/>
 
-
-        <Route path="/users" element={<UserList/>}></Route> 
-        <Route path="/add" element={<AddUser/>}></Route>
-        <Route path="edit/:id" element={<EditUser/>}></Route>
-        <Route path="/login" element={<LoginUser/>}></Route>
-        <Route path="/applist" element={<Applist/>}></Route>
-
+        <Route path="/jobdetail/:id" element={<JobDetailPage/>}/>
+        <Route path="/interviewdetail/:id/*" element={<InterviewDetailPage/>}/>
       </Routes>
     </Router>
   );

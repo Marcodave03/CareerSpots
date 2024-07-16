@@ -3,20 +3,13 @@ import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import { tokens } from "../../theme";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import JobOutlineIcon from '@mui/icons-material/WorkOutline';
+import GroupOutlinedIcon from "@mui/icons-material/WorkOutline";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
-import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import GroupOutlinedIcon from "@mui/icons-material/WorkOutline";
-import BookOutlinedIcon from "@mui/icons-material/BookOutlined";
-import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
-import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
-import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
-import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlined";
-import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
-import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import ForumIcon from '@mui/icons-material/ForumOutlined';
 
 interface ItemProps {
   title: string;
@@ -53,9 +46,13 @@ const Item: React.FC<ItemProps> = ({
 
 interface SidebarProps {
   isSidebar: boolean;
+  userName: string, 
+  userImage: string |undefined, 
+  userRole: string
 }
 
-const Sidebars: React.FC<SidebarProps> = () => {
+
+const Sidebars: React.FC<SidebarProps> = (SidebarProps) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -106,13 +103,26 @@ const Sidebars: React.FC<SidebarProps> = () => {
                 alignItems: "center",
               }}
             >
-              <img
-                alt="profile-user"
-                width="100px"
-                height="100px"
-                src={`../../../src/assets/Atkinson_Rowan.jpg`}
-                style={{ cursor: "pointer", borderRadius: "50%" }}
-              />
+              {
+                (SidebarProps.userImage == undefined)?
+                (        <img
+                  alt="profile-user"
+                  width="100px"
+                  height="100px"
+                  src={`http://localhost:5000/images/donlot.png`} 
+                  style={{ cursor: "pointer", borderRadius: "50%" }}
+                />)
+                :
+                (
+                  <img
+                  alt="profile-user"
+                  width="100px"
+                  height="100px"
+                  src={`http://localhost:5000/images/${SidebarProps.userImage}`} 
+                  style={{ cursor: "pointer", borderRadius: "50%" }}
+                />
+                )
+              }
             </div>
             <div style={{ textAlign: "center" }}>
               <Typography
@@ -121,10 +131,10 @@ const Sidebars: React.FC<SidebarProps> = () => {
                 fontWeight="bold"
                 style={{ margin: "10px 0 0 0" }}
               >
-                Mr Bean
+                {SidebarProps.userName}
               </Typography>
               <Typography variant="h5" color={colors.greenAccent[500]}>
-                Hollywood Company Admin
+                {SidebarProps.userRole}
               </Typography>
             </div>
           </div>
@@ -132,117 +142,38 @@ const Sidebars: React.FC<SidebarProps> = () => {
 
         <div style={{ paddingLeft: isCollapsed ? undefined : "10%" }}>
           <Item
-            title="Dashboard"
-            to="/Admin"
-            icon={<HomeOutlinedIcon />}
-            selected={selected}
-            setSelected={setSelected}
-          />
-
-          <Typography
-            variant="h6"
-            color={colors.grey[300]}
-            style={{ margin: "15px 0 5px 20px" }}
-          >
-            Data
-          </Typography>
-          <Item
-            title="User list"
-            to="/Admin/user"
-            icon={<PeopleOutlinedIcon />}
-            selected={selected}
-            setSelected={setSelected}
-          />
-          <Item
-            title="Staff Information"
-            to="/Admin/staff"
-            icon={<GroupOutlinedIcon/>}
-            selected={selected}
-            setSelected={setSelected}
-          />
-          <Item
-            title="Job Information"
-            to="/Admin/job"
-            icon={<ContactsOutlinedIcon />}
-            selected={selected}
-            setSelected={setSelected}
-          />
-          <Item
-            title="Company Information"
-            to="/Admin/company"
-            icon={<ReceiptOutlinedIcon />}
-            selected={selected}
-            setSelected={setSelected}
-          />
-          <Item
-            title="Job Application"
-            to="/Admin/jobapplication"
-            icon={<BookOutlinedIcon />}
-            selected={selected}
-            setSelected={setSelected}
-          />
-
-          <Typography
-            variant="h6"
-            color={colors.grey[300]}
-            style={{ margin: "15px 0 5px 20px" }}
-          >
-            Create Data
-          </Typography>
-          <Item
-            title="Create User"
-            to="/Admin/createuser"
+            title="Profile"
+            to="/staffdashboard/profile"
             icon={<PersonOutlinedIcon />}
             selected={selected}
             setSelected={setSelected}
           />
           <Item
-            title="Calendar"
-            to="/Admin/calendar"
-            icon={<CalendarTodayOutlinedIcon />}
+            title="Other staffs"
+            to="/staffdashboard/staff"
+            icon={<PeopleOutlinedIcon />}
             selected={selected}
             setSelected={setSelected}
           />
           <Item
-            title="FAQ Page"
-            to="/Admin/faq"
-            icon={<HelpOutlineOutlinedIcon />}
+            title="Created Jobs"
+            to="/staffdashboard/createdjobs"
+            icon={<ContactsOutlinedIcon />}
+            selected={selected}
+            setSelected={setSelected}
+          />
+          <Item
+            title="Job Applications"
+            to="/staffdashboard/applications"
+            icon={<GroupOutlinedIcon />}
             selected={selected}
             setSelected={setSelected}
           />
 
-          <Typography
-            variant="h6"
-            color={colors.grey[300]}
-            style={{ margin: "15px 0 5px 20px" }}
-          >
-            Charts
-          </Typography>
-          <Item
-            title="Bar Chart"
-            to="/Admin/bar"
-            icon={<BarChartOutlinedIcon />}
-            selected={selected}
-            setSelected={setSelected}
-          />
-          <Item
-            title="Pie Chart"
-            to="/Admin/pie"
-            icon={<PieChartOutlineOutlinedIcon />}
-            selected={selected}
-            setSelected={setSelected}
-          />
-          <Item
-            title="Line Chart"
-            to="/Admin/line"
-            icon={<TimelineOutlinedIcon />}
-            selected={selected}
-            setSelected={setSelected}
-          />
-          <Item
-            title="Geography Chart"
-            to="/Admin/geography"
-            icon={<MapOutlinedIcon />}
+<Item
+            title="Messages"
+            to="/staffdashboard/message/inbox"
+            icon={<ForumIcon />}
             selected={selected}
             setSelected={setSelected}
           />

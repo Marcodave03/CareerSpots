@@ -1,5 +1,5 @@
 import db from '../models/Association.js';
-
+import Op from "sequelize"; 
 export const createJobApplication = async (req, res) => {
     try {
         const { user_id, job_id } = req.body;
@@ -41,13 +41,30 @@ export const getJobApplicationsByUserId = async(req, res) =>
 {
     try
     {
-        const {userId} = req.body; 
-        const { count, rows } = await db.models.JobApplications.findAndCountAll({
+
+        const response = await db.models.JobApplications.findAll({
             where: {
-              user_id: userId
-            }
+              user_id: req.params.id
+            },
+            include: [
+                { model: db.models.Users, attributes: ['name', 'email', 'role'] },
+                { model: db.models.Jobs, attributes: ['job_name', 'job_type', 'job_location', 'job_salary'], 
+                    include:[
+                        {
+                            model: db.models.Staffs,
+                            include:
+                            [
+                                {
+                                    model: db.models.Users
+                                }
+                            ]
+                            // attributes: ['company_name', 'location'], 
+                        },
+                    ]
+                 }
+            ]
           });
-        res.status(200).json({ rows, msg: "job application by user id fetched successfully" });
+        res.status(200).json(response);
     }
     catch(error)
     {
@@ -60,13 +77,18 @@ export const getJobApplicationsByJobId = async(req, res) =>
 {
      try
     {
-        const {jobId} = req.body; 
-        const { count, rows } = await db.models.JobApplications.findAndCountAll({
+        const jobApplications = await db.models.JobApplications.findAll({
             where: {
-                job_id: jobId
-            }
+                job_id: req.params.id
+            },
+            include: [
+                { model: db.models.Users},
+                { model: db.models.Jobs }
+            ]
         });
-        res.status(200).json({ rows, msg: "job application by job id fetched successfully" });
+
+        console.log(jobApplications); 
+        res.status(200).json(jobApplications);
     }
     catch(error)
     {

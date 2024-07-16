@@ -5,8 +5,8 @@ import {
   changeJobApplicationStatus,
   getJobApplicationsByUserId,
   getJobApplicationsByJobId,
-  getAllJobApplications,
-  deleteJobApplication,
+  getJobApplicationByStaffId,
+  deleteJobApplication
 } from "../controllers/JobApplicationController.js";
 import { verifyUser, staffOnly, userOnly, adminOnly } from "../middleware/AuthUser.js";
 
@@ -25,27 +25,22 @@ router.post(
   // staffOnly,
   changeJobApplicationStatus
 );
-router.post(
-  "/getjobapplicationbyuserid",
-  verifyUser,
-  userOnly,
+router.get(
+  "/getjobapplicationbyuserid/:id",
   getJobApplicationsByUserId
 );
-router.post(
-  "/getjobapplicationbyjobid",
-  verifyUser,
-  staffOnly,
+router.get(
+  "/getjobapplicationbyjobid/:id",
   getJobApplicationsByJobId
 );
 
 router.get(
-  "/getjobapplication",
-  getAllJobApplications
-);
+  "/getjobapplicationbystaffid/:id",
+  getJobApplicationByStaffId
+)
 
 router.get(
   "/deletejobapplication",
   deleteJobApplication
 );
-
 export default router;

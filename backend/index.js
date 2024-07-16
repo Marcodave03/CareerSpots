@@ -10,6 +10,12 @@ import JobApplicationRoute from "./routes/JobApplicationRoute.js";
 import JobRoute from "./routes/JobRoute.js";
 import StaffRoute from "./routes/StaffRoute.js";
 import AuthRoute from "./routes/AuthRoute.js";
+import InterviewRoute from "./routes/InterviewRoute.js";
+import UserInterviewRoute from "./routes/UserInterviewRoute.js"
+import MessageRoute from "./routes/MessageRoute.js"; 
+import ReceivedMessageRoute from "./routes/ReceivedMessageRoute.js"; 
+import UserDetailRoute from "./routes/UserDetailRoute.js";
+import JobDetailRoute from "./routes/JobDetailRoute.js"; 
 import FileUpload from "express-fileupload";
 dotenv.config();
 
@@ -20,6 +26,10 @@ const sessionStore = SequelizeStore(session.Store);
 const store = new sessionStore({
   db: db,
 });
+
+(async()=>{
+    await db.sync();
+})();
 
 app.use(
   session({
@@ -48,5 +58,11 @@ app.use(CompanyRoute);
 app.use(JobApplicationRoute);
 app.use(JobRoute);
 app.use(StaffRoute);
+app.use(InterviewRoute); 
+app.use(UserInterviewRoute); 
+app.use(MessageRoute); 
+app.use(ReceivedMessageRoute); 
+app.use(UserDetailRoute); 
+app.use(JobDetailRoute); 
 store.sync();
 app.listen(5000, () => console.log("Server up and running..."));
